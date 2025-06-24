@@ -34,7 +34,7 @@ export default function HomePage() {
 
   return (
     <SmoothScroll>
-      <main ref={mainRef} className="relative w-full min-h-[200vh] bg-[#dddddd] text-[#222222]">
+      <main ref={mainRef} className="relative w-full min-h-[200vh] text-[#dddddd] bg-[#000000]">
         <div className="relative w-full h-screen overflow-hidden">
           <div 
             ref={webglCanvasContainerRef} 
@@ -45,7 +45,7 @@ export default function HomePage() {
           <Header />
         </div>
 
-        <div className="h-screen p-10 relative z-10 bg-[#dddddd]">
+        <div className="h-screen p-10 relative z-10">
           <h2 className="text-4xl">Content Below the Fold</h2>
         </div>
 

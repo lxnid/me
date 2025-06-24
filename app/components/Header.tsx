@@ -3,9 +3,14 @@ import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import Link from "next/link";
+import AnimatedText from "./AnimatedText";
 
 const Header = () => {
 	const textRef = useRef(null);
+	const bottomLeftRef = useRef(null);
+	const bottomRightRef = useRef(null);
+	const linksRef = useRef(null);
 
 	useEffect(() => {
 		gsap.registerPlugin(ScrollTrigger);
@@ -45,6 +50,26 @@ const Header = () => {
 			stagger: 0.03,
 		});
 
+		// Animate other elements
+		const otherElements = [
+			bottomLeftRef.current,
+			bottomRightRef.current,
+			linksRef.current,
+		];
+
+		tl.from(
+			otherElements,
+            {
+                opacity: 0,
+				y: 20,
+				duration: 1,
+				ease: "power3.out",
+				stagger: 0.2,
+			},
+			"-=1.5" // Start this animation 1.5s before the previous one ends
+		);
+
+
 		// Parallax effect on scroll
 		gsap.to(textElement, {
 			y: 300,
@@ -56,13 +81,40 @@ const Header = () => {
 				scrub: true,
 			},
 		});
-
+		gsap.to(otherElements, {
+			color: '#ffffff00',
+			ease: "none",
+			scrollTrigger: {
+				trigger: document.documentElement,
+				start: "top top",
+				end: "bottom bottom",
+				scrub: true,
+			},
+		});
 	}, []);
 	return (
 		<div className="z-20 absolute w-full h-full flex justify-center items-center pointer-events-none">
-			<h1 ref={textRef} className="text-[10rem] leading-none text-white text-center opacity-0 font-bold">
-				HIRUSHA <br /> DINIL
-			</h1>
+			<div className="flex flex-col justify-evenly px-12 py-10 items-center h-full w-full relative">
+				<h1
+					ref={textRef}
+					className="text-[10rem] leading-none text-white text-center mt-[28vh] opacity-0 font-bold uppercase"
+				>HIRUSHA <br /> DINIL</h1>
+				<div className="h-full w-full flex items-end justify-between text-sm text-white uppercase">
+					<p ref={bottomLeftRef}>COLOMBO, SL</p>
+					<p ref={bottomRightRef}>PORTFOLIO &copy; 2025</p>
+					<div ref={linksRef} className="flex flex-col pointer-events-auto">
+						<Link href="/" className="overflow-hidden h-6">
+							<AnimatedText>LINKEDIN</AnimatedText>
+						</Link>
+						<Link href="/" className="overflow-hidden h-6">
+							<AnimatedText>GITHUB</AnimatedText>
+						</Link>
+						<Link href="/" className="overflow-hidden h-6">
+							<AnimatedText>EMAIL</AnimatedText>
+						</Link>
+					</div>
+				</div>
+			</div>
 		</div>
 	);
 };
