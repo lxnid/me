@@ -57,19 +57,10 @@ const Header = () => {
 			},
 		});
 
-		// Hover animation for each letter
-		// spans.forEach((span) => {
-		// 	span.addEventListener("mouseenter", () => {
-		// 		gsap.to(span, { translateY: -10, duration: 0.3, ease: "power1.out" });
-		// 	});
-		// 	span.addEventListener("mouseleave", () => {
-		// 		gsap.to(span, { translateY: 0, duration: 0.3, ease: "power1.out" });
-		// 	});
-		// });
 	}, []);
 	return (
-		<div className="z-10 relative w-full max-h-screen h-full flex justify-center items-center">
-			<h1 ref={textRef} className="text-9xl text-center opacity-0">
+		<div className="z-20 absolute w-full h-full flex justify-center items-center pointer-events-none">
+			<h1 ref={textRef} className="text-[10rem] leading-none text-white text-center opacity-0 font-bold">
 				HIRUSHA <br /> DINIL
 			</h1>
 		</div>

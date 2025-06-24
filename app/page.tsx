@@ -1,68 +1,55 @@
-'use client'
-import DisplacementAnimation from "./components/DisplacementAnimation"; // Adjusted import path
-import Header from "./components/Header";
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+'use client';
+
+import { useEffect, useRef } from 'react';
+import WebGLCanvas from './components/WebGLCanvas'; 
+import SmoothScroll from './components/SmoothScroll';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Header from './components/Header';
 
 gsap.registerPlugin(ScrollTrigger);
-const Home: React.FC = () => {
-	const scrollRef = useRef<HTMLDivElement>(null);
 
-	useEffect(() => {
-		const scrollContainer = scrollRef.current;
-		if (!scrollContainer) return;
+export default function HomePage() {
+  const mainRef = useRef<HTMLElement>(null);
+  const webglCanvasContainerRef = useRef<HTMLDivElement>(null);
 
-		let height = scrollContainer.getBoundingClientRect().height;
+  useEffect(() => {
+    // We need to wait for the mainRef to be available to set up the trigger
+    if (mainRef.current && webglCanvasContainerRef.current) {
+      // Parallax effect for the WebGL Canvas container
+      gsap.to(webglCanvasContainerRef.current, {
+        y: "30%", // Move the container down by 30% of its height as user scrolls
+        scrollTrigger: {
+          trigger: mainRef.current, // The scroll is triggered by the main container
+          start: "top top", // Starts when the top of the trigger hits the top of the viewport
+          end: "bottom top", // Ends when the bottom of the trigger hits the top of the viewport
+          scrub: true, // Smoothly animates the 'y' property with the scroll
+        },
+      });
+    }
+    
+    ScrollTrigger.refresh();
 
-		gsap.to(
-			{},
-			{
-				scrollTrigger: {
-					scroller: window,
-					trigger: document.body,
-					start: "top top",
-					end: "bottom bottom",
-					onUpdate: (self) => {
-						const scrollPos = self.scroll();
-						if (scrollContainer) {
-							gsap.to(scrollContainer, {
-								y: -scrollPos,
-								ease: "power3.out",
-								duration: 0.8,
-								overwrite: "auto",
-							});
-						}
-					},
-					invalidateOnRefresh: true,
-				},
-			}
-		);
+  }, []);
 
-		const onResize = () => {
-			height = scrollContainer.getBoundingClientRect().height;
-			document.body.style.height = height + "px";
-		};
+  return (
+    <SmoothScroll>
+      <main ref={mainRef} className="relative w-full min-h-[200vh] bg-[#dddddd] text-[#222222]">
+        <div className="relative w-full h-screen overflow-hidden">
+          <div 
+            ref={webglCanvasContainerRef} 
+            className="absolute top-0 left-0 w-full h-full z-10"
+          >
+             <WebGLCanvas />
+          </div>
+          <Header />
+        </div>
 
-		window.addEventListener("resize", onResize);
-		onResize();
+        <div className="h-screen p-10 relative z-10 bg-[#dddddd]">
+          <h2 className="text-4xl">Content Below the Fold</h2>
+        </div>
 
-		return () => {
-			window.removeEventListener("resize", onResize);
-			ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-		};
-	}, []);
-	return (
-		<main
-			className="w-screen h-screen bg-black relative px-12 select-none"
-			ref={scrollRef}
-			style={{ willChange: "transform" }}
-		>
-			<Header />
-			<DisplacementAnimation />
-			<div className="h-screen">gacergaeg</div>
-		</main>
-	);
-};
-
-export default Home;
+      </main>
+    </SmoothScroll>
+  );
+}
