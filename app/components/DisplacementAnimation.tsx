@@ -9,7 +9,7 @@ const vertexShader = `
     varying vec2 vUv;
 
     void main() {
-        vUv = uv; // Reverted to original UV mapping
+        vUv = uv; // Original UV mapping (no horizontal flip)
         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
     }
 `;
@@ -19,7 +19,7 @@ const fragmentShader = `
     uniform sampler2D u_texture1;
     uniform float u_progress;
     uniform vec2 u_mouse;
-    uniform vec2 u_resolution; // Added to help with blur offset calculation
+    uniform vec2 u_resolution;
 
     varying vec2 vUv;
 
@@ -163,23 +163,18 @@ const DisplacementAnimation: React.FC = () => {
           scene.add(mesh);
           meshRef.current = mesh;
 
-          // Keep global image scaling
+          // Apply global image scaling
           const globalImageScaleFactor = 1.8;
           mesh.scale.set(globalImageScaleFactor, globalImageScaleFactor, 1);
 
-          // --- Add Image Translation Factor ---
-          // Adjust these values to move the image within the canvas.
-          // Values are relative to the plane's calculated width/height.
-          // For example, 0.1 * planeWidth will move it 10% of the plane's width to the right.
-          // You might need to experiment with these values based on your desired layout.
-          const imageTranslateX = 0.2; // Example: 0.1 to move right
-          const imageTranslateY = 0.0; // Example: 0.05 to move up
+          // Apply image translation
+          const imageTranslateX = 0.2;
+          const imageTranslateY = 0.0;
           mesh.position.set(
               imageTranslateX * planeWidth,
               imageTranslateY * planeHeight,
-              0 // Z position remains 0 (on the same plane as camera focus)
+              0
           );
-          // ------------------------------------
 
           gsap.to(material.uniforms.u_progress, {
             value: 1,
@@ -239,12 +234,10 @@ const DisplacementAnimation: React.FC = () => {
             meshRef.current.geometry.dispose();
             meshRef.current.geometry = new THREE.PlaneGeometry(planeWidth, planeHeight);
 
-            // Reapply global scale on resize
-            const globalImageScaleFactor = 0.9;
+            const globalImageScaleFactor = 1.4;
             meshRef.current.scale.set(globalImageScaleFactor, globalImageScaleFactor, 1);
 
-            // Reapply translation on resize
-            const imageTranslateX = 0.0;
+            const imageTranslateX = 0.1;
             const imageTranslateY = 0.0;
             meshRef.current.position.set(
                 imageTranslateX * planeWidth,
