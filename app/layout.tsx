@@ -2,12 +2,12 @@ import "./globals.css"; // Import global styles here
 import { Inter } from "next/font/google"; // Example: Using Inter font
 import React from "react";
 import Navbar from "./components/Navbar";
-
-const inter = Inter({ subsets: ["latin"] });
 import type { Metadata } from "next";
 import "./globals.css";
 
-export const metadata = {
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
 	title: "Liquid Displacement Background",
 	description:
 		"Three.js liquid displacement animation with Next.js App Router",
