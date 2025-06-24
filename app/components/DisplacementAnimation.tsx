@@ -168,7 +168,7 @@ const DisplacementAnimation: React.FC = () => {
           mesh.scale.set(globalImageScaleFactor, globalImageScaleFactor, 1);
 
           // Apply image translation
-          const imageTranslateX = 0.2;
+          const imageTranslateX = 0.3;
           const imageTranslateY = 0.0;
           mesh.position.set(
               imageTranslateX * planeWidth,
@@ -234,7 +234,7 @@ const DisplacementAnimation: React.FC = () => {
             meshRef.current.geometry.dispose();
             meshRef.current.geometry = new THREE.PlaneGeometry(planeWidth, planeHeight);
 
-            const globalImageScaleFactor = 1.4;
+            const globalImageScaleFactor = 2.4;
             meshRef.current.scale.set(globalImageScaleFactor, globalImageScaleFactor, 1);
 
             const imageTranslateX = 0.1;

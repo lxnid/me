@@ -30,7 +30,7 @@ const Header = () => {
 				const br = document.createElement("br");
 				(textElement as HTMLElement).appendChild(br);
 			}
-(textElement as HTMLElement).appendChild(char);
+			(textElement as HTMLElement).appendChild(char);
 		});
 
 		const spans = chars;
