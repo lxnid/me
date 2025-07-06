@@ -69,8 +69,7 @@ export default function HomePage() {
 					</div>
 				</section>
 
-				<section className="min-h-screen p-12 pt-20 z-10 relative">
-				</section>
+				<section className="min-h-screen p-12 pt-20 z-10 relative"></section>
 			</main>
 		</SmoothScroll>
 	);

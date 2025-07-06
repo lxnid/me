@@ -3,6 +3,7 @@ import React, { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Link from "next/link";
+import { projects } from "../data/projects";
 
 const HorizontalScroll = () => {
 	const containerRef = useRef(null);
@@ -97,56 +98,21 @@ const HorizontalScroll = () => {
 				ref={containerRef}
 				className="container flex flex-nowrap w-[100%] gap-2 h-[65vh]"
 			>
-				<div
-					ref={addToRefs}
-					className="panel w-full min-w-[35vw] h-full bg-[url('/workImages/portfolio_24.jpg')] bg-cover bg-start"
-				>
-					<Link
-						href="/work/1"
-						className="w-full h-full flex justify-center items-center text-white text-4xl"
-					>
-						
-					</Link>
-				</div>
-				<div
-					ref={addToRefs}
-					className="panel w-full min-w-[35vw] h-full bg-[url('/workImages/weather.jpg')] bg-cover bg-start"
-				>
-					<Link
-						href="/work/2"
-						className="w-full h-full flex justify-center items-center text-white text-4xl"
-					>
-						
-					</Link>
-				</div>
-				<div
-					ref={addToRefs}
-					className="panel w-full min-w-[35vw] h-full bg-[url('/workImages/todo.jpg')] bg-cover bg-start"
-				>
-					<Link
-						href="/work/3"
-						className="w-full h-full flex justify-center items-center text-white text-4xl"
-					>
-						
-					</Link>
-				</div>
-				<div
-					ref={addToRefs}
-					className="panel w-full min-w-[35vw] h-full bg-[url('/workImages/portfolio_current.jpg')] bg-cover bg-start"
-				>
-					<Link
-						href="/work/4"
-						className="w-full h-full flex justify-center items-center text-white text-4xl"
-					>
-						
-					</Link>
-				</div>
-				{/* <div
-					ref={addToRefs}
-					className="panel bg-yellow-500 w-full min-w-[35vw] h-full flex justify-center items-center text-white text-4xl"
-				>
-					Panel 5
-				</div> */}
+				{
+					projects.map((project) => (
+						<div
+							key={project.id}
+							ref={addToRefs}
+							className="panel w-full min-w-[35vw] h-full bg-cover bg-start"
+							style={{ backgroundImage: `url(${project.image})` }}
+						>
+							<Link
+								href={project.link}
+								className="w-full h-full flex justify-center items-center text-white text-4xl"
+							></Link>
+						</div>
+					))
+				}
 			</div>
 		</div>
 	);
