@@ -7,9 +7,9 @@ import Link from "next/link";
 const HorizontalScroll = () => {
 	const containerRef = useRef(null);
 	const pinContainerRef = useRef(null);
-  const sectionsRef = useRef<HTMLDivElement[]>([]);
-  const sectionHead = useRef(null);
-  const sectionDescription = useRef(null);
+	const sectionsRef = useRef<HTMLDivElement[]>([]);
+	const sectionHead = useRef(null);
+	const sectionDescription = useRef(null);
 
 	useEffect(() => {
 		gsap.registerPlugin(ScrollTrigger);
@@ -32,7 +32,7 @@ const HorizontalScroll = () => {
 			},
 		});
 
-    const secStaticEls = [sectionHead.current, sectionDescription.current];
+		const secStaticEls = [sectionHead.current, sectionDescription.current];
 		gsap.from(secStaticEls, {
 			opacity: 0,
 			y: 20,
@@ -42,7 +42,6 @@ const HorizontalScroll = () => {
 			scrollTrigger: {
 				trigger: pinContainer,
 				start: "top 70%", // Trigger when the top of the container hits 80% of the viewport height
-				once: true, // Animate only once
 			},
 		});
 		gsap.from(container, {
@@ -54,12 +53,17 @@ const HorizontalScroll = () => {
 			scrollTrigger: {
 				trigger: pinContainer,
 				start: "top 40%", // Trigger when the top of the container hits 80% of the viewport height
-				once: true, // Animate only once
 			},
 		});
 
 		sections.forEach((section) => {
-			const hover = gsap.to(section, { scale: 1.02, translateY: -10, duration: 0.5, paused: true, ease: "power2.inOut" });
+			const hover = gsap.to(section, {
+				scale: 1.02,
+				translateY: -10,
+				duration: 0.5,
+				paused: true,
+				ease: "power2.inOut",
+			});
 			section.addEventListener("mouseenter", () => hover.play());
 			section.addEventListener("mouseleave", () => hover.reverse());
 		});
@@ -67,7 +71,7 @@ const HorizontalScroll = () => {
 		return () => {
 			scrollTween.kill();
 			ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
+		};
 	}, []);
 
 	const addToRefs = (el: HTMLDivElement) => {
@@ -82,7 +86,9 @@ const HorizontalScroll = () => {
 			className="relative h-screen flex flex-col justify-end"
 		>
 			<div className="absolute top-20 w-full flex flex-col items-start">
-				<h2 ref={sectionHead} className="text-xl py-10">Selected Work</h2>
+				<h2 ref={sectionHead} className="text-xl py-10">
+					Selected Work
+				</h2>
 				<p ref={sectionDescription} className="text-4xl w-[30vw] py-4">
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 				</p>
@@ -91,36 +97,48 @@ const HorizontalScroll = () => {
 				ref={containerRef}
 				className="container flex flex-nowrap w-[100%] gap-2 h-[65vh]"
 			>
-				<div ref={addToRefs} className="panel w-full min-w-[35vw] h-full">
+				<div
+					ref={addToRefs}
+					className="panel w-full min-w-[35vw] h-full bg-[url('/workImages/portfolio_24.jpg')] bg-cover bg-start"
+				>
 					<Link
 						href="/work/1"
-						className="bg-red-500 w-full h-full flex justify-center items-center text-white text-4xl"
+						className="w-full h-full flex justify-center items-center text-white text-4xl"
 					>
-						Panel 1
+						
 					</Link>
 				</div>
-				<div ref={addToRefs} className="panel w-full min-w-[35vw] h-full">
-          <Link
-            href="/work/2"
-						className="bg-blue-500 w-full h-full flex justify-center items-center text-white text-4xl"
+				<div
+					ref={addToRefs}
+					className="panel w-full min-w-[35vw] h-full bg-[url('/workImages/weather.jpg')] bg-cover bg-start"
+				>
+					<Link
+						href="/work/2"
+						className="w-full h-full flex justify-center items-center text-white text-4xl"
 					>
-						Panel 2
+						
 					</Link>
 				</div>
-				<div ref={addToRefs} className="panel w-full min-w-[35vw] h-full">
+				<div
+					ref={addToRefs}
+					className="panel w-full min-w-[35vw] h-full bg-[url('/workImages/todo.jpg')] bg-cover bg-start"
+				>
 					<Link
 						href="/work/3"
-						className="bg-green-500 w-full h-full flex justify-center items-center text-white text-4xl"
+						className="w-full h-full flex justify-center items-center text-white text-4xl"
 					>
-						Panel 3
+						
 					</Link>
 				</div>
-				<div ref={addToRefs} className="panel w-full min-w-[35vw] h-full">
+				<div
+					ref={addToRefs}
+					className="panel w-full min-w-[35vw] h-full bg-[url('/workImages/portfolio_current.jpg')] bg-cover bg-start"
+				>
 					<Link
 						href="/work/4"
-						className="bg-purple-500 w-full h-full flex justify-center items-center text-white text-4xl"
+						className="w-full h-full flex justify-center items-center text-white text-4xl"
 					>
-						Panel 4
+						
 					</Link>
 				</div>
 				{/* <div
