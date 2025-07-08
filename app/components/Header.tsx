@@ -13,84 +13,76 @@ const Header = () => {
 	const linksRef = useRef(null);
 
 	useEffect(() => {
-		gsap.registerPlugin(ScrollTrigger);
+		gsap.registerPlugin(ScrollTrigger, SplitText);
 
-		// Initial state - hide the text
-		gsap.set(textRef.current, { opacity: 0 });
+		const ctx = gsap.context(() => {
+			// Initial state - hide the text
+			gsap.set(textRef.current, { opacity: 0 });
 
-		// Create timeline for text animation
-		const tl = gsap.timeline();
+			// Create timeline for text animation
+			const tl = gsap.timeline();
 
-		const textElement = textRef.current;
-		if (!textElement) return;
+			const textElement = textRef.current;
+			if (!textElement) return;
 
-		// Use GSAP SplitText to split the text into characters
-		const split = new SplitText(textElement, { type: "chars, lines" });
-		const chars = split.chars; // Array of character elements
+			// Use GSAP SplitText to split the text into characters
+			const split = new SplitText(textElement, { type: "chars, lines" });
+			const chars = split.chars; // Array of character elements
 
-		// Clear previous content and append split chars
-		(textElement as HTMLElement).innerHTML = "";
-		chars.forEach((char) => {
-			if (char.textContent === "D") {
-				const br = document.createElement("br");
-				(textElement as HTMLElement).appendChild(br);
-			}
-			(textElement as HTMLElement).appendChild(char);
+			// Animate each letter
+			tl.to(textElement, { opacity: 1, duration: 0 }).from(chars, {
+				opacity: 0,
+				y: 40,
+				delay: 0.2,
+				duration: 1.8,
+				ease: "back.out(1.7)",
+				stagger: 0.03,
+			});
+
+			// Animate other elements
+			const otherElements = [
+				bottomLeftRef.current,
+				bottomRightRef.current,
+				linksRef.current,
+			];
+
+			tl.from(
+				otherElements,
+				{
+					opacity: 0,
+					y: 20,
+					duration: 1,
+					ease: "power3.out",
+					stagger: 0.2,
+				},
+				"-=1.5" // Start this animation 1.5s before the previous one ends
+			);
+
+			// Parallax effect on scroll
+			gsap.to(textElement, {
+				y: 300,
+				ease: "none",
+				scrollTrigger: {
+					trigger: document.documentElement,
+					start: "top top",
+					end: "bottom top",
+					scrub: true,
+				},
+			});
+
+			gsap.to(otherElements, {
+				color: "#ffffff00",
+				ease: "none",
+				scrollTrigger: {
+					trigger: document.documentElement,
+					start: "top top",
+					end: "bottom bottom",
+					scrub: true,
+				},
+			});
 		});
 
-		const spans = chars;
-
-		// Animate each letter
-		tl.to(textElement, { opacity: 1, duration: 0 }).from(spans, {
-			opacity: 0,
-			y: 40,
-			delay: 0.2,
-			duration: 1.8,
-			ease: "back.out(1.7)",
-			stagger: 0.03,
-		});
-
-		// Animate other elements
-		const otherElements = [
-			bottomLeftRef.current,
-			bottomRightRef.current,
-			linksRef.current,
-		];
-
-		tl.from(
-			otherElements,
-            {
-                opacity: 0,
-				y: 20,
-				duration: 1,
-				ease: "power3.out",
-				stagger: 0.2,
-			},
-			"-=1.5" // Start this animation 1.5s before the previous one ends
-		);
-
-
-		// Parallax effect on scroll
-		gsap.to(textElement, {
-			y: 300,
-			ease: "none",
-			scrollTrigger: {
-				trigger: document.documentElement,
-				start: "top top",
-				end: "bottom top",
-				scrub: true,
-			},
-		});
-		gsap.to(otherElements, {
-			color: '#ffffff00',
-			ease: "none",
-			scrollTrigger: {
-				trigger: document.documentElement,
-				start: "top top",
-				end: "bottom bottom",
-				scrub: true,
-			},
-		});
+		return () => ctx.revert();
 	}, []);
 	return (
 		<div className="z-20 absolute w-full h-full flex justify-center items-center pointer-events-none">

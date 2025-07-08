@@ -15,64 +15,63 @@ const HorizontalScroll = () => {
 	useEffect(() => {
 		gsap.registerPlugin(ScrollTrigger);
 
-		const sections = sectionsRef.current;
-		const container = containerRef.current;
-		const pinContainer = pinContainerRef.current;
+		const ctx = gsap.context(() => {
+			const sections = sectionsRef.current;
+			const container = containerRef.current;
+			const pinContainer = pinContainerRef.current;
 
-		if (!container || sections.length === 0 || !pinContainer) return;
+			if (!container || sections.length === 0 || !pinContainer) return;
 
-		const scrollTween = gsap.to(sections, {
-			xPercent: -45 * (sections.length - 1),
-			ease: "ease.inOut",
-			scrollTrigger: {
-				trigger: pinContainer,
-				pin: true,
-				scrub: 0.1,
-				start: "center center",
-				end: () => `+=${(container as HTMLElement).offsetWidth}`,
-			},
-		});
-
-		const secStaticEls = [sectionHead.current, sectionDescription.current];
-		gsap.from(secStaticEls, {
-			opacity: 0,
-			y: 20,
-			ease: "power2.out",
-			stagger: 0.2,
-			duration: 1,
-			scrollTrigger: {
-				trigger: pinContainer,
-				start: "top 70%", // Trigger when the top of the container hits 80% of the viewport height
-			},
-		});
-		gsap.from(container, {
-			opacity: 0,
-			y: 20,
-			ease: "power2.out",
-			stagger: 0.2,
-			duration: 1,
-			scrollTrigger: {
-				trigger: pinContainer,
-				start: "top 40%", // Trigger when the top of the container hits 80% of the viewport height
-			},
-		});
-
-		sections.forEach((section) => {
-			const hover = gsap.to(section, {
-				scale: 1.02,
-				translateY: -10,
-				duration: 0.5,
-				paused: true,
-				ease: "power2.inOut",
+			gsap.to(sections, {
+				xPercent: -45 * (sections.length - 1),
+				ease: "ease.inOut",
+				scrollTrigger: {
+					trigger: pinContainer,
+					pin: true,
+					scrub: 0.1,
+					start: "center center",
+					end: () => `+=${(container as HTMLElement).offsetWidth}`,
+				},
 			});
-			section.addEventListener("mouseenter", () => hover.play());
-			section.addEventListener("mouseleave", () => hover.reverse());
-		});
 
-		return () => {
-			scrollTween.kill();
-			ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-		};
+			const secStaticEls = [sectionHead.current, sectionDescription.current];
+			gsap.from(secStaticEls, {
+				opacity: 0,
+				y: 20,
+				ease: "power2.out",
+				stagger: 0.2,
+				duration: 1,
+				scrollTrigger: {
+					trigger: pinContainer,
+					start: "top 70%", // Trigger when the top of the container hits 80% of the viewport height
+				},
+			});
+			gsap.from(container, {
+				opacity: 0,
+				y: 20,
+				ease: "power2.out",
+				stagger: 0.2,
+				duration: 1,
+				scrollTrigger: {
+					trigger: pinContainer,
+					start: "top 40%", // Trigger when the top of the container hits 80% of the viewport height
+				},
+			});
+
+			sections.forEach((section) => {
+				const hover = gsap.to(section, {
+					scale: 1.02,
+					translateY: -10,
+					duration: 0.5,
+					paused: true,
+					ease: "power2.inOut",
+				});
+				section.addEventListener("mouseenter", () => hover.play());
+				section.addEventListener("mouseleave", () => hover.reverse());
+			});
+		}, pinContainerRef);
+
+		return () => ctx.revert();
 	}, []);
 
 	const addToRefs = (el: HTMLDivElement) => {
