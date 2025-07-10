@@ -8,11 +8,13 @@ import { projects } from "../data/projects";
 interface HorizontalScrollProps {
 	projectCount: "all" | number;
 	inHome?: boolean;
+	children?: React.ReactNode;
 }
 
 const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 	projectCount,
 	inHome = false,
+	children,
 }) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const pinContainerRef = useRef<HTMLDivElement>(null);
@@ -68,9 +70,8 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 					trigger: pinContainer,
 					pin: true,
 					scrub: 0.1,
-					start: "bottom bottom",
+					start: "center center",
 					end: () => `+=${(container as HTMLElement).offsetWidth}`,
-					// This ensures the calculation runs again on resize
 					invalidateOnRefresh: true,
 				},
 			});
@@ -88,11 +89,10 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 					duration: 1,
 					scrollTrigger: {
 						trigger: pinContainer,
-						start: "top 70%", // Trigger when the top of the container hits 80% of the viewport height
+						start: "top 70%",
 					},
 				});
-			}
-			if (inHome) {
+
 				gsap.from(container, {
 					opacity: 0,
 					y: 20,
@@ -101,8 +101,8 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 					duration: 1,
 					scrollTrigger: {
 						trigger: pinContainer,
-						start: "top 40%", // Trigger when the top of the container hits 80% of the viewport height
-						},
+						start: "top 40%",
+					},
 				});
 			}
 
@@ -120,7 +120,7 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 		}, pinContainerRef);
 
 		return () => ctx.revert();
-	}, [projectsToDisplay]);
+	}, [projectsToDisplay, inHome]);
 
 	const addToRefs = (el: HTMLDivElement) => {
 		if (el && !sectionsRef.current.includes(el)) {
@@ -131,18 +131,24 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 	return (
 		<div
 			ref={pinContainerRef}
-			className={`relative ${inHome ? "h-screen justify-end" : "h-[65vh] justify-end"} flex flex-col`}
+			className={`relative ${
+				inHome ? "h-screen justify-end" : ""
+			} flex flex-col`}
 		>
 			{inHome && (
-			<div className="absolute top-20 w-full pl-12 flex flex-col items-start">
-				<h2 ref={sectionHead} className="text-xl py-10">
-					Selected Work
-				</h2>
-				<p ref={sectionDescription} className="text-4xl w-[30vw] py-4">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-				</p>
-			</div>
+				<div className="absolute top-20 w-full pl-12 flex flex-col items-start">
+					<h2 ref={sectionHead} className="text-xl py-10">
+						Selected Work
+					</h2>
+					<p
+						ref={sectionDescription}
+						className="text-4xl w-[30vw] py-4"
+					>
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					</p>
+				</div>
 			)}
+			{children}
 			<div
 				ref={containerRef}
 				className="container flex flex-nowrap w-[100%] gap-2 h-[65vh]"
