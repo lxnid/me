@@ -55,7 +55,7 @@ export default function HomePage() {
 
 				<section className="min-h-screen pt-20 z-10 relative">
 					<HorizontalScroll />
-					<div className="w-full h-[15vh] flex justify-end items-end">
+					<div className="w-full h-[15vh] flex justify-end items-end pr-12">
 						<Link
 							href={"/work"}
 							className="group w-fit h-fit px-5 py-3 text-xl opacity-70 hover:opacity-100 rounded-full gap-2 hover:gap-4 mr-2 hover:mr-0 transition-all duration-300 ease-in-out border border-black flex justify-evenly items-center"

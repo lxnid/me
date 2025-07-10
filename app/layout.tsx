@@ -1,16 +1,14 @@
 import "./globals.css"; // Import global styles here
-import { Inter } from "next/font/google"; // Example: Using Inter font
 import React from "react";
 import Navbar from "./components/Navbar";
 import type { Metadata } from "next";
 import "./globals.css";
+import CustomCursor from "./components/CustomCursor";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Liquid Displacement Background",
-	description:
-		"Three.js liquid displacement animation with Next.js App Router",
+	title: "Hirusha Dinil",
+	description: "Portfolio of Hirusha Dinil",
 };
 
 export default function RootLayout({
@@ -20,7 +18,8 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>
+			<body>
+				<CustomCursor />
 				<Navbar />
 				{children}
 			</body>
