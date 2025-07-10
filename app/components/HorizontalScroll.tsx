@@ -5,12 +5,21 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Link from "next/link";
 import { projects } from "../data/projects";
 
-const HorizontalScroll = () => {
+interface HorizontalScrollProps {
+	projectCount: "all" | number;
+}
+
+const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
+	projectCount,
+}) => {
 	const containerRef = useRef(null);
 	const pinContainerRef = useRef(null);
 	const sectionsRef = useRef<HTMLDivElement[]>([]);
 	const sectionHead = useRef(null);
 	const sectionDescription = useRef(null);
+
+	const projectsToDisplay =
+		projectCount === "all" ? projects : projects.slice(0, projectCount);
 
 	useEffect(() => {
 		gsap.registerPlugin(ScrollTrigger);
@@ -23,7 +32,7 @@ const HorizontalScroll = () => {
 			if (!container || sections.length === 0 || !pinContainer) return;
 
 			gsap.to(sections, {
-				xPercent: -35 * (sections.length - 1),
+				xPercent: -35 * (projectsToDisplay.length - 1),
 				ease: "ease.inOut",
 				scrollTrigger: {
 					trigger: pinContainer,
@@ -34,7 +43,10 @@ const HorizontalScroll = () => {
 				},
 			});
 
-			const secStaticEls = [sectionHead.current, sectionDescription.current];
+			const secStaticEls = [
+				sectionHead.current,
+				sectionDescription.current,
+			];
 			gsap.from(secStaticEls, {
 				opacity: 0,
 				y: 20,
@@ -72,7 +84,7 @@ const HorizontalScroll = () => {
 		}, pinContainerRef);
 
 		return () => ctx.revert();
-	}, []);
+	}, [projectsToDisplay]);
 
 	const addToRefs = (el: HTMLDivElement) => {
 		if (el && !sectionsRef.current.includes(el)) {
@@ -97,21 +109,19 @@ const HorizontalScroll = () => {
 				ref={containerRef}
 				className="container flex flex-nowrap w-[100%] gap-2 h-[65vh]"
 			>
-				{
-					projects.map((project) => (
-						<div
-							key={project.id}
-							ref={addToRefs}
-							className="panel w-full min-w-[35vw] h-full bg-cover bg-start"
-							style={{ backgroundImage: `url(${project.image})` }}
-						>
-							<Link
-								href={project.link}
-								className="w-full h-full flex justify-center items-center text-white text-4xl"
-							></Link>
-						</div>
-					))
-				}
+				{projectsToDisplay.map((project) => (
+					<div
+						key={project.id}
+						ref={addToRefs}
+						className="panel w-full min-w-[35vw] h-full bg-cover bg-start"
+						style={{ backgroundImage: `url(${project.image})` }}
+					>
+						<Link
+							href={project.link}
+							className="w-full h-full flex justify-center items-center text-white text-4xl"
+						></Link>
+					</div>
+				))}
 			</div>
 		</div>
 	);

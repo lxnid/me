@@ -17,7 +17,7 @@ export default function WorkGallery() {
 					robust development.
 				</p>
 			</section>
-			<HorizontalScroll />
+			<HorizontalScroll projectCount="all" />
 		</div>
 	);
 }
