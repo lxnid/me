@@ -12,11 +12,11 @@ interface HorizontalScrollProps {
 const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 	projectCount,
 }) => {
-	const containerRef = useRef(null);
-	const pinContainerRef = useRef(null);
+	const containerRef = useRef<HTMLDivElement>(null);
+	const pinContainerRef = useRef<HTMLDivElement>(null);
 	const sectionsRef = useRef<HTMLDivElement[]>([]);
-	const sectionHead = useRef(null);
-	const sectionDescription = useRef(null);
+	const sectionHead = useRef<HTMLHeadingElement>(null);
+	const sectionDescription = useRef<HTMLParagraphElement>(null);
 
 	const projectsToDisplay =
 		projectCount === "all" ? projects : projects.slice(0, projectCount);
@@ -32,7 +32,35 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 			if (!container || sections.length === 0 || !pinContainer) return;
 
 			gsap.to(sections, {
-				xPercent: -35 * (projectsToDisplay.length - 1),
+				// Use a function to dynamically calculate xPercent
+				xPercent: () => {
+					const numProjects = projectsToDisplay.length;
+					if (numProjects <= 1) {
+						return 0;
+					}
+
+					// Get actual widths and gaps from the DOM for accuracy
+					const containerWidth = container.offsetWidth;
+					const sectionWidth = sections[0].offsetWidth - 60;
+					const gap = parseFloat(
+						window.getComputedStyle(container).gap
+					);
+
+					// Calculate the total width of all project cards including gaps
+					const totalContentWidth =
+						numProjects * sectionWidth + (numProjects - 1) * gap;
+
+					// Calculate the distance that needs to be scrolled
+					const scrollDistance = totalContentWidth - containerWidth;
+
+					// If content fits, no scroll is needed
+					if (scrollDistance <= 0) {
+						return 0;
+					}
+
+					// Convert the scroll distance to a percentage of a single section's width
+					return (-scrollDistance / sectionWidth) * 100;
+				},
 				ease: "ease.inOut",
 				scrollTrigger: {
 					trigger: pinContainer,
@@ -40,6 +68,8 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 					scrub: 0.1,
 					start: "center center",
 					end: () => `+=${(container as HTMLElement).offsetWidth}`,
+					// This ensures the calculation runs again on resize
+					invalidateOnRefresh: true,
 				},
 			});
 
