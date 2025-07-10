@@ -35,7 +35,6 @@ export default function HomePage() {
 	}, []);
 
 	return (
-		<SmoothScroll>
 			<main
 				ref={mainRef}
 				className="relative w-full min-h-[200vh] bg-[#dddddd] text-[#000000]"
@@ -71,6 +70,5 @@ export default function HomePage() {
 
 				<section className="min-h-screen p-12 pt-20 z-10 relative"></section>
 			</main>
-		</SmoothScroll>
 	);
 }

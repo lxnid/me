@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import type { Metadata } from "next";
 import "./globals.css";
 import CustomCursor from "./components/CustomCursor";
+import SmoothScroll from "./components/SmoothScroll";
 
 
 export const metadata: Metadata = {
@@ -21,7 +22,9 @@ export default function RootLayout({
 			<body>
 				<CustomCursor />
 				<Navbar />
-				{children}
+				<SmoothScroll>
+					{children}
+				</SmoothScroll>
 			</body>
 		</html>
 	);
