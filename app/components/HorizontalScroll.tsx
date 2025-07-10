@@ -7,10 +7,12 @@ import { projects } from "../data/projects";
 
 interface HorizontalScrollProps {
 	projectCount: "all" | number;
+	inHome?: boolean;
 }
 
 const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 	projectCount,
+	inHome = false,
 }) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const pinContainerRef = useRef<HTMLDivElement>(null);
@@ -66,39 +68,43 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 					trigger: pinContainer,
 					pin: true,
 					scrub: 0.1,
-					start: "center center",
+					start: "bottom bottom",
 					end: () => `+=${(container as HTMLElement).offsetWidth}`,
 					// This ensures the calculation runs again on resize
 					invalidateOnRefresh: true,
 				},
 			});
 
-			const secStaticEls = [
-				sectionHead.current,
-				sectionDescription.current,
-			];
-			gsap.from(secStaticEls, {
-				opacity: 0,
-				y: 20,
-				ease: "power2.out",
-				stagger: 0.2,
-				duration: 1,
-				scrollTrigger: {
-					trigger: pinContainer,
-					start: "top 70%", // Trigger when the top of the container hits 80% of the viewport height
-				},
-			});
-			gsap.from(container, {
-				opacity: 0,
-				y: 20,
-				ease: "power2.out",
-				stagger: 0.2,
-				duration: 1,
-				scrollTrigger: {
-					trigger: pinContainer,
-					start: "top 40%", // Trigger when the top of the container hits 80% of the viewport height
-				},
-			});
+			if (inHome) {
+				const secStaticEls = [
+					sectionHead.current,
+					sectionDescription.current,
+				];
+				gsap.from(secStaticEls, {
+					opacity: 0,
+					y: 20,
+					ease: "power2.out",
+					stagger: 0.2,
+					duration: 1,
+					scrollTrigger: {
+						trigger: pinContainer,
+						start: "top 70%", // Trigger when the top of the container hits 80% of the viewport height
+					},
+				});
+			}
+			if (inHome) {
+				gsap.from(container, {
+					opacity: 0,
+					y: 20,
+					ease: "power2.out",
+					stagger: 0.2,
+					duration: 1,
+					scrollTrigger: {
+						trigger: pinContainer,
+						start: "top 40%", // Trigger when the top of the container hits 80% of the viewport height
+						},
+				});
+			}
 
 			sections.forEach((section) => {
 				const hover = gsap.to(section, {
@@ -125,8 +131,9 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 	return (
 		<div
 			ref={pinContainerRef}
-			className="relative h-screen flex flex-col justify-end"
+			className={`relative ${inHome ? "h-screen justify-end" : "h-[65vh] justify-end"} flex flex-col`}
 		>
+			{inHome && (
 			<div className="absolute top-20 w-full pl-12 flex flex-col items-start">
 				<h2 ref={sectionHead} className="text-xl py-10">
 					Selected Work
@@ -135,6 +142,7 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 				</p>
 			</div>
+			)}
 			<div
 				ref={containerRef}
 				className="container flex flex-nowrap w-[100%] gap-2 h-[65vh]"

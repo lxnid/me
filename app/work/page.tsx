@@ -6,9 +6,9 @@ export default function WorkGallery() {
 	return (
 		<div className="min-h-screen bg-white">
 			{/* Hero Section */}
-			<section className="max-w-5xl mx-auto pt-20 pb-16 text-center">
-				<h1 className="text-5xl md:text-7xl font-extrabold text-black mb-6 tracking-tight">
-					My Work
+			<section className="max-w-5xl mx-auto pt-40 pb-16 text-center">
+				<h1 className="text-5xl md:text-7xl font-extrabold text-black mb-6">
+					Project Gallery
 				</h1>
 				<p className="text-lg md:text-2xl text-neutral-700 max-w-2xl mx-auto">
 					Explore a curated selection of my favorite projects,
