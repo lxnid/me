@@ -53,7 +53,7 @@ export default function HomePage() {
 					<Header />
 				</section>
 
-				<section className="min-h-screen p-12 pt-20 z-10 relative">
+				<section className="min-h-screen pt-20 z-10 relative">
 					<HorizontalScroll />
 					<div className="w-full h-[15vh] flex justify-end items-end">
 						<Link

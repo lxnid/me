@@ -23,7 +23,7 @@ const HorizontalScroll = () => {
 			if (!container || sections.length === 0 || !pinContainer) return;
 
 			gsap.to(sections, {
-				xPercent: -45 * (sections.length - 1),
+				xPercent: -35 * (sections.length - 1),
 				ease: "ease.inOut",
 				scrollTrigger: {
 					trigger: pinContainer,
@@ -85,7 +85,7 @@ const HorizontalScroll = () => {
 			ref={pinContainerRef}
 			className="relative h-screen flex flex-col justify-end"
 		>
-			<div className="absolute top-20 w-full flex flex-col items-start">
+			<div className="absolute top-20 w-full pl-12 flex flex-col items-start">
 				<h2 ref={sectionHead} className="text-xl py-10">
 					Selected Work
 				</h2>
