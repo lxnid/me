@@ -1,23 +1,132 @@
-'use client';
+"use client";
 
-import { useParams } from 'next/navigation';
-import { projects, Project } from '../../data/projects';
+import { useParams } from "next/navigation";
+import { projects } from "../../data/projects";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const WorkPage = () => {
-  const { id } = useParams();
-  const project = projects.find((p) => p.id === parseInt(id as string, 10));
+	const { id } = useParams();
+	const project = projects.find((p) => p.id === parseInt(id as string, 10));
+	const imageRef = useRef<HTMLImageElement>(null);
+	const containerRef = useRef<HTMLDivElement>(null);
 
-  if (!project) {
-    return <div>Project not found</div>;
-  }
+	useEffect(() => {
+		if (!imageRef.current || !containerRef.current) return;
+		const ctx = gsap.context(() => {
+			gsap.to(imageRef.current, {
+				width: "98vw",
+				height: "80vh",
+				borderRadius: "20px",
+				ease: "ease",
+				scrollTrigger: {
+					trigger: containerRef.current,
+					start: "top top",
+					end: "+=300",
+					scrub: true,
+					pin: false,
+				},
+			});
+		}, containerRef);
+		return () => ctx.revert();
+	}, []);
 
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
-      <img src={project.image} alt={project.title} className="w-full h-auto mb-4" />
-      <p>This is a template for project {project.id}.</p>
-    </div>
-  );
+	if (!project) {
+		return <div>Project not found</div>;
+	}
+
+	return (
+		<div ref={containerRef} className="relative bg-[#dddddd]">
+			{/* Full-screen image container */}
+			<div className="relative w-full overflow-hidden">
+				<img
+					ref={imageRef}
+					src={project.image}
+					alt={project.title}
+					className="w-full h-full object-cover mx-auto"
+					style={{
+						width: "100vw",
+						height: "100vh",
+						borderRadius: "0px",
+						zIndex: 0,
+					}}
+				/>
+			</div>
+
+			{/* Title */}
+			<h1 className="text-[2.5rem] md:text-[9rem] font-bold max-w-[90rem] leading-none mx-auto mt-12 mb-15 tracking-tight uppercase">
+				{project.title}
+			</h1>
+
+			{/* Info Row */}
+			<div className="max-w-[90rem] mx-auto w-full grid grid-cols-2 md:grid-cols-4 gap-28 px-4 mb-2">
+				<div className="flex flex-col items-start">
+					<span className="text-xs md:text-sm uppercase tracking-widest text-neutral-600 font-semibold">
+						Work Aspect
+					</span>
+					<span className="text-base md:text-lg font-medium uppercase text-neutral-900 mt-1">
+						{project.role}
+					</span>
+				</div>
+				<div className="flex flex-col items-start">
+					<span className="text-xs md:text-sm uppercase tracking-widest text-neutral-600 font-semibold">
+						Duration
+					</span>
+					<span className="text-base md:text-lg font-medium uppercase text-neutral-900 mt-1">
+						{project.duration}
+					</span>
+				</div>
+				<div className="flex flex-col items-start">
+					<span className="text-xs md:text-sm uppercase tracking-widest text-neutral-600 font-semibold">
+						Status
+					</span>
+					<span className="text-base md:text-lg font-medium uppercase text-neutral-900 mt-1">
+						{project.status}
+					</span>
+				</div>
+				<div className="flex flex-col items-start">
+					<span className="text-xs md:text-sm uppercase tracking-widest text-neutral-600 font-semibold">
+						Type
+					</span>
+					<span className="text-base md:text-lg font-medium uppercase text-neutral-900 mt-1">
+						{project.type}
+					</span>
+				</div>
+			</div>
+			<div className="max-w-[90rem] mx-auto w-full border-b border-neutral-300 mb-20 px-4" />
+
+			{/* Overview Section */}
+			<div className="max-w-[90rem] mx-auto w-full px-4 mb-20">
+				<div className="text-xs md:text-sm uppercase tracking-widest text-neutral-700 font-semibold mb-2">
+					• Overview
+				</div>
+				<div className="text-2xl md:text-4xl font-normal text-black leading-snug mb-8">
+					{project.description}
+				</div>
+			</div>
+
+			{/* Technology Stack Section */}
+			<div className="max-w-[90rem] mx-auto w-full px-4 mb-2">
+				<div className="text-xs md:text-sm uppercase tracking-widest text-neutral-700 font-semibold mb-2">
+					• Technology Stack
+				</div>
+				<div className="flex flex-wrap gap-3">
+					{project.technologies.map((tech) => (
+						<span
+							key={tech}
+							className="bg-neutral-300 text-neutral-800 px-5 py-2 rounded-full text-base md:text-lg font-medium shadow-sm"
+						>
+							{tech}
+						</span>
+					))}
+				</div>
+			</div>
+			<div className="h-32 md:h-64" />
+		</div>
+	);
 };
 
 export default WorkPage;
