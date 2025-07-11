@@ -89,9 +89,9 @@ const Header = () => {
 			<div className="flex flex-col justify-evenly px-12 py-10 items-center h-full w-full relative">
 				<h1
 					ref={textRef}
-					className="text-[10rem] leading-none text-white text-center mt-[28vh] opacity-0 font-bold uppercase"
+					className="text-7xl md:text-[10rem] leading-none text-white text-center mt-[28vh] opacity-0 font-bold uppercase"
 				>HIRUSHA <br /> DINIL</h1>
-				<div className="h-full w-full flex items-end justify-between text-sm text-white uppercase">
+				<div className="h-full w-full flex items-end justify-between text-xs md:text-sm text-white uppercase">
 					<p ref={bottomLeftRef}>COLOMBO, SL</p>
 					<p ref={bottomRightRef}>PORTFOLIO &copy; 2025</p>
 					<div ref={linksRef} className="flex flex-col pointer-events-auto">

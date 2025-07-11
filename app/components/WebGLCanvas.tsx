@@ -384,9 +384,11 @@ const WebGLCanvas = () => {
         const isMobile = window.innerWidth <= 767;
         const imageResolution = isMobile ? new THREE.Vector2(1356, 2048) : new THREE.Vector2(2048, 1356);
         
-        const bgTexture = loader.load(isMobile ? 'https://v7.usestate.org/images/home/mv-image-sp.webp' : '/herobackground/img8.jpg');
-        const bgTexture02 = loader.load(isMobile ? 'https://v7.usestate.org/images/home/mv-image-mono-sp.webp' : '/herobackground/img8_mono.jpg');
+        const bgTexture = loader.load(isMobile ? '/herobackground/img8.jpg' : '/herobackground/img8.jpg');
+        const bgTexture02 = loader.load(isMobile ? '/herobackground/img8_mono.jpg' : '/herobackground/img8_mono.jpg');
         
+        // 'https://v7.usestate.org/images/home/mv-image-sp.webp'
+
         const fluidSim = new FluidSim(renderer, 512, 512);
         
         const displayMaterial = new THREE.ShaderMaterial({
