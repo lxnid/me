@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import Link from "next/link";
@@ -21,9 +21,23 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 	const sectionsRef = useRef<HTMLDivElement[]>([]);
 	const sectionHead = useRef<HTMLHeadingElement>(null);
 	const sectionDescription = useRef<HTMLParagraphElement>(null);
+	const [isMobile, setIsMobile] = useState(false);
 
 	const projectsToDisplay =
 		projectCount === "all" ? projects : projects.slice(0, projectCount);
+
+	useEffect(() => {
+		const handleResize = () => {
+			setIsMobile(window.innerWidth < 640);
+		};
+
+		handleResize(); // Initial check
+		window.addEventListener("resize", handleResize);
+
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
+	}, []);
 
 	useEffect(() => {
 		gsap.registerPlugin(ScrollTrigger);
@@ -35,46 +49,51 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 
 			if (!container || sections.length === 0 || !pinContainer) return;
 
-			gsap.to(sections, {
-				// Use a function to dynamically calculate xPercent
-				xPercent: () => {
-					const numProjects = projectsToDisplay.length;
-					if (numProjects <= 1) {
-						return 0;
-					}
+			if (!isMobile) {
+				gsap.to(sections, {
+					// Use a function to dynamically calculate xPercent
+					xPercent: () => {
+						const numProjects = projectsToDisplay.length;
+						if (numProjects <= 1) {
+							return 0;
+						}
 
-					// Get actual widths and gaps from the DOM for accuracy
-					const containerWidth = container.offsetWidth;
-					const sectionWidth = sections[0].offsetWidth - 60;
-					const gap = parseFloat(
-						window.getComputedStyle(container).gap
-					);
+						// Get actual widths and gaps from the DOM for accuracy
+						const containerWidth = container.offsetWidth;
+						const sectionWidth = sections[0].offsetWidth - 60;
+						const gap = parseFloat(
+							window.getComputedStyle(container).gap
+						);
 
-					// Calculate the total width of all project cards including gaps
-					const totalContentWidth =
-						numProjects * sectionWidth + (numProjects - 1) * gap;
+						// Calculate the total width of all project cards including gaps
+						const totalContentWidth =
+							numProjects * sectionWidth +
+							(numProjects - 1) * gap;
 
-					// Calculate the distance that needs to be scrolled
-					const scrollDistance = totalContentWidth - containerWidth;
+						// Calculate the distance that needs to be scrolled
+						const scrollDistance =
+							totalContentWidth - containerWidth;
 
-					// If content fits, no scroll is needed
-					if (scrollDistance <= 0) {
-						return 0;
-					}
+						// If content fits, no scroll is needed
+						if (scrollDistance <= 0) {
+							return 0;
+						}
 
-					// Convert the scroll distance to a percentage of a single section's width
-					return (-scrollDistance / sectionWidth) * 100;
-				},
-				ease: "ease.inOut",
-				scrollTrigger: {
-					trigger: pinContainer,
-					pin: true,
-					scrub: 0.1,
-					start: "center center",
-					end: () => `+=${(container as HTMLElement).offsetWidth}`,
-					invalidateOnRefresh: true,
-				},
-			});
+						// Convert the scroll distance to a percentage of a single section's width
+						return (-scrollDistance / sectionWidth) * 100;
+					},
+					ease: "ease.inOut",
+					scrollTrigger: {
+						trigger: pinContainer,
+						pin: true,
+						scrub: 0.1,
+						start: "center center",
+						end: () =>
+							`+=${(container as HTMLElement).offsetWidth}`,
+						invalidateOnRefresh: true,
+					},
+				});
+			}
 
 			if (inHome) {
 				const secStaticEls = [
@@ -120,7 +139,7 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 		}, pinContainerRef);
 
 		return () => ctx.revert();
-	}, [projectsToDisplay, inHome]);
+	}, [projectsToDisplay, inHome, isMobile]);
 
 	const addToRefs = (el: HTMLDivElement) => {
 		if (el && !sectionsRef.current.includes(el)) {
