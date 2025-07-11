@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import WebGLCanvas from "./components/WebGLCanvas";
-import SmoothScroll from "./components/SmoothScroll";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "./components/Header";

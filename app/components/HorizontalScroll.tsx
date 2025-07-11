@@ -23,6 +23,18 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 	const sectionDescription = useRef<HTMLParagraphElement>(null);
 	const [isMobile, setIsMobile] = useState(false);
 
+	// Use refs instead of state for drag tracking to prevent re-renders
+	const dragRef = useRef({
+		isDragging: false,
+		startX: 0,
+		scrollLeft: 0,
+		lastX: 0,
+		velocity: 0,
+		timestamp: 0,
+		frame: 0,
+		momentumID: 0,
+	});
+
 	const projectsToDisplay =
 		projectCount === "all" ? projects : projects.slice(0, projectCount);
 
@@ -39,6 +51,67 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 		};
 	}, []);
 
+	const handleMomentumScroll = () => {
+		if (!containerRef.current || Math.abs(dragRef.current.velocity) < 0.1) {
+			dragRef.current.velocity = 0;
+			cancelAnimationFrame(dragRef.current.momentumID);
+			return;
+		}
+
+		dragRef.current.velocity *= 0.95; // Decay factor
+		containerRef.current.scrollLeft += dragRef.current.velocity;
+		dragRef.current.momentumID =
+			requestAnimationFrame(handleMomentumScroll);
+	};
+
+	const handleTouchStart = (e: React.TouchEvent) => {
+		if (!isMobile || !containerRef.current) return;
+
+		// Cancel any ongoing momentum scrolling
+		cancelAnimationFrame(dragRef.current.momentumID);
+		dragRef.current.velocity = 0;
+
+		dragRef.current.isDragging = true;
+		dragRef.current.startX = e.touches[0].pageX;
+		dragRef.current.lastX = dragRef.current.startX;
+		dragRef.current.scrollLeft = containerRef.current.scrollLeft;
+		dragRef.current.timestamp = Date.now();
+	};
+
+	const handleTouchMove = (e: React.TouchEvent) => {
+		if (!dragRef.current.isDragging || !containerRef.current || !isMobile)
+			return;
+		e.preventDefault();
+
+		const currentX = e.touches[0].pageX;
+		const deltaX = dragRef.current.lastX - currentX;
+		const currentTime = Date.now();
+		const deltaTime = currentTime - dragRef.current.timestamp;
+
+		// Update velocity (pixels per millisecond)
+		if (deltaTime > 0) {
+			dragRef.current.velocity = (deltaX / deltaTime) * 16; // Convert to pixels per frame (assuming 60fps)
+		}
+
+		containerRef.current.scrollLeft += deltaX;
+
+		dragRef.current.lastX = currentX;
+		dragRef.current.timestamp = currentTime;
+	};
+
+	const handleTouchEnd = () => {
+		if (!dragRef.current.isDragging) return;
+
+		dragRef.current.isDragging = false;
+
+		// Start momentum scrolling
+		if (Math.abs(dragRef.current.velocity) > 0.1) {
+			dragRef.current.momentumID =
+				requestAnimationFrame(handleMomentumScroll);
+		}
+	};
+
+	// Separate animation setup effect
 	useEffect(() => {
 		gsap.registerPlugin(ScrollTrigger);
 
@@ -51,35 +124,25 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 
 			if (!isMobile) {
 				gsap.to(sections, {
-					// Use a function to dynamically calculate xPercent
 					xPercent: () => {
 						const numProjects = projectsToDisplay.length;
-						if (numProjects <= 1) {
-							return 0;
-						}
+						if (numProjects <= 1) return 0;
 
-						// Get actual widths and gaps from the DOM for accuracy
 						const containerWidth = container.offsetWidth;
 						const sectionWidth = sections[0].offsetWidth - 60;
 						const gap = parseFloat(
 							window.getComputedStyle(container).gap
 						);
 
-						// Calculate the total width of all project cards including gaps
 						const totalContentWidth =
 							numProjects * sectionWidth +
 							(numProjects - 1) * gap;
 
-						// Calculate the distance that needs to be scrolled
 						const scrollDistance =
 							totalContentWidth - containerWidth;
 
-						// If content fits, no scroll is needed
-						if (scrollDistance <= 0) {
-							return 0;
-						}
+						if (scrollDistance <= 0) return 0;
 
-						// Convert the scroll distance to a percentage of a single section's width
 						return (-scrollDistance / sectionWidth) * 100;
 					},
 					ease: "ease.inOut",
@@ -95,36 +158,7 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 				});
 			}
 
-			if (inHome) {
-				const secStaticEls = [
-					sectionHead.current,
-					sectionDescription.current,
-				];
-				gsap.from(secStaticEls, {
-					opacity: 0,
-					y: 20,
-					ease: "power2.out",
-					stagger: 0.2,
-					duration: 1,
-					scrollTrigger: {
-						trigger: pinContainer,
-						start: "top 70%",
-					},
-				});
-
-				gsap.from(container, {
-					opacity: 0,
-					y: 20,
-					ease: "power2.out",
-					stagger: 0.2,
-					duration: 1,
-					scrollTrigger: {
-						trigger: pinContainer,
-						start: "top 40%",
-					},
-				});
-			}
-
+			// Setup hover animations
 			sections.forEach((section) => {
 				const hover = gsap.to(section, {
 					scale: 1.02,
@@ -139,7 +173,51 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 		}, pinContainerRef);
 
 		return () => ctx.revert();
-	}, [projectsToDisplay, inHome, isMobile]);
+	}, [projectsToDisplay, isMobile]);
+
+	// Separate effect for entrance animations
+	useEffect(() => {
+		if (!inHome) return;
+
+		gsap.registerPlugin(ScrollTrigger);
+		const ctx = gsap.context(() => {
+			const container = containerRef.current;
+			const pinContainer = pinContainerRef.current;
+
+			if (!container || !pinContainer) return;
+
+			const secStaticEls = [
+				sectionHead.current,
+				sectionDescription.current,
+			];
+
+			gsap.from(secStaticEls, {
+				opacity: 0,
+				y: 20,
+				ease: "power2.out",
+				stagger: 0.2,
+				duration: 1,
+				scrollTrigger: {
+					trigger: pinContainer,
+					start: "top 70%",
+				},
+			});
+
+			gsap.from(container, {
+				opacity: 0,
+				y: 20,
+				ease: "power2.out",
+				stagger: 0.2,
+				duration: 1,
+				scrollTrigger: {
+					trigger: pinContainer,
+					start: "top 40%",
+				},
+			});
+		}, pinContainerRef);
+
+		return () => ctx.revert();
+	}, [inHome]);
 
 	const addToRefs = (el: HTMLDivElement) => {
 		if (el && !sectionsRef.current.includes(el)) {
@@ -170,7 +248,15 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 			{children}
 			<div
 				ref={containerRef}
-				className="container flex flex-nowrap w-[100%] gap-2 h-[65vh]"
+				className={`container flex flex-nowrap w-[100%] gap-2 h-[65vh] ${
+					isMobile ? "overflow-x-auto touch-pan-x" : ""
+				}`}
+				onTouchStart={handleTouchStart}
+				onTouchMove={handleTouchMove}
+				onTouchEnd={handleTouchEnd}
+				style={{
+					WebkitOverflowScrolling: "touch",
+				}}
 			>
 				{projectsToDisplay.map((project) => (
 					<div
