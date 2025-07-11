@@ -131,7 +131,7 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 	return (
 		<div
 			ref={pinContainerRef}
-			className={`relative ${
+			className={`relative overflow-hidden ${
 				inHome ? "h-screen justify-end" : ""
 			} flex flex-col`}
 		>
@@ -157,7 +157,7 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 					<div
 						key={project.id}
 						ref={addToRefs}
-						className="panel w-full min-w-[35vw] h-full bg-cover bg-start"
+						className="panel w-full min-w-[60vw] sm:min-w-[35vw] h-full bg-cover bg-start"
 						style={{ backgroundImage: `url(${project.image})` }}
 					>
 						<Link
