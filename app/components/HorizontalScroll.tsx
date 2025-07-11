@@ -136,13 +136,13 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 			} flex flex-col`}
 		>
 			{inHome && (
-				<div className="absolute top-20 w-full pl-12 flex flex-col items-start">
-					<h2 ref={sectionHead} className="text-xl py-10">
+				<div className="absolute top-16 md:top-20 w-full pl-12 flex flex-col items-start">
+					<h2 ref={sectionHead} className="text-lg md:text-xl py-10">
 						Selected Work
 					</h2>
 					<p
 						ref={sectionDescription}
-						className="text-4xl w-[30vw] py-4"
+						className="text-2xl md:text-4xl w-full md:w-[30vw] md:py-4"
 					>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 					</p>

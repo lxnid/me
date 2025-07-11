@@ -52,7 +52,7 @@ export default function HomePage() {
 					<Header />
 				</section>
 
-				<section className="min-h-screen pt-20 z-10 relative">
+				<section className="min-h-screen pt-0 md:pt-20 z-10 relative">
 					<HorizontalScroll projectCount={4} inHome={true} />
 					<div className="w-full h-[15vh] flex justify-end items-end pr-12">
 						<Link
