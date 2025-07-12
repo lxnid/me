@@ -5,6 +5,7 @@ import { projects } from "../../data/projects";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { IoChevronDown } from "react-icons/io5";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +14,52 @@ const WorkPage = () => {
 	const project = projects.find((p) => p.id === parseInt(id as string, 10));
 	const imageRef = useRef<HTMLImageElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
+	const downArrowRef = useRef<HTMLSpanElement>(null);
+
+	useEffect(() => {
+		if (downArrowRef.current) {
+			gsap.to(downArrowRef.current, {
+				y: 10,
+				duration: 0.8,
+				repeat: -1,
+				yoyo: true,
+				ease: "sine.inOut",
+			});
+		}
+	}, []);
+
+	useEffect(() => {
+		const ctx = gsap.context(() => {
+			// Image scale animation
+			gsap.to(imageRef.current, {
+				scale: 1.2,
+				ease: "none",
+				scrollTrigger: {
+					trigger: ".project-page",
+					start: "top top",
+					end: "bottom top",
+					scrub: true,
+					pin: true,
+				},
+			});
+
+			// Down arrow fade out
+			if (downArrowRef.current) {
+				gsap.to(downArrowRef.current, {
+					opacity: 0,
+					ease: "none",
+					scrollTrigger: {
+						trigger: imageRef.current,
+						start: "top top",
+						end: "50% top",
+						scrub: true,
+					},
+				});
+			}
+		});
+
+		return () => ctx.revert();
+	}, []);
 
 	useEffect(() => {
 		if (!imageRef.current || !containerRef.current) return;
@@ -54,6 +101,12 @@ const WorkPage = () => {
 						zIndex: 0,
 					}}
 				/>
+				<span
+					ref={downArrowRef}
+					className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8 text-white text-4xl z-10 flex items-center justify-center"
+				>
+					<IoChevronDown />
+				</span>
 			</div>
 
 			{/* Title */}
