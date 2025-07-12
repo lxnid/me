@@ -36,7 +36,7 @@ export default function HomePage() {
 	return (
 			<main
 				ref={mainRef}
-				className="relative w-full min-h-[200vh] bg-[#dddddd] text-[#000000]"
+				className="relative w-full min-h-[200vh]"
 			>
 				<section
 					id="hero-section"
@@ -56,7 +56,7 @@ export default function HomePage() {
 					<div className="w-full h-[15vh] flex justify-end items-end pr-12">
 						<Link
 							href={"/work"}
-							className="group w-fit h-fit px-5 py-3 text-xl opacity-70 hover:opacity-100 rounded-full gap-2 hover:gap-4 mr-2 hover:mr-0 transition-all duration-300 ease-in-out border border-black flex justify-evenly items-center"
+							className="group w-fit h-fit px-5 py-3 text-xl opacity-70 hover:opacity-100 rounded-full gap-2 hover:gap-4 mr-2 hover:mr-0 transition-all duration-300 ease-in-out border border-neutral-400 flex justify-evenly items-center"
 						>
 							<h2>All Work</h2>
 							<div className="relative w-8 h-8">

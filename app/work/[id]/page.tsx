@@ -18,7 +18,7 @@ const WorkPage = () => {
 		if (!imageRef.current || !containerRef.current) return;
 		const ctx = gsap.context(() => {
 			gsap.to(imageRef.current, {
-				width: "98vw",
+				width: "90vw",
 				height: "80vh",
 				borderRadius: "20px",
 				ease: "ease",
@@ -39,7 +39,7 @@ const WorkPage = () => {
 	}
 
 	return (
-		<div ref={containerRef} className="relative bg-[#dddddd]">
+		<div ref={containerRef} className="relative">
 			{/* Full-screen image container */}
 			<div className="relative w-full overflow-hidden">
 				<img
@@ -64,34 +64,34 @@ const WorkPage = () => {
 			{/* Info Row */}
 			<div className="max-w-[90rem] mx-auto w-full grid grid-cols-2 md:grid-cols-4 gap-28 px-4 mb-2">
 				<div className="flex flex-col items-start">
-					<span className="text-xs md:text-sm uppercase tracking-widest text-neutral-600 font-semibold">
+					<span className="text-xs md:text-sm uppercase tracking-widest font-semibold">
 						Work Aspect
 					</span>
-					<span className="text-base md:text-lg font-medium uppercase text-neutral-900 mt-1">
+					<span className="text-base md:text-lg font-medium uppercase mt-1">
 						{project.role}
 					</span>
 				</div>
 				<div className="flex flex-col items-start">
-					<span className="text-xs md:text-sm uppercase tracking-widest text-neutral-600 font-semibold">
+					<span className="text-xs md:text-sm uppercase tracking-widest font-semibold">
 						Duration
 					</span>
-					<span className="text-base md:text-lg font-medium uppercase text-neutral-900 mt-1">
+					<span className="text-base md:text-lg font-medium uppercase mt-1">
 						{project.duration}
 					</span>
 				</div>
 				<div className="flex flex-col items-start">
-					<span className="text-xs md:text-sm uppercase tracking-widest text-neutral-600 font-semibold">
+					<span className="text-xs md:text-sm uppercase tracking-widest font-semibold">
 						Status
 					</span>
-					<span className="text-base md:text-lg font-medium uppercase text-neutral-900 mt-1">
+					<span className="text-base md:text-lg font-medium uppercase mt-1">
 						{project.status}
 					</span>
 				</div>
 				<div className="flex flex-col items-start">
-					<span className="text-xs md:text-sm uppercase tracking-widest text-neutral-600 font-semibold">
+					<span className="text-xs md:text-sm uppercase tracking-widest font-semibold">
 						Type
 					</span>
-					<span className="text-base md:text-lg font-medium uppercase text-neutral-900 mt-1">
+					<span className="text-base md:text-lg font-medium uppercase mt-1">
 						{project.type}
 					</span>
 				</div>
@@ -100,17 +100,17 @@ const WorkPage = () => {
 
 			{/* Overview Section */}
 			<div className="max-w-[90rem] mx-auto w-full px-4 mb-20">
-				<div className="text-xs md:text-sm uppercase tracking-widest text-neutral-700 font-semibold mb-2">
+				<div className="text-xs md:text-sm uppercase tracking-widest font-semibold mb-2">
 					• Overview
 				</div>
-				<div className="text-2xl md:text-4xl font-normal text-black leading-snug mb-8">
+				<div className="text-2xl md:text-4xl font-normal leading-snug mb-8">
 					{project.description}
 				</div>
 			</div>
 
 			{/* Technology Stack Section */}
 			<div className="max-w-[90rem] mx-auto w-full px-4 mb-2">
-				<div className="text-xs md:text-sm uppercase tracking-widest text-neutral-700 font-semibold mb-2">
+				<div className="text-xs md:text-sm uppercase tracking-widest font-semibold mb-2">
 					• Technology Stack
 				</div>
 				<div className="flex flex-wrap gap-3">
