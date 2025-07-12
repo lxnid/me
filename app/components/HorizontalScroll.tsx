@@ -200,6 +200,7 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 				scrollTrigger: {
 					trigger: pinContainer,
 					start: "top 70%",
+					toggleActions: "restart none none reverse",
 				},
 			});
 
@@ -212,6 +213,7 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 				scrollTrigger: {
 					trigger: pinContainer,
 					start: "top 40%",
+					toggleActions: "restart none none reverse",
 				},
 			});
 		}, pinContainerRef);
