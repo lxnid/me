@@ -1,16 +1,30 @@
 @import "tailwindcss";
 
 @font-face {
-	font-family: "PP Neuemontreal Book";
+	font-family: "PP Neuemontreal";
 	src: url("/fonts/ppneuemontreal-book.otf") format("opentype");
-	font-weight: normal;
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "PP Neuemontreal";
+	src: url("/fonts/ppneuemontreal-medium.otf") format("opentype");
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "PP Neuemontreal";
+	src: url("/fonts/ppneuemontreal-bold.otf") format("opentype");
+	font-weight: 700;
 	font-style: normal;
 }
 
 /* Custom base styles for body and html to ensure full-screen canvas */
 html,
 body {
-	font-family: "PP Neuemontreal Book", sans-serif;
+	font-family: "PP Neuemontreal", sans-serif;
 	margin: 0;
 	padding: 0;
 }

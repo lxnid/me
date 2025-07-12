@@ -241,7 +241,7 @@ const HorizontalScroll: React.FC<HorizontalScrollProps> = ({
 						ref={sectionDescription}
 						className="text-2xl md:text-4xl w-full md:w-[30vw] md:py-4"
 					>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+						Crafting digital experiences that inspire and innovate.
 					</p>
 				</div>
 			)}
