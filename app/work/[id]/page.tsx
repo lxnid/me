@@ -187,7 +187,7 @@ const WorkPage = () => {
 					ease: "power2.out",
 					scrollTrigger: {
 						trigger: techHeadingRef.current,
-						start: "top 90%",
+						start: "top 95%",
 						end: "bottom top",
 						toggleActions: "restart none none reverse",
 					},
@@ -204,7 +204,7 @@ const WorkPage = () => {
 					ease: "power2.out",
 					scrollTrigger: {
 						trigger: tech,
-						start: "top 90%",
+						start: "top 98%",
 						end: "bottom top",
 						toggleActions: "restart none none reverse",
 					},

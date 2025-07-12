@@ -19,11 +19,52 @@ const Header = () => {
 			// Initial state - hide the text
 			gsap.set(textRef.current, { opacity: 0 });
 
-			// Create timeline for text animation
-			const tl = gsap.timeline();
-
 			const textElement = textRef.current;
 			if (!textElement) return;
+
+			const otherElements = [
+				bottomLeftRef.current,
+				bottomRightRef.current,
+				linksRef.current,
+			];
+
+			// Create timeline for text animation
+			const tl = gsap.timeline({
+				onComplete: () => {
+					// Fading animation on scroll
+					gsap.fromTo(
+						textElement,
+						{ y: 0, opacity: 1 },
+						{
+							y: 100,
+							opacity: 0,
+							ease: "power1.inOut",
+							scrollTrigger: {
+								trigger: document.documentElement,
+								start: "top top",
+								end: "+=300",
+								scrub: true,
+							},
+						}
+					);
+
+					gsap.fromTo(
+						otherElements,
+						{ opacity: 1, y: 0 },
+						{
+							opacity: 0,
+							y: 50,
+							ease: "power1.inOut",
+							scrollTrigger: {
+								trigger: document.documentElement,
+								start: "top top",
+								end: "+=800",
+								scrub: true,
+							},
+						}
+					);
+				},
+			});
 
 			// Use GSAP SplitText to split the text into characters
 			const split = new SplitText(textElement, { type: "chars, lines" });
@@ -40,12 +81,6 @@ const Header = () => {
 			});
 
 			// Animate other elements
-			const otherElements = [
-				bottomLeftRef.current,
-				bottomRightRef.current,
-				linksRef.current,
-			];
-
 			tl.from(
 				otherElements,
 				{
@@ -57,29 +92,6 @@ const Header = () => {
 				},
 				"-=1.5" // Start this animation 1.5s before the previous one ends
 			);
-
-			// Parallax effect on scroll
-			gsap.to(textElement, {
-				y: 300,
-				ease: "none",
-				scrollTrigger: {
-					trigger: document.documentElement,
-					start: "top top",
-					end: "bottom top",
-					scrub: true,
-				},
-			});
-
-			gsap.to(otherElements, {
-				color: "#ffffff00",
-				ease: "none",
-				scrollTrigger: {
-					trigger: document.documentElement,
-					start: "top top",
-					end: "bottom bottom",
-					scrub: true,
-				},
-			});
 		});
 
 		return () => ctx.revert();
