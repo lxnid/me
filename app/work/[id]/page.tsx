@@ -5,9 +5,10 @@ import { projects } from "../../data/projects";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 import { IoChevronDown } from "react-icons/io5";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const WorkPage = () => {
 	const { id } = useParams();
@@ -15,6 +16,13 @@ const WorkPage = () => {
 	const imageRef = useRef<HTMLImageElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 	const downArrowRef = useRef<HTMLSpanElement>(null);
+	const titleRef = useRef<HTMLHeadingElement>(null);
+	const overviewRef = useRef<HTMLDivElement>(null);
+	const techRefs = useRef<HTMLSpanElement[]>([]);
+	const infoRefs = useRef<HTMLDivElement[]>([]);
+	const borderRef = useRef<HTMLDivElement>(null);
+	const overviewHeadingRef = useRef<HTMLDivElement>(null);
+	const techHeadingRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		if (downArrowRef.current) {
@@ -77,6 +85,131 @@ const WorkPage = () => {
 					pin: false,
 				},
 			});
+
+			// Title letter animation
+			if (titleRef.current) {
+				const split = new SplitText(titleRef.current, {
+					type: "chars",
+				});
+				gsap.from(split.chars, {
+					y: "100%",
+					opacity: 0,
+					stagger: 0.03,
+					duration: 0.8,
+					ease: "power2.out",
+					scrollTrigger: {
+						trigger: titleRef.current,
+						start: "top 80%",
+						end: "bottom top",
+						toggleActions: "restart none none reverse",
+					},
+				});
+			}
+
+			// Info row animations
+			infoRefs.current.forEach((info, index) => {
+				gsap.from(info, {
+					y: 50,
+					opacity: 0,
+					duration: 0.8,
+					delay: index * 0.1,
+					ease: "power2.out",
+					scrollTrigger: {
+						trigger: info,
+						start: "top 80%",
+						end: "bottom top",
+						toggleActions: "restart none none reverse",
+					},
+				});
+			});
+
+			// Border fade in
+			if (borderRef.current) {
+				gsap.fromTo(
+					borderRef.current,
+					{ scaleX: 0, transformOrigin: "left" },
+					{
+						scaleX: 1,
+						duration: 1,
+						ease: "power2.out",
+						scrollTrigger: {
+							trigger: borderRef.current,
+							start: "top 80%",
+							end: "bottom top",
+							toggleActions: "restart none none reverse",
+						},
+					}
+				);
+			}
+
+			// Overview heading animation
+			if (overviewHeadingRef.current) {
+				gsap.from(overviewHeadingRef.current, {
+					x: -50,
+					opacity: 0,
+					duration: 0.8,
+					ease: "power2.out",
+					scrollTrigger: {
+						trigger: overviewHeadingRef.current,
+						start: "top 80%",
+						end: "bottom top",
+						toggleActions: "restart none none reverse",
+					},
+				});
+			}
+
+			// Overview paragraph line animation
+			if (overviewRef.current) {
+				const split = new SplitText(overviewRef.current, {
+					type: "lines",
+				});
+				gsap.from(split.lines, {
+					y: "100%",
+					opacity: 0,
+					stagger: 0.1,
+					duration: 0.8,
+					ease: "power2.out",
+					scrollTrigger: {
+						trigger: overviewRef.current,
+						start: "top 80%",
+						end: "bottom top",
+						toggleActions: "restart none none reverse",
+					},
+				});
+			}
+
+			// Tech heading animation
+			if (techHeadingRef.current) {
+				gsap.from(techHeadingRef.current, {
+					x: -50,
+					opacity: 0,
+					duration: 0.8,
+					ease: "power2.out",
+					scrollTrigger: {
+						trigger: techHeadingRef.current,
+						start: "top 90%",
+						end: "bottom top",
+						toggleActions: "restart none none reverse",
+					},
+				});
+			}
+
+			// Tech stack animations
+			techRefs.current.forEach((tech, index) => {
+				gsap.from(tech, {
+					y: 20,
+					opacity: 0,
+					duration: 0.5,
+					delay: index * 0.1,
+					ease: "power2.out",
+					scrollTrigger: {
+						trigger: tech,
+						start: "top 90%",
+						end: "bottom top",
+						toggleActions: "restart none none reverse",
+					},
+				});
+			});
 		}, containerRef);
 		return () => ctx.revert();
 	}, []);
@@ -110,13 +243,21 @@ const WorkPage = () => {
 			</div>
 
 			{/* Title */}
-			<h1 className="text-[2.5rem] md:text-[9rem] font-bold max-w-[90rem] leading-none mx-auto mt-12 mb-15 tracking-tight uppercase">
+			<h1
+				ref={titleRef}
+				className="text-[2.5rem] md:text-[9rem] font-bold max-w-[90rem] leading-none mx-auto mt-12 mb-15 tracking-tight uppercase"
+			>
 				{project.title}
 			</h1>
 
 			{/* Info Row */}
 			<div className="max-w-[90rem] mx-auto w-full grid grid-cols-2 md:grid-cols-4 gap-28 px-4 mb-2">
-				<div className="flex flex-col items-start">
+				<div
+					ref={(el) => {
+						if (el) infoRefs.current[0] = el;
+					}}
+					className="flex flex-col items-start"
+				>
 					<span className="text-xs md:text-sm uppercase tracking-widest font-semibold">
 						Work Aspect
 					</span>
@@ -124,7 +265,12 @@ const WorkPage = () => {
 						{project.role}
 					</span>
 				</div>
-				<div className="flex flex-col items-start">
+				<div
+					ref={(el) => {
+						if (el) infoRefs.current[1] = el;
+					}}
+					className="flex flex-col items-start"
+				>
 					<span className="text-xs md:text-sm uppercase tracking-widest font-semibold">
 						Duration
 					</span>
@@ -132,7 +278,12 @@ const WorkPage = () => {
 						{project.duration}
 					</span>
 				</div>
-				<div className="flex flex-col items-start">
+				<div
+					ref={(el) => {
+						if (el) infoRefs.current[2] = el;
+					}}
+					className="flex flex-col items-start"
+				>
 					<span className="text-xs md:text-sm uppercase tracking-widest font-semibold">
 						Status
 					</span>
@@ -140,7 +291,12 @@ const WorkPage = () => {
 						{project.status}
 					</span>
 				</div>
-				<div className="flex flex-col items-start">
+				<div
+					ref={(el) => {
+						if (el) infoRefs.current[3] = el;
+					}}
+					className="flex flex-col items-start"
+				>
 					<span className="text-xs md:text-sm uppercase tracking-widest font-semibold">
 						Type
 					</span>
@@ -149,26 +305,43 @@ const WorkPage = () => {
 					</span>
 				</div>
 			</div>
-			<div className="max-w-[90rem] mx-auto w-full border-b border-neutral-300 mb-20 px-4" />
+			<div
+				ref={borderRef}
+				className="max-w-[90rem] mx-auto w-full border-b border-neutral-300 mb-20 px-4"
+			/>
 
 			{/* Overview Section */}
 			<div className="max-w-[90rem] mx-auto w-full px-4 mb-20">
-				<div className="text-xs md:text-sm uppercase tracking-widest font-semibold mb-2">
+				<div
+					ref={overviewHeadingRef}
+					className="text-xs md:text-sm uppercase tracking-widest font-semibold mb-2"
+				>
 					• Overview
 				</div>
-				<div className="text-2xl md:text-4xl font-normal leading-snug mb-8">
+				<div
+					ref={overviewRef}
+					className="text-2xl md:text-4xl font-normal leading-snug mb-8"
+				>
 					{project.description}
 				</div>
 			</div>
 
 			{/* Technology Stack Section */}
 			<div className="max-w-[90rem] mx-auto w-full px-4 mb-2">
-				<div className="text-xs md:text-sm uppercase tracking-widest font-semibold mb-2">
+				<div
+					ref={techHeadingRef}
+					className="text-xs md:text-sm uppercase tracking-widest font-semibold mb-2"
+				>
 					• Technology Stack
 				</div>
 				<div className="flex flex-wrap gap-3">
 					{project.technologies.map((tech) => (
 						<span
+							ref={(el) => {
+								if (el && !techRefs.current.includes(el)) {
+									techRefs.current.push(el);
+								}
+							}}
 							key={tech}
 							className="bg-neutral-300 text-neutral-800 px-5 py-2 rounded-full text-base md:text-lg font-medium shadow-sm"
 						>
