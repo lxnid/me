@@ -32,13 +32,13 @@ const Header = () => {
 						textElement,
 						{ y: 0, opacity: 1 },
 						{
-							y: 100,
+							y: 500,
 							opacity: 0,
 							ease: "power1.inOut",
 							scrollTrigger: {
 								trigger: document.documentElement,
 								start: "top top",
-								end: "+=300",
+								end: "+=800",
 								scrub: true,
 							},
 						}
