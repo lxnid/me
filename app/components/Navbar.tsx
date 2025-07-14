@@ -16,9 +16,10 @@ const Navbar = () => {
 			const currentScrollY = window.scrollY;
 			if (currentScrollY > lastScrollY.current && currentScrollY > 30) {
 				setShowNavbar(false); // scrolling down
-			} else {
+			} else if (currentScrollY < lastScrollY.current) {
 				setShowNavbar(true); // scrolling up
 			}
+			// Do nothing if stopped or same position
 			lastScrollY.current = currentScrollY;
 		};
 		window.addEventListener('scroll', handleScroll);
