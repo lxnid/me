@@ -30,6 +30,14 @@ const variants = {
     exit: { opacity: 0, transition: { duration: 0.4 } },
 };
 
+// Add an array of image URLs corresponding to each heading
+const imageUrls = [
+    "https://images.unsplash.com/photo-1532618500676-2e0cbf7ba8b8?q=80&w=2620&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1718083272953-b171ae87b3d9?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1581670598552-86272477d4bd?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=2706&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+];
+
 const Expertise = () => {
     const sectionRef = React.useRef<HTMLDivElement>(null);
     const [activeIdx, setActiveIdx] = React.useState(0);
@@ -87,7 +95,7 @@ const Expertise = () => {
     return (
         <div ref={sectionRef} className="min-h-screen w-full px-2 md:px-12 pt-16 md:pt-24 z-10 flex">
             <div className="flex flex-col w-3/4 gap-8 md:gap-0">
-                <div className="text-xs font-normal tracking-tight mb-4 ml-1">(03) SERVICES</div>
+                <div className="text-lg mb-4 ml-1">Who am I?</div>
                 <div className="flex flex-col w-full gap-8 md:gap-2 uppercase text-9xl font-bold mt-8" >
                     {headings.map((text, i) => (
                         <div
@@ -114,13 +122,23 @@ const Expertise = () => {
             </div>
             <div className="w-1/4 h-full flex sticky top-52">
                 <div className="w-full">
-                    <Image
-                        src="https://images.unsplash.com/photo-1532618500676-2e0cbf7ba8b8?q=80&w=2620&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="expertise"
-                        width={500}
-                        height={500}
-                        className="rounded-lg object-cover w-full h-auto max-h-[400px]"
-                    />
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={activeIdx}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0 }}
+                        >
+                            <Image
+                                src={imageUrls[activeIdx]}
+                                alt={headings[activeIdx]}
+                                width={500}
+                                height={500}
+                                className="rounded-lg object-cover w-full h-auto max-h-[400px]"
+                            />
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
             </div>
         </div>
