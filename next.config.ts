@@ -16,6 +16,7 @@ const nextConfig: NextConfig = {
         pathname: '/images/home/**',
       },
     ],
+    domains: ["images.unsplash.com"],
   },
 };
 
