@@ -38,6 +38,14 @@ const imageUrls = [
     "https://images.unsplash.com/photo-1605379399642-870262d3d051?q=80&w=2706&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
 ];
 
+// Array of captions for each quality (first-person POV)
+const captions = [
+    "Collaboration is at my core—I thrive when working with others to achieve shared goals.",
+    "Innovation drives me; I constantly seek new ways to approach challenges and embrace creative solutions.",
+    "Problem solving excites me—tackling complex issues and finding effective answers is where I shine.",
+    "I am passionate about what I do, and my enthusiasm fuels my dedication to every project I undertake.",
+];
+
 const Expertise = () => {
     const sectionRef = React.useRef<HTMLDivElement>(null);
     const [activeIdx, setActiveIdx] = React.useState(0);
@@ -137,6 +145,9 @@ const Expertise = () => {
                                 height={500}
                                 className="rounded-lg object-cover w-full h-auto max-h-[400px]"
                             />
+                            <p className="mt-4 text-4xl text-neutral-400">
+                                {captions[activeIdx]}
+                            </p>
                         </motion.div>
                     </AnimatePresence>
                 </div>
