@@ -8,6 +8,23 @@ import { gsap } from "gsap";
 
 const Navbar = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [showNavbar, setShowNavbar] = useState(true);
+	const lastScrollY = useRef(0);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const currentScrollY = window.scrollY;
+			if (currentScrollY > lastScrollY.current && currentScrollY > 30) {
+				setShowNavbar(false); // scrolling down
+			} else {
+				setShowNavbar(true); // scrolling up
+			}
+			lastScrollY.current = currentScrollY;
+		};
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
+
 	const menuRef = useRef<HTMLDivElement>(null);
 	const linkRefs = useRef<HTMLAnchorElement[]>([]);
 
@@ -144,6 +161,10 @@ const Navbar = () => {
 			className={`fixed top-0 left-0 z-40 w-full md:h-20 px-4 pt-4 md:pt-0 ${
 				isMenuOpen ? "h-screen bg-black/80 backdrop-blur-md" : "h-20"
 			} md:px-12 flex items-start md:items-center text-white mix-blend-difference`}
+			style={{
+				transform: showNavbar ? 'translateY(0)' : 'translateY(-100%)',
+				transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
+			}}
 		>
 			<Image src="logo.svg" alt="logo" width={30} height={30} />
 
