@@ -2,10 +2,12 @@ export interface Project {
 	id: number;
 	galleryImage: string;
 	title: string;
+	headline: string;
 	image: string;
 	link: string;
 	description: string;
 	technologies: string[];
+	date: string;
 	duration: string;
 	role: string;
 	status: string;
@@ -17,11 +19,13 @@ export const projects: Project[] = [
 	{
 		galleryImage: "/workImages/g_portfolio_24.jpg", 
 		id: 1,
-		title: "Portfolio 2024",
+		title: "Portfolio Website 2024",
+		date: "2024",
+		headline: "A bold reinvention of my digital identity for 2024, unifying design and technology into a seamless portfolio experience.", 
 		image: "/workImages/portfolio_24.jpg",
-		link: "/work/1",
+		link: "https://lxnid.github.io/portfolio_site_v2",
 		description:
-			"Everstream Analytics provides AI-powered supply chain risk intelligence, helping global enterprises anticipate disruptions and take proactive action. After a series of acquisitions, Everstream faced a complex challenge: unify multiple products into a single, cohesive platform without losing the functionality or trust of their existing customers.",
+			"A modern portfolio website crafted in 2024 to reflect my evolving skills and creative vision. This project brings together thoughtful design, smooth user experience, and a unified digital identity—serving as a central hub for my work, story, and technical growth.",
 		technologies: ["ReactJS", "NextJS", "Tailwind CSS", "Framer Motion"],
 		duration: "3-4 weeks",
 		role: "Frontend Development",
@@ -31,11 +35,13 @@ export const projects: Project[] = [
 		type: "Solo (Personal)",
 	},
 	{
-		galleryImage: "", 
+		galleryImage: "/workImages/todo.jpeg", 
 		id: 3,
 		title: "To-Do Web App",
+		date: "2025",
+		headline: "Transforming everyday productivity with a beautifully simple, intuitive, and efficient web app for managing your daily tasks.", 
 		image: "/workImages/todo.jpeg",
-		link: "/work/3",
+		link: "https://lxnid.github.io/todo-app",
 		description:
 			"A productivity app to manage daily tasks efficiently. Features include task creation, editing, and completion tracking.",
 		technologies: ["React", "TypeScript", "Redux", "Tailwind CSS"],
@@ -47,11 +53,13 @@ export const projects: Project[] = [
 		type: "Solo (Personal)",
 	},
 	{
-		galleryImage: "", 
+		galleryImage: "/workImages/weather.jpg", 
 		id: 2,
 		title: "Weather App",
+		date: "2024",
+		headline: "Delivering instant, accurate weather updates through a clean interface designed for clarity, speed, and everyday usability.", 
 		image: "/workImages/weather.jpg",
-		link: "/work/2",
+		link: "https://lxnid.github.io/simple_weather",
 		description:
 			"A weather application providing real-time weather updates and forecasts. Built with a focus on clean UI and fast performance.",
 		technologies: [
@@ -68,11 +76,13 @@ export const projects: Project[] = [
 		type: "Solo (Personal)",
 	},
 	{
-		galleryImage: "", 
+		galleryImage: "/workImages/portfolio_current.jpg", 
 		id: 4,
 		title: "Current Portfolio",
+		date: "Ongoing",
+		headline: "A living canvas for my creative journey—this portfolio evolves to showcase my latest projects, skills, and design thinking.", 
 		image: "/workImages/portfolio_current.jpg",
-		link: "/work/4",
+		link: "https://lxnid.github.io/portfolio",
 		description:
 			"The current version of my personal portfolio, showcasing my latest work and skills.",
 		technologies: [

@@ -2,357 +2,142 @@
 
 import { useParams } from "next/navigation";
 import { projects } from "../../data/projects";
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
-import { IoChevronDown } from "react-icons/io5";
+import { useRef } from "react";
+import { IoArrowForwardCircleOutline, IoChevronDown } from "react-icons/io5";
+import Link from "next/link";
+import { BsArrowRightCircleFill, BsArrowRightCircle } from "react-icons/bs";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+import { useState, useEffect } from "react";
 
 const WorkPage = () => {
 	const { id } = useParams();
-	const project = projects.find((p) => p.id === parseInt(id as string, 10));
-	const imageRef = useRef<HTMLImageElement>(null);
-	const containerRef = useRef<HTMLDivElement>(null);
-	const downArrowRef = useRef<HTMLSpanElement>(null);
-	const titleRef = useRef<HTMLHeadingElement>(null);
-	const overviewRef = useRef<HTMLDivElement>(null);
-	const techRefs = useRef<HTMLSpanElement[]>([]);
-	const infoRefs = useRef<HTMLDivElement[]>([]);
-	const borderRef = useRef<HTMLDivElement>(null);
-	const overviewHeadingRef = useRef<HTMLDivElement>(null);
-	const techHeadingRef = useRef<HTMLDivElement>(null);
+	const project = projects.find((p: { id: number }) => p.id === parseInt(id as string, 10));
+
+	const [reveal, setReveal] = useState(false);
 
 	useEffect(() => {
-		if (downArrowRef.current) {
-			gsap.to(downArrowRef.current, {
-				y: 10,
-				duration: 0.8,
-				repeat: -1,
-				yoyo: true,
-				ease: "sine.inOut",
-			});
-		}
-	}, []);
-
-	useEffect(() => {
-		const ctx = gsap.context(() => {
-			// Image scale animation
-			gsap.to(imageRef.current, {
-				scale: 1.2,
-				ease: "none",
-				scrollTrigger: {
-					trigger: ".project-page",
-					start: "top top",
-					end: "bottom top",
-					scrub: true,
-					pin: true,
-				},
-			});
-
-			// Down arrow fade out
-			if (downArrowRef.current) {
-				gsap.to(downArrowRef.current, {
-					opacity: 0,
-					ease: "none",
-					scrollTrigger: {
-						trigger: imageRef.current,
-						start: "top top",
-						end: "50% top",
-						scrub: true,
-					},
-				});
-			}
-		});
-
-		return () => ctx.revert();
-	}, []);
-
-	useEffect(() => {
-		if (!imageRef.current || !containerRef.current) return;
-		const ctx = gsap.context(() => {
-			gsap.to(imageRef.current, {
-				width: "90vw",
-				height: "80vh",
-				borderRadius: "20px",
-				ease: "ease",
-				scrollTrigger: {
-					trigger: containerRef.current,
-					start: "top top",
-					end: "+=300",
-					scrub: true,
-					pin: false,
-				},
-			});
-
-			// Title letter animation
-			if (titleRef.current) {
-				const split = new SplitText(titleRef.current, {
-					type: "chars",
-				});
-				gsap.from(split.chars, {
-					y: "100%",
-					opacity: 0,
-					stagger: 0.03,
-					duration: 0.8,
-					ease: "power2.out",
-					scrollTrigger: {
-						trigger: titleRef.current,
-						start: "top 80%",
-						end: "bottom top",
-						toggleActions: "restart none none reverse",
-					},
-				});
-			}
-
-			// Info row animations
-			infoRefs.current.forEach((info, index) => {
-				gsap.from(info, {
-					y: 50,
-					opacity: 0,
-					duration: 0.8,
-					delay: index * 0.1,
-					ease: "power2.out",
-					scrollTrigger: {
-						trigger: info,
-						start: "top 80%",
-						end: "bottom top",
-						toggleActions: "restart none none reverse",
-					},
-				});
-			});
-
-			// Border fade in
-			if (borderRef.current) {
-				gsap.fromTo(
-					borderRef.current,
-					{ scaleX: 0, transformOrigin: "left" },
-					{
-						scaleX: 1,
-						duration: 1,
-						ease: "power2.out",
-						scrollTrigger: {
-							trigger: borderRef.current,
-							start: "top 80%",
-							end: "bottom top",
-							toggleActions: "restart none none reverse",
-						},
-					}
-				);
-			}
-
-			// Overview heading animation
-			if (overviewHeadingRef.current) {
-				gsap.from(overviewHeadingRef.current, {
-					x: -50,
-					opacity: 0,
-					duration: 0.8,
-					ease: "power2.out",
-					scrollTrigger: {
-						trigger: overviewHeadingRef.current,
-						start: "top 80%",
-						end: "bottom top",
-						toggleActions: "restart none none reverse",
-					},
-				});
-			}
-
-			// Overview paragraph line animation
-			if (overviewRef.current) {
-				const split = new SplitText(overviewRef.current, {
-					type: "lines",
-				});
-				gsap.from(split.lines, {
-					y: "100%",
-					opacity: 0,
-					stagger: 0.1,
-					duration: 0.8,
-					ease: "power2.out",
-					scrollTrigger: {
-						trigger: overviewRef.current,
-						start: "top 80%",
-						end: "bottom top",
-						toggleActions: "restart none none reverse",
-					},
-				});
-			}
-
-			// Tech heading animation
-			if (techHeadingRef.current) {
-				gsap.from(techHeadingRef.current, {
-					x: -50,
-					opacity: 0,
-					duration: 0.8,
-					ease: "power2.out",
-					scrollTrigger: {
-						trigger: techHeadingRef.current,
-						start: "top 95%",
-						end: "bottom top",
-						toggleActions: "restart none none reverse",
-					},
-				});
-			}
-
-			// Tech stack animations
-			techRefs.current.forEach((tech, index) => {
-				gsap.from(tech, {
-					y: 20,
-					opacity: 0,
-					duration: 0.5,
-					delay: index * 0.1,
-					ease: "power2.out",
-					scrollTrigger: {
-						trigger: tech,
-						start: "top 98%",
-						end: "bottom top",
-						toggleActions: "restart none none reverse",
-					},
-				});
-			});
-		}, containerRef);
-		return () => ctx.revert();
+		setReveal(true);
 	}, []);
 
 	if (!project) {
 		return <div>Project not found</div>;
 	}
 
+	const moreProjects = projects.filter((p) => p.id !== project.id);
+
 	return (
-		<div ref={containerRef} className="relative">
-			{/* Full-screen image container */}
-			<div className="relative w-full overflow-hidden">
+		<div className="bg-neutral-950 min-h-screen">
+			{/* Hero Section */}
+			<div className="relative w-full h-[52vw] min-h-[420px] max-h-[68vh] overflow-hidden flex items-end">
 				<img
-					ref={imageRef}
 					src={project.image}
 					alt={project.title}
-					className="w-full h-full object-cover mx-auto"
-					style={{
-						width: "100vw",
-						height: "100vh",
-						borderRadius: "0px",
-						zIndex: 0,
-					}}
+					className="absolute inset-0 w-full h-full object-cover object-center"
 				/>
-				<span
-					ref={downArrowRef}
-					className="absolute bottom-0 left-1/2 transform -translate-x-1/2 mb-8 text-white text-4xl z-10 flex items-center justify-center"
-				>
-					<IoChevronDown />
-				</span>
+				<div className="relative z-10 p-8 md:p-16">
+					<h1
+						className={`text-[clamp(2.5rem,8vw,7rem)] font-light leading-none text-neutral-100 drop-shadow-lg transition-all duration-700 ease-out
+						${reveal ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+					>
+						{project.title}
+					</h1>
+				</div>
+				<div className="absolute inset-0 bg-gradient-to-t from-neutral-950/95 to-transparent z-0" />
 			</div>
-
-			{/* Title */}
-			<h1
-				ref={titleRef}
-				className="text-[2.5rem] md:text-[9rem] font-bold max-w-[90rem] leading-none mx-auto mt-12 mb-15 tracking-tight uppercase"
-			>
-				{project.title}
-			</h1>
-
-			{/* Info Row */}
-			<div className="max-w-[90rem] mx-auto w-full grid grid-cols-2 md:grid-cols-4 gap-28 px-4 mb-2">
-				<div
-					ref={(el) => {
-						if (el) infoRefs.current[0] = el;
-					}}
-					className="flex flex-col items-start"
-				>
-					<span className="text-xs md:text-sm uppercase tracking-widest font-semibold">
-						Work Aspect
-					</span>
-					<span className="text-base md:text-lg font-medium uppercase mt-1">
-						{project.role}
-					</span>
-				</div>
-				<div
-					ref={(el) => {
-						if (el) infoRefs.current[1] = el;
-					}}
-					className="flex flex-col items-start"
-				>
-					<span className="text-xs md:text-sm uppercase tracking-widest font-semibold">
-						Duration
-					</span>
-					<span className="text-base md:text-lg font-medium uppercase mt-1">
-						{project.duration}
-					</span>
-				</div>
-				<div
-					ref={(el) => {
-						if (el) infoRefs.current[2] = el;
-					}}
-					className="flex flex-col items-start"
-				>
-					<span className="text-xs md:text-sm uppercase tracking-widest font-semibold">
-						Status
-					</span>
-					<span className="text-base md:text-lg font-medium uppercase mt-1">
-						{project.status}
-					</span>
-				</div>
-				<div
-					ref={(el) => {
-						if (el) infoRefs.current[3] = el;
-					}}
-					className="flex flex-col items-start"
-				>
-					<span className="text-xs md:text-sm uppercase tracking-widest font-semibold">
-						Type
-					</span>
-					<span className="text-base md:text-lg font-medium uppercase mt-1">
-						{project.type}
-					</span>
-				</div>
-			</div>
-			<div
-				ref={borderRef}
-				className="max-w-[90rem] mx-auto w-full border-b border-neutral-300 mb-20 px-4"
-			/>
 
 			{/* Overview Section */}
-			<div className="max-w-[90rem] mx-auto w-full px-4 mb-20">
-				<div
-					ref={overviewHeadingRef}
-					className="text-xs md:text-sm uppercase tracking-widest font-semibold mb-2"
-				>
-					• Overview
+			<div className="max-w-7xl mx-auto px-4 py-16">
+				<div className="mb-10">
+					<p className="text-xs text-neutral-400 mb-2">({project.date})</p>
+					<h2
+						className={`text-2xl md:text-3xl font-medium text-neutral-100 mb-4 transition-all duration-700 delay-200 ease-out
+						${reveal ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+					>
+						{project.headline}
+					</h2>
+					<p
+						className={`text-lg text-neutral-300 max-w-3xl transition-all duration-700 delay-300 ease-out
+						${reveal ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+					>
+						{project.description}
+					</p>
 				</div>
-				<div
-					ref={overviewRef}
-					className="text-2xl md:text-4xl font-normal leading-snug mb-8"
-				>
-					{project.description}
+				<div className="grid md:grid-cols-3 gap-10 text-sm md:text-base">
+					<div>
+						<div
+							className={`font-semibold mb-2 text-neutral-200 transition-all duration-700 delay-400 ease-out
+							${reveal ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
+						>
+							Technologies
+						</div>
+						<ul className="border-t border-neutral-800 text-neutral-300">
+							{project.technologies.map((tech: string) => (
+								<li key={tech} className="py-1 border-b border-neutral-800 last:border-b-0 pl-2">{tech}</li>
+							))}
+						</ul>
+					</div>
+					<div>
+						<div className="font-semibold mb-2 text-neutral-200">Challenge</div>
+						<p className="text-neutral-300">
+							{project.process}
+						</p>
+					</div>
+					<div>
+						<div className="font-semibold mb-2 text-neutral-200">Solution</div>
+						<p className="text-neutral-300">
+							{project.status === 'Completed' ? 'The project was delivered successfully, meeting all goals and requirements.' : 'The project is ongoing with continuous improvements and updates.'}
+						</p>
+					</div>
 				</div>
+				{project.link && (
+					<div className="mt-10">
+						<Link
+							href={project.link}
+							target="_blank"
+							rel="noopener noreferrer"
+							className="group w-fit h-fit px-5 py-3 text-xl opacity-70 hover:opacity-100 rounded-full gap-2 hover:gap-4 mr-2 hover:mr-0 transition-all duration-300 ease-in-out border border-neutral-400 flex justify-evenly items-center"
+						>
+							<h2>Visit website</h2>
+							<div className="relative w-8 h-8">
+								<BsArrowRightCircleFill className="text-3xl absolute transition-all duration-300 opacity-100 group-hover:opacity-0" />
+								<BsArrowRightCircle className="text-3xl absolute transition-all duration-300 opacity-0 group-hover:opacity-100" />
+							</div>
+						</Link>
+					</div>
+				)}
 			</div>
 
-			{/* Technology Stack Section */}
-			<div className="max-w-[90rem] mx-auto w-full px-4 mb-2">
-				<div
-					ref={techHeadingRef}
-					className="text-xs md:text-sm uppercase tracking-widest font-semibold mb-2"
-				>
-					• Technology Stack
-				</div>
-				<div className="flex flex-wrap gap-3">
-					{project.technologies.map((tech) => (
-						<span
-							ref={(el) => {
-								if (el && !techRefs.current.includes(el)) {
-									techRefs.current.push(el);
-								}
-							}}
-							key={tech}
-							className="bg-neutral-300 text-neutral-800 px-5 py-2 rounded-full text-base md:text-lg font-medium shadow-sm"
-						>
-							{tech}
-						</span>
-					))}
+			{/* More Projects Section */}
+			<div className="bg-neutral-900 py-16">
+				<div className="max-w-7xl mx-auto px-4">
+					<h3 className="text-3xl font-semibold mb-8 text-neutral-100">More projects</h3>
+					<div className="grid md:grid-cols-2 gap-8">
+						{moreProjects.map((p) => (
+							<Link
+								key={p.id}
+								href={`/work/${p.id}`}
+								className="relative group rounded-2xl overflow-hidden bg-neutral-800 shadow hover:shadow-xl transition focus:outline-none focus:ring-2 focus:ring-blue-400"
+								aria-label={`View project: ${p.title}`}
+							>
+								<img src={p.galleryImage || p.image} alt={p.title} className="w-full h-64 object-cover object-center transition-transform group-hover:scale-105 duration-300 ease-in-out" />
+								<div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
+									<div className="text-lg font-semibold text-white mb-2">{p.title}</div>
+									<div className="flex flex-wrap gap-2">
+										{p.technologies.slice(0, 6).map((tag) => (
+											<span key={tag} className="bg-neutral-100/80 text-neutral-900 px-3 py-1 rounded-full text-xs font-medium">
+												{tag}
+											</span>
+										))}
+									</div>
+									<IoArrowForwardCircleOutline className="absolute bottom-6 right-6 text-4xl " />
+								</div>
+							</Link>
+						))}
+					</div>
 				</div>
 			</div>
-			<div className="h-32 md:h-64" />
 		</div>
 	);
-};
+}
 
 export default WorkPage;
