@@ -52,7 +52,7 @@ const Navbar = () => {
 
 			<div className="hidden md:flex justify-end gap-0.5 tracking-wider w-full uppercase">
 				<Link
-					href="#about-me"
+					href="/#about-me"
 					className="overflow-hidden h-6 cursor-pointer"
 				>
 					<AnimatedText>about</AnimatedText>
@@ -64,7 +64,7 @@ const Navbar = () => {
 					<AnimatedText>work</AnimatedText>
 				</Link>
 				<Link
-					href="/contact"
+					href="#footer"
 					className="overflow-hidden h-6 cursor-pointer"
 				>
 					<AnimatedText>contact</AnimatedText>
@@ -98,9 +98,9 @@ const Navbar = () => {
 						transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
 					>
 						{[
-							{ href: '/about', label: 'About' },
+							{ href: '#about-me', label: 'About' },
 							{ href: '/work', label: 'Work' },
-							{ href: '/contact', label: 'Contact' },
+							{ href: '#footer', label: 'Contact' },
 							{ href: '/archive', label: 'Archive' }
 						].map((item, idx) => (
 							<motion.div

@@ -48,7 +48,6 @@ export default function HomePage() {
 			<section id="about-me">
 				<AboutMe />
 			</section>
-			<section className="h-screen"></section>
 		</main>
 	);
 }

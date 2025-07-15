@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
+import Footer from "./components/Footer";
 
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({
 				<SmoothScroll>
 					{children}
 				</SmoothScroll>
+				<Footer />
 			</body>
 		</html>
 	);
