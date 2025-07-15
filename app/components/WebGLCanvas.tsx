@@ -146,6 +146,24 @@ const displayShader = `
 
 const WebGLCanvas = () => {
     const canvasRef = useRef<HTMLDivElement>(null);
+    const scaleRef = useRef(1);
+
+    // Scroll-based scale animation
+    useEffect(() => {
+        const handleScroll = () => {
+            // You can tweak these values for the desired effect
+            const scrollY = window.scrollY;
+            // Scale from 1 to 1.3 over the first 600px of scroll
+            const scale = 1 + Math.min(scrollY / 600, 1) * 0.3;
+            scaleRef.current = scale;
+            if (canvasRef.current) {
+                canvasRef.current.style.transform = `scale(${scale})`;
+                canvasRef.current.style.transition = 'transform 0.02s cubic-bezier(0.4,0,0.2,1)';
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     useEffect(() => {
         if (!canvasRef.current) return;
@@ -477,10 +495,26 @@ const WebGLCanvas = () => {
             displayMesh.geometry.dispose();
             // TODO: Dispose fluid sim render targets and materials
         };
-    }, []);
+    });
 
-    return <div ref={canvasRef} className="p-home-mv__background absolute top-0 left-0 w-full h-full overflow-hidden"></div>;
+    return (
+        <div
+            ref={canvasRef}
+            id="webgl-canvas"
+            style={{
+                width: '100vw',
+                height: '100vh',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                zIndex: 0,
+                willChange: 'transform',
+                transition: 'transform 0.02s cubic-bezier(0.4,0,0.2,1)'
+            }}
+        >
+            {/* Three.js canvas will be injected here */}
+        </div>
+    );
 };
 
 export default WebGLCanvas;
-

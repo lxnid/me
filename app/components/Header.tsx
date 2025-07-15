@@ -22,11 +22,7 @@ const Header = () => {
 			const textElement = textRef.current;
 			if (!textElement) return;
 
-			const otherElements = [
-				bottomLeftRef.current,
-				bottomRightRef.current,
-				linksRef.current,
-			];
+			const otherElements = [linksRef.current].filter(Boolean);
 
 			// Create timeline for text animation
 			const tl = gsap.timeline({
@@ -36,13 +32,13 @@ const Header = () => {
 						textElement,
 						{ y: 0, opacity: 1 },
 						{
-							y: 100,
+							y: 500,
 							opacity: 0,
 							ease: "power1.inOut",
 							scrollTrigger: {
 								trigger: document.documentElement,
 								start: "top top",
-								end: "+=300",
+								end: "+=800",
 								scrub: true,
 							},
 						}
@@ -99,15 +95,15 @@ const Header = () => {
 	return (
 		<div className="z-20 absolute w-full h-full flex justify-center items-center pointer-events-none">
 			<div className="flex flex-col justify-evenly px-12 py-10 items-center h-full w-full relative">
-				<h1
-					ref={textRef}
-					className="text-7xl md:text-[10rem] leading-none text-white text-center mt-[28vh] opacity-0 font-bold uppercase font-dahlia"
-				>
-					HIRUSHA <br /> DINIL
-				</h1>
 				<div className="h-full w-full flex items-end justify-between text-xs md:text-sm text-white uppercase">
-					<p ref={bottomLeftRef}>COLOMBO, SL</p>
-					<p ref={bottomRightRef}>PORTFOLIO &copy; 2025</p>
+					<h1
+						ref={textRef}
+						className="text-5xl md:text-[16rem] leading-none text-[#dddddd] text-start mt-[28vh] opacity-0 font-bold uppercase"
+					>
+						HIRUSHA.D
+					</h1>
+					{/* <p ref={bottomLeftRef}>COLOMBO, SL</p>
+					<p ref={bottomRightRef}>PORTFOLIO &copy; 2025</p> */}
 					<div
 						ref={linksRef}
 						className="flex flex-col pointer-events-auto"

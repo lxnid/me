@@ -8,6 +8,24 @@ import { gsap } from "gsap";
 
 const Navbar = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [showNavbar, setShowNavbar] = useState(true);
+	const lastScrollY = useRef(0);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const currentScrollY = window.scrollY;
+			if (currentScrollY > lastScrollY.current && currentScrollY > 30) {
+				setShowNavbar(false); // scrolling down
+			} else if (currentScrollY < lastScrollY.current) {
+				setShowNavbar(true); // scrolling up
+			}
+			// Do nothing if stopped or same position
+			lastScrollY.current = currentScrollY;
+		};
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
+
 	const menuRef = useRef<HTMLDivElement>(null);
 	const linkRefs = useRef<HTMLAnchorElement[]>([]);
 
@@ -141,14 +159,25 @@ const Navbar = () => {
 
 	return (
 		<div
-			className={`fixed top-0 left-0 z-40 w-full md:h-20 px-4 pt-4 md:pt-0 ${
+			className={`fixed top-0 left-0 z-30 w-full md:h-20 px-4 pt-4 md:pt-0 ${
 				isMenuOpen ? "h-screen bg-black/80 backdrop-blur-md" : "h-20"
 			} md:px-12 flex items-start md:items-center text-white mix-blend-difference`}
+			style={{
+				transform: showNavbar ? 'translateY(0)' : 'translateY(-100%)',
+				transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
+			}}
 		>
 			<Image src="logo.svg" alt="logo" width={30} height={30} />
+
+			{/* Info elements between logo and menu */}
+			<div className="hidden md:flex w-full justify-between items-center px-52">
+				<p className="text-xs md:text-sm uppercase">COLOMBO, SL</p>
+				<p className="text-xs md:text-sm uppercase">PORTFOLIO &copy; 2025</p>
+			</div>
+
 			<div className="hidden md:flex justify-end gap-0.5 tracking-wider w-full text-lg font-medium uppercase">
 				<Link
-					href="/about"
+					href="#about-me"
 					className="overflow-hidden h-6 cursor-pointer"
 				>
 					<AnimatedText>about</AnimatedText>
@@ -192,10 +221,10 @@ const Navbar = () => {
 					<Link
 						ref={addLinkRef}
 						href="/about"
-						className="py-2 text-6xl font-bold uppercase tracking-wider hover:text-gray-300 border-b w-full"
+						className="py-2 text-5xl font-bold uppercase tracking-wider hover:text-gray-300 border-b w-full"
 						onClick={closeMenu}
 					>
-						<span className="text-gray-500 text-3xl">
+						<span className="text-neutral-500 text-3xl">
 							(1)&nbsp;
 						</span>
 						{splitText("About")}
@@ -203,10 +232,10 @@ const Navbar = () => {
 					<Link
 						ref={addLinkRef}
 						href="/work"
-						className="py-2 text-6xl font-bold uppercase tracking-wider hover:text-gray-300 border-b w-full"
+						className="py-2 text-5xl font-bold uppercase tracking-wider hover:text-neutral-300 border-b w-full"
 						onClick={closeMenu}
 					>
-						<span className="text-gray-500 text-3xl">
+						<span className="text-neutral-500 text-3xl">
 							(2)&nbsp;
 						</span>
 						{splitText("Work")}
@@ -214,10 +243,10 @@ const Navbar = () => {
 					<Link
 						ref={addLinkRef}
 						href="/contact"
-						className="py-2 text-6xl font-bold uppercase tracking-wider hover:text-gray-300 border-b w-full"
+						className="py-2 text-5xl font-bold uppercase tracking-wider hover:text-neutral-300 border-b w-full"
 						onClick={closeMenu}
 					>
-						<span className="text-gray-500 text-3xl">
+						<span className="text-neutral-500 text-3xl">
 							(3)&nbsp;
 						</span>
 						{splitText("Contact")}
@@ -225,10 +254,10 @@ const Navbar = () => {
 					<Link
 						ref={addLinkRef}
 						href="/archive"
-						className="py-2 text-6xl font-bold uppercase tracking-wider hover:text-gray-300 border-b w-full"
+						className="py-2 text-5xl font-bold uppercase tracking-wider hover:text-neutral-300 border-b w-full"
 						onClick={closeMenu}
 					>
-						<span className="text-gray-500 text-3xl">
+						<span className="text-neutral-500 text-3xl">
 							(4)&nbsp;
 						</span>
 						{splitText("Archive")}
