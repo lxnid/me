@@ -3,7 +3,6 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import type { Metadata } from "next";
 import "./globals.css";
-import CustomCursor from "./components/CustomCursor";
 import SmoothScroll from "./components/SmoothScroll";
 
 
@@ -20,7 +19,6 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className="bg-[#000000] text-[#dddddd]">
-				<CustomCursor />
 				<Navbar />
 				<SmoothScroll>
 					{children}

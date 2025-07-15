@@ -1,5 +1,6 @@
 export interface Project {
 	id: number;
+	galleryImage: string;
 	title: string;
 	image: string;
 	link: string;
@@ -14,6 +15,7 @@ export interface Project {
 
 export const projects: Project[] = [
 	{
+		galleryImage: "/workImages/g_portfolio_24.jpg", 
 		id: 1,
 		title: "Portfolio 2024",
 		image: "/workImages/portfolio_24.jpg",
@@ -29,6 +31,7 @@ export const projects: Project[] = [
 		type: "Solo (Personal)",
 	},
 	{
+		galleryImage: "", 
 		id: 3,
 		title: "To-Do Web App",
 		image: "/workImages/todo.jpeg",
@@ -44,6 +47,7 @@ export const projects: Project[] = [
 		type: "Solo (Personal)",
 	},
 	{
+		galleryImage: "", 
 		id: 2,
 		title: "Weather App",
 		image: "/workImages/weather.jpg",
@@ -64,6 +68,7 @@ export const projects: Project[] = [
 		type: "Solo (Personal)",
 	},
 	{
+		galleryImage: "", 
 		id: 4,
 		title: "Current Portfolio",
 		image: "/workImages/portfolio_current.jpg",
