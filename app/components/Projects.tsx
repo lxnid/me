@@ -23,7 +23,7 @@ const Projects = ({ count }: ProjectsProps) => {
             height={1000}
             className="object-cover absolute w-full h-full"
           />
-          <div className="flex flex-col justify-center items-center w-full h-full gap-4 bg-black/50 opacity-0 hover:opacity-100 transition-all duration-300 z-10">
+          <div className="flex flex-col justify-center items-center w-full h-full gap-4 bg-black/50 md:opacity-0 hover:opacity-100 transition-all duration-300 z-10">
             <h2 className="text-4xl font-medium">{project.title}</h2>
             <p className="text-sm opacity-50">{project.role}</p>
           </div>

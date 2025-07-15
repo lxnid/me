@@ -4,7 +4,7 @@ import Image from "next/image";
 import AnimatedText from "./AnimatedText";
 import Link from "next/link";
 import { HiMinus, HiOutlineMenuAlt4 } from "react-icons/hi";
-import { gsap } from "gsap";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navbar = () => {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,142 +26,20 @@ const Navbar = () => {
 		return () => window.removeEventListener('scroll', handleScroll);
 	}, []);
 
-	const menuRef = useRef<HTMLDivElement>(null);
-	const linkRefs = useRef<HTMLAnchorElement[]>([]);
-
 	const toggleMenu = () => {
 		if (isMenuOpen) {
-			closeMenu();
+			setIsMenuOpen(false);
 		} else {
 			setIsMenuOpen(true);
 		}
 	};
 
-	const closeMenu = () => {
-		if (!menuRef.current) return;
 
-		// Animate letters out and menu up simultaneously
-		const tl = gsap.timeline({
-			onComplete: () => setIsMenuOpen(false),
-		});
-
-		linkRefs.current.forEach((link, index) => {
-			const letters = link.querySelectorAll(".menu-letter");
-			tl.to(
-				letters,
-				{
-					y: "-100%",
-					stagger: 0.05,
-					duration: 0.5,
-					ease: "power2.in",
-				},
-				index * 0.1
-			);
-
-			const numberSpan = link.querySelector("span");
-			if (numberSpan) {
-				tl.to(
-					numberSpan,
-					{ opacity: 0, duration: 0.5, ease: "power2.in" },
-					index * 0.1
-				);
-			}
-
-			tl.to(
-				link,
-				{
-					borderBottomColor: "rgba(255,255,255,0)",
-					duration: 0.5,
-					ease: "power2.in",
-				},
-				index * 0.1
-			);
-		});
-
-		tl.to(
-			menuRef.current,
-			{
-				y: "-100vh",
-				duration: 0.5,
-				ease: "power2.in",
-			},
-			0
-		);
-	};
-
-	useEffect(() => {
-		if (isMenuOpen && menuRef.current) {
-			// Animate menu down and letters up simultaneously
-			const tl = gsap.timeline();
-
-			tl.fromTo(
-				menuRef.current,
-				{ y: "-100vh" },
-				{ y: "0%", duration: 0.5, ease: "power2.out" }
-			);
-
-			linkRefs.current.forEach((link, index) => {
-				const letters = link.querySelectorAll(".menu-letter");
-				tl.fromTo(
-					letters,
-					{ y: "-100%", opacity: 0 },
-					{
-						y: "0%",
-						opacity: 1,
-						stagger: 0.05,
-						duration: 0.5,
-						ease: "power2.out",
-					},
-					index * 0.1
-				);
-
-				const numberSpan = link.querySelector("span");
-				if (numberSpan) {
-					tl.fromTo(
-						numberSpan,
-						{ opacity: 0 },
-						{ opacity: 1, duration: 0.5, ease: "power2.out" },
-						index * 0.1
-					);
-				}
-
-				tl.fromTo(
-					link,
-					{ borderBottomColor: "rgba(255,255,255,0)" },
-					{
-						borderBottomColor: "rgba(255,255,255,1)",
-						duration: 0.5,
-						ease: "power2.out",
-					},
-					index * 0.1
-				);
-			});
-		}
-	}, [isMenuOpen]);
-
-	const addLinkRef = (el: HTMLAnchorElement) => {
-		if (el && !linkRefs.current.includes(el)) {
-			linkRefs.current.push(el);
-		}
-	};
-
-	const splitText = (text: string) => {
-		return text.split("").map((char, index) => (
-			<span
-				key={index}
-				className="menu-letter inline-block overflow-hidden"
-				style={{ display: "inline-block", whiteSpace: "pre" }}
-			>
-				{char === " " ? "\u00A0" : char}
-			</span>
-		));
-	};
 
 	return (
 		<div
-			className={`fixed top-0 left-0 z-30 w-full md:h-20 px-4 pt-4 md:pt-0 ${
-				isMenuOpen ? "h-screen bg-black/80 backdrop-blur-md" : "h-20"
-			} md:px-12 flex items-start md:items-center text-white mix-blend-difference`}
+			className={`fixed top-0 left-0 z-30 w-full md:h-20 px-4 pt-4 md:pt-0 ${isMenuOpen ? "bg-neutral-900 h-60" : "h-20 mix-blend-difference"
+				} md:px-12 flex items-start md:items-center text-white`}
 			style={{
 				transform: showNavbar ? 'translateY(0)' : 'translateY(-100%)',
 				transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
@@ -170,7 +48,7 @@ const Navbar = () => {
 			<Image src="logo.svg" alt="logo" width={25} height={25} />
 
 			{/* Info elements between logo and menu */}
-			
+
 
 			<div className="hidden md:flex justify-end gap-0.5 tracking-wider w-full uppercase">
 				<Link
@@ -210,57 +88,40 @@ const Navbar = () => {
 				)}
 			</button>
 			{/* Mobile Menu */}
-			{isMenuOpen && (
-				<div
-					ref={menuRef}
-					className="absolute top-55 left-0 w-full flex flex-col gap-8 items-end py-4 px-8 text-right md:hidden"
-				>
-					<Link
-						ref={addLinkRef}
-						href="/about"
-						className="py-2 text-5xl font-bold uppercase tracking-wider hover:text-gray-300 border-b w-full"
-						onClick={closeMenu}
+			<AnimatePresence>
+				{isMenuOpen && (
+					<motion.div
+						className="absolute top-12 left-0 w-full flex flex-col gap-1 items-start py-4 px-5 text-left md:hidden overflow-hidden bg-neutral-900"
+						initial={{ height: 0, opacity: 0 }}
+						animate={{ height: 'auto', opacity: 1 }}
+						exit={{ height: 0, opacity: 0 }}
+						transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
 					>
-						<span className="text-neutral-500 text-3xl">
-							(1)&nbsp;
-						</span>
-						{splitText("About")}
-					</Link>
-					<Link
-						ref={addLinkRef}
-						href="/work"
-						className="py-2 text-5xl font-bold uppercase tracking-wider hover:text-neutral-300 border-b w-full"
-						onClick={closeMenu}
-					>
-						<span className="text-neutral-500 text-3xl">
-							(2)&nbsp;
-						</span>
-						{splitText("Work")}
-					</Link>
-					<Link
-						ref={addLinkRef}
-						href="/contact"
-						className="py-2 text-5xl font-bold uppercase tracking-wider hover:text-neutral-300 border-b w-full"
-						onClick={closeMenu}
-					>
-						<span className="text-neutral-500 text-3xl">
-							(3)&nbsp;
-						</span>
-						{splitText("Contact")}
-					</Link>
-					<Link
-						ref={addLinkRef}
-						href="/archive"
-						className="py-2 text-5xl font-bold uppercase tracking-wider hover:text-neutral-300 border-b w-full"
-						onClick={closeMenu}
-					>
-						<span className="text-neutral-500 text-3xl">
-							(4)&nbsp;
-						</span>
-						{splitText("Archive")}
-					</Link>
-				</div>
-			)}
+						{[
+							{ href: '/about', label: 'About' },
+							{ href: '/work', label: 'Work' },
+							{ href: '/contact', label: 'Contact' },
+							{ href: '/archive', label: 'Archive' }
+						].map((item, idx) => (
+							<motion.div
+								key={item.href}
+								initial={{ opacity: 0, y: -20 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -20 }}
+								transition={{ delay: 0.1 + idx * 0.13, duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
+								className="w-full"
+							>
+								<Link
+									href={item.href}
+									className="block py-2 text-sm font-light uppercase tracking-wider hover:text-neutral-300 w-full"
+								>
+									{item.label}
+								</Link>
+							</motion.div>
+						))}
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</div>
 	);
 };

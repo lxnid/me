@@ -52,7 +52,7 @@ export default function AboutOverlay({ open, onClose }: { open: boolean; onClose
 
                 <div className="flex-1 flex flex-col justify-between p-8 md:p-12 lg:p-16 overflow-y-auto">
                     <div>
-                        <p className="text-xs md:text-sm uppercase tracking-wide mb-6 opacity-70">Hirusha Dinil is a developer focus on digital experience and creative development.</p>
+                        <p className="text-xs md:text-sm uppercase tracking-wide mb-6 opacity-70"><span className="font-medium text-lg">Hirusha Dinil</span> is a developer focus on digital experience and creative development.</p>
                         <p className="text-base md:text-lg leading-relaxed mb-8">
                             Blending code and creativity, I build interactive digital experiences that spark curiosity and connection. My work transforms ideas into memorable journeys—where design, technology, and imagination meet.
                         </p>
@@ -69,6 +69,7 @@ export default function AboutOverlay({ open, onClose }: { open: boolean; onClose
                                 <span className="bg-neutral-700 rounded px-2 py-1">Git</span>
                                 <span className="bg-neutral-700 rounded px-2 py-1">Java</span>
                                 <span className="bg-neutral-700 rounded px-2 py-1">TailwindCSS</span>
+                                <span className="bg-neutral-700 rounded px-2 py-1">Firebase</span>
                                 <span className="bg-neutral-700 rounded px-2 py-1">Flask</span>
                                 <span className="bg-neutral-700 rounded px-2 py-1">FastAPI</span>
                                 <span className="bg-neutral-700 rounded px-2 py-1">Framer Motion</span>
