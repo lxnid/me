@@ -23,7 +23,7 @@ export default function AboutMe() {
             >
                 <video
                     src="/video/10994873-hd_720_1280_25fps_web.mp4"
-                    className="object-cover w-full h-full"
+                    className="object-cover w-full h-[102vh]"
                     autoPlay
                     loop
                     muted
