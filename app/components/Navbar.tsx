@@ -159,7 +159,7 @@ const Navbar = () => {
 
 	return (
 		<div
-			className={`fixed top-0 left-0 z-40 w-full md:h-20 px-4 pt-4 md:pt-0 ${
+			className={`fixed top-0 left-0 z-30 w-full md:h-20 px-4 pt-4 md:pt-0 ${
 				isMenuOpen ? "h-screen bg-black/80 backdrop-blur-md" : "h-20"
 			} md:px-12 flex items-start md:items-center text-white mix-blend-difference`}
 			style={{
@@ -170,7 +170,7 @@ const Navbar = () => {
 			<Image src="logo.svg" alt="logo" width={30} height={30} />
 
 			{/* Info elements between logo and menu */}
-			<div className="hidden md:flex flex w-full justify-between items-center px-52">
+			<div className="hidden md:flex w-full justify-between items-center px-52">
 				<p className="text-xs md:text-sm uppercase">COLOMBO, SL</p>
 				<p className="text-xs md:text-sm uppercase">PORTFOLIO &copy; 2025</p>
 			</div>
