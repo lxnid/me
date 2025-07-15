@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
+import Link from "next/link";
 import React from "react";
+import { LuExternalLink } from "react-icons/lu";
 
 export default function AboutOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
     return (
@@ -26,13 +28,13 @@ export default function AboutOverlay({ open, onClose }: { open: boolean; onClose
                         whileHover="hover"
                         whileTap={{ scale: 0.97 }}
                         variants={{ rest: { scale: 1 }, hover: { scale: 1.13 } }}
-                        className="fixed top-1/2 left-[46%] md:left-1/3 z-50 -translate-y-1/2 bg-neutral-900 hover:bg-neutral-800 rounded-full w-12 h-12 flex items-center justify-center text-3xl border border-neutral-700 shadow-lg group"
+                        className="fixed top-1/2 left-[46%] cursor-pointer md:left-1/3 z-50 -translate-y-1/2 bg-neutral-900 hover:bg-neutral-800 rounded-full w-12 h-12 flex items-center justify-center text-3xl border border-neutral-700 shadow-lg group"
                         aria-label="Close overlay"
                         type="button"
                     >
                         <motion.span
                             className="inline-block"
-                            variants={{ rest: { rotate: 0 }, hover: { rotate: 135 } }}
+                            variants={{ rest: { rotate: 0 }, hover: { rotate: 45 } }}
                             animate={undefined}
                             transition={{ type: 'spring', stiffness: 400, damping: 20, delay: 0.16 }}
                         >
@@ -46,7 +48,7 @@ export default function AboutOverlay({ open, onClose }: { open: boolean; onClose
                 animate={{ x: open ? 0 : "100%", opacity: open ? 1 : 0, scale: open ? 1 : 0.98 }}
                 exit={{ x: "100%", opacity: 0, scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 250, damping: 30, opacity: { duration: 0.36 }, scale: { duration: 0.36 } }}
-                className="fixed top-4 right-4 left-4 md:left-auto z-40 rounded-lg h-[96%] w-[92%] md:w-full lg:w-1/2 bg-[#292929] text-white shadow-2xl flex flex-col"
+                className="fixed top-4 right-4 left-4 md:left-auto z-40 rounded-lg h-[96%] w-[92%] md:w-full lg:w-1/2 bg-[#202020] text-white shadow-2xl flex flex-col"
                 style={{ pointerEvents: open ? 'auto' : 'none' }}
             >
 
@@ -84,6 +86,14 @@ export default function AboutOverlay({ open, onClose }: { open: boolean; onClose
                                 <span className="bg-neutral-700 rounded px-2 py-1">Agile</span>
                                 <span className="bg-neutral-700 rounded px-2 py-1">Data Security</span>
                             </div>
+                        </div>
+                        <div className="mt-8">
+                            <div className="uppercase mb-2 tracking-widest">
+                                <Link href="/resume.pdf" target="_blank" className="flex items-start gap-2 hover:opacity-70 transition-colors duration-300 w-fit">
+                                    Resume <LuExternalLink className="text-lg" />
+                                </Link>
+                            </div>
+
                         </div>
                         {/* <div className="mb-6">
                             <div className="uppercase mb-2 tracking-widest">Recognitions</div>
