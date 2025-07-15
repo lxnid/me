@@ -29,6 +29,21 @@ export const projects: Project[] = [
 		type: "Solo (Personal)",
 	},
 	{
+		id: 3,
+		title: "To-Do Web App",
+		image: "/workImages/todo.jpeg",
+		link: "/work/3",
+		description:
+			"A productivity app to manage daily tasks efficiently. Features include task creation, editing, and completion tracking.",
+		technologies: ["React", "TypeScript", "Redux", "Tailwind CSS"],
+		duration: "1 week",
+		role: "Full-Stack Developer",
+		status: "Completed",
+		process:
+			"Developed the core task management features and implemented state management using Redux.",
+		type: "Solo (Personal)",
+	},
+	{
 		id: 2,
 		title: "Weather App",
 		image: "/workImages/weather.jpg",
@@ -46,21 +61,6 @@ export const projects: Project[] = [
 		status: "Completed",
 		process:
 			"Designed and implemented the UI, integrated with weather APIs, and ensured responsive design for all devices.",
-		type: "Solo (Personal)",
-	},
-	{
-		id: 3,
-		title: "To-Do App",
-		image: "/workImages/todo.jpg",
-		link: "/work/3",
-		description:
-			"A productivity app to manage daily tasks efficiently. Features include task creation, editing, and completion tracking.",
-		technologies: ["React", "TypeScript", "Redux", "Tailwind CSS"],
-		duration: "1 week",
-		role: "Frontend Developer",
-		status: "Completed",
-		process:
-			"Developed the core task management features and implemented state management using Redux.",
 		type: "Solo (Personal)",
 	},
 	{

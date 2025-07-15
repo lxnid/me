@@ -38,7 +38,7 @@ const Header = () => {
 							scrollTrigger: {
 								trigger: document.documentElement,
 								start: "top top",
-								end: "+=800",
+								end: "+=1200",
 								scrub: true,
 							},
 						}
@@ -98,12 +98,12 @@ const Header = () => {
 				<div className="h-full w-full flex items-end justify-between text-xs md:text-sm text-white uppercase">
 					<h1
 						ref={textRef}
-						className="text-5xl md:text-[16rem] leading-none text-[#dddddd] text-start mt-[28vh] opacity-0 font-bold uppercase"
+						className="text-5xl md:text-[6rem] leading-none text-[#dddddd] text-start mt-[28vh] opacity-0 uppercase"
 					>
-						HIRUSHA.D
+						HIRUSHA DINIL
 					</h1>
-					{/* <p ref={bottomLeftRef}>COLOMBO, SL</p>
-					<p ref={bottomRightRef}>PORTFOLIO &copy; 2025</p> */}
+					{/* <p className="text-xs uppercase">COLOMBO, SL</p> */}
+					{/* <p className="text-xs uppercase">PORTFOLIO &copy; 2025</p> */}
 					<div
 						ref={linksRef}
 						className="flex flex-col pointer-events-auto"

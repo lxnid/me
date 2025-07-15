@@ -167,15 +167,12 @@ const Navbar = () => {
 				transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
 			}}
 		>
-			<Image src="logo.svg" alt="logo" width={30} height={30} />
+			<Image src="logo.svg" alt="logo" width={25} height={25} />
 
 			{/* Info elements between logo and menu */}
-			<div className="hidden md:flex w-full justify-between items-center px-52">
-				<p className="text-xs md:text-sm uppercase">COLOMBO, SL</p>
-				<p className="text-xs md:text-sm uppercase">PORTFOLIO &copy; 2025</p>
-			</div>
+			
 
-			<div className="hidden md:flex justify-end gap-0.5 tracking-wider w-full text-lg font-medium uppercase">
+			<div className="hidden md:flex justify-end gap-0.5 tracking-wider w-full uppercase">
 				<Link
 					href="#about-me"
 					className="overflow-hidden h-6 cursor-pointer"

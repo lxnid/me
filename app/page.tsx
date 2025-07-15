@@ -8,30 +8,14 @@ import Header from "./components/Header";
 import Link from "next/link";
 import { BsArrowRightCircle, BsArrowRightCircleFill } from "react-icons/bs";
 import AboutMe from "./components/AboutMe";
+import Projects from "./components/Projects";
+import { IoChevronDown } from "react-icons/io5";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function HomePage() {
 	const mainRef = useRef<HTMLElement>(null);
-	const webglCanvasContainerRef = useRef<HTMLDivElement>(null);
-
-	useEffect(() => {
-		// We need to wait for the mainRef to be available to set up the trigger
-		if (mainRef.current && webglCanvasContainerRef.current) {
-			// Parallax effect for the WebGL Canvas container
-			gsap.to(webglCanvasContainerRef.current, {
-				y: "30%", // Move the container down by 30% of its height as user scrolls
-				scrollTrigger: {
-					trigger: mainRef.current, // The scroll is triggered by the main container
-					start: "top top", // Starts when the top of the trigger hits the top of the viewport
-					end: "bottom top", // Ends when the bottom of the trigger hits the top of the viewport
-					scrub: true, // Smoothly animates the 'y' property with the scroll
-				},
-			});
-		}
-
-		ScrollTrigger.refresh();
-	}, []);
+	
 
 	return (
 		<main
@@ -40,18 +24,13 @@ export default function HomePage() {
 		>
 			<section
 				id="hero-section"
-				className="relative w-full h-screen overflow-hidden"
+				className="relative w-full h-[70vh] overflow-hidden"
 			>
-				<div
-					ref={webglCanvasContainerRef}
-					className="absolute top-0 left-0 w-full h-full z-10"
-				>
-					<WebGLCanvas />
-				</div>
 				<Header />
 			</section>
 
-			<section className="pt-0 md:pt-20 z-10 relative">
+			<section className="pt-3 z-0 relative">
+				<Projects count={2} />
 				<div className="w-full h-[15vh] flex justify-end items-end pr-12">
 					<Link
 						href={"/work"}
@@ -66,7 +45,6 @@ export default function HomePage() {
 				</div>
 			</section>
 
-			{/* About Me section */}
 			<section id="about-me">
 				<AboutMe />
 			</section>
