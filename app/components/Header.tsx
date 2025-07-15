@@ -98,9 +98,9 @@ const Header = () => {
 				<div className="h-full w-full flex items-end justify-between text-xs md:text-sm text-white uppercase">
 					<h1
 						ref={textRef}
-						className="text-5xl md:text-[15rem] leading-none text-[#dddddd] text-start mt-[28vh] opacity-0 font-bold uppercase"
+						className="text-5xl md:text-[16rem] leading-none text-[#dddddd] text-start mt-[28vh] opacity-0 font-bold uppercase"
 					>
-						HIRUSHA <br /> DINIL
+						HIRUSHA.D
 					</h1>
 					{/* <p ref={bottomLeftRef}>COLOMBO, SL</p>
 					<p ref={bottomRightRef}>PORTFOLIO &copy; 2025</p> */}

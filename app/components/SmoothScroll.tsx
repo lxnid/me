@@ -17,7 +17,7 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
   useEffect(() => {
     const lenis = new Lenis({
         duration: 1.1,
-        wheelMultiplier: 0.7,
+        wheelMultiplier: 0.4,
     });
     lenisRef.current = lenis;
 

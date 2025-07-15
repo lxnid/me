@@ -51,6 +51,16 @@ const Expertise = () => {
     const [activeIdx, setActiveIdx] = React.useState(0);
     const inView = useSectionInView(sectionRef, 0.2); // 20% visible triggers start
 
+    // Mouse tracking for floating image+caption
+    const [mouse, setMouse] = React.useState({ x: 0, y: 0 });
+    const [isHovered, setIsHovered] = React.useState(false);
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+        setMouse({
+            x: e.clientX - rect.left - rect.width / 2,
+            y: e.clientY - rect.top - rect.height / 2,
+        });
+    }
     React.useEffect(() => {
         if (!inView) return;
         const handleScroll = () => {
@@ -104,7 +114,7 @@ const Expertise = () => {
         <div ref={sectionRef} className="min-h-screen w-full px-2 md:px-12 pt-16 md:pt-24 z-10 flex">
             <div className="flex flex-col w-3/4 gap-8 md:gap-0">
                 <div className="text-lg mb-4 ml-1">Who am I?</div>
-                <div className="flex flex-col w-full gap-8 md:gap-2 uppercase text-9xl font-bold mt-8" >
+                <div className="flex flex-col w-full gap-8 md:gap-2 uppercase text-3xl md:text-9xl font-bold mt-8" >
                     {headings.map((text, i) => (
                         <div
                             key={text}
@@ -129,14 +139,25 @@ const Expertise = () => {
                 </div>
             </div>
             <div className="w-1/4 h-full flex sticky top-52">
-                <div className="w-full">
+                <div
+                    className="w-full relative"
+                    onMouseMove={handleMouseMove}
+                    onMouseEnter={() => setIsHovered(true)}
+                    onMouseLeave={() => setIsHovered(false)}
+                    style={{ height: '100%' }}
+                >
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeIdx}
                             initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
+                            animate={{
+                                opacity: 1,
+                                x: isHovered ? mouse.x : 0,
+                                y: isHovered ? mouse.y : 0
+                            }}
                             exit={{ opacity: 0 }}
-                            transition={{ duration: 0 }}
+                            transition={isHovered ? { type: 'spring', stiffness: 300, damping: 30 } : { duration: 0.1 }}
+                            style={{ position: isHovered ? 'absolute' : 'relative', pointerEvents: 'none', left: 0, top: 0 }}
                         >
                             <Image
                                 src={imageUrls[activeIdx]}

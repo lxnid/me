@@ -69,7 +69,7 @@ export default function HomePage() {
 				</div>
 			</section>
 
-			<section>
+			<section className="hidden md:block">
 				<Expertise />
 			</section>
 			<section className="h-screen"></section>
