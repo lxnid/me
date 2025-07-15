@@ -7,7 +7,7 @@ export default function AboutMe() {
     return (
         <motion.section
             id="about-me"
-            className="w-full h-screen bg-black text-white flex flex-col md:flex-row items-center justify-center gap-12 mt-64"
+            className="w-full min-h-screen bg-black text-white flex flex-col md:flex-row items-start justify-center gap-12 mt-64"
             initial={{ opacity: 0, y: 64 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ amount: 0.3 }}
@@ -15,7 +15,7 @@ export default function AboutMe() {
         >
             {/* Left: Image */}
             <motion.div
-                className="flex-1 flex overflow-hidden items-center justify-center md:w-1/4 h-full"
+                className="flex-1 flex overflow-hidden items-center justify-center md:w-1/4 h-full sticky top-24"
                 initial={{ opacity: 0, x: -40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ amount: 0.3 }}
@@ -32,7 +32,7 @@ export default function AboutMe() {
 
             {/* Right: Introductory text */}
             <motion.div
-                className="flex-1 flex flex-col items-center justify-start h-full px-6 py-24 md:w-3/4"
+                className="flex-1 flex flex-col items-center justify-start h-full px-6 py-24 md:w-3/4 sticky top-24"
                 initial={{ opacity: 0, x: 40 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ amount: 0.3 }}
