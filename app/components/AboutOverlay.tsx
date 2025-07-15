@@ -46,7 +46,7 @@ export default function AboutOverlay({ open, onClose }: { open: boolean; onClose
                 animate={{ x: open ? 0 : "100%", opacity: open ? 1 : 0, scale: open ? 1 : 0.98 }}
                 exit={{ x: "100%", opacity: 0, scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 250, damping: 30, opacity: { duration: 0.36 }, scale: { duration: 0.36 } }}
-                className="fixed top-4 right-4 left-4 md:left-auto z-40 rounded-lg h-[96%] w-[92%] md:w-full lg:w-1/2 bg-neutral-800 text-white shadow-2xl flex flex-col"
+                className="fixed top-4 right-4 left-4 md:left-auto z-40 rounded-lg h-[96%] w-[92%] md:w-full lg:w-1/2 bg-[#292929] text-white shadow-2xl flex flex-col"
                 style={{ pointerEvents: open ? 'auto' : 'none' }}
             >
 
