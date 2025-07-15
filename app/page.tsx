@@ -7,9 +7,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Header from "./components/Header";
 import HorizontalScroll from "./components/HorizontalScroll";
 import Link from "next/link";
-import Image from "next/image";
 import { BsArrowRightCircle, BsArrowRightCircleFill } from "react-icons/bs";
 import Expertise from "./components/Expertise";
+import AboutMe from "./components/AboutMe";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,6 +71,11 @@ export default function HomePage() {
 
 			<section className="hidden md:block">
 				<Expertise />
+			</section>
+
+			{/* About Me section */}
+			<section id="about-me">
+				<AboutMe />
 			</section>
 			<section className="h-screen"></section>
 		</main>

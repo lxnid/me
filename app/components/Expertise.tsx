@@ -51,16 +51,16 @@ const Expertise = () => {
     const [activeIdx, setActiveIdx] = React.useState(0);
     const inView = useSectionInView(sectionRef, 0.2); // 20% visible triggers start
 
-    // Mouse tracking for floating image+caption
-    const [mouse, setMouse] = React.useState({ x: 0, y: 0 });
-    const [isHovered, setIsHovered] = React.useState(false);
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
-        setMouse({
-            x: e.clientX - rect.left - rect.width / 2,
-            y: e.clientY - rect.top - rect.height / 2,
-        });
-    }
+    // // Mouse tracking for floating image+caption
+    // const [mouse, setMouse] = React.useState({ x: 0, y: 0 });
+    // const [isHovered, setIsHovered] = React.useState(false);
+    // const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    //     const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+    //     setMouse({
+    //         x: e.clientX - rect.left - rect.width / 2,
+    //         y: e.clientY - rect.top - rect.height / 2,
+    //     });
+    // }
     React.useEffect(() => {
         if (!inView) return;
         const handleScroll = () => {
@@ -111,7 +111,14 @@ const Expertise = () => {
     }, [inView]);
 
     return (
-        <div ref={sectionRef} className="min-h-screen w-full px-2 md:px-12 pt-16 md:pt-24 z-10 flex">
+        <motion.div
+            ref={sectionRef}
+            className="min-h-screen w-full px-2 md:px-12 pt-16 md:pt-24 z-10 flex"
+            initial={{ opacity: 0, y: 64 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ amount: 0.3 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+        >
             <div className="flex flex-col w-3/4 gap-8 md:gap-0">
                 <div className="text-lg mb-4 ml-1">Who am I?</div>
                 <div className="flex flex-col w-full gap-8 md:gap-2 uppercase text-3xl md:text-9xl font-bold mt-8" >
@@ -141,9 +148,6 @@ const Expertise = () => {
             <div className="w-1/4 h-full flex sticky top-52">
                 <div
                     className="w-full relative"
-                    onMouseMove={handleMouseMove}
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
                     style={{ height: '100%' }}
                 >
                     <AnimatePresence mode="wait">
@@ -152,19 +156,19 @@ const Expertise = () => {
                             initial={{ opacity: 0 }}
                             animate={{
                                 opacity: 1,
-                                x: isHovered ? mouse.x : 0,
-                                y: isHovered ? mouse.y : 0
+                                x: 0,
+                                y: 0
                             }}
                             exit={{ opacity: 0 }}
-                            transition={isHovered ? { type: 'spring', stiffness: 300, damping: 30 } : { duration: 0.1 }}
-                            style={{ position: isHovered ? 'absolute' : 'relative', pointerEvents: 'none', left: 0, top: 0 }}
+                            transition={{ duration: 0.1 }}
+                            style={{ position: 'relative', pointerEvents: 'none', left: 0, top: 0 }}
                         >
                             <Image
                                 src={imageUrls[activeIdx]}
                                 alt={headings[activeIdx]}
                                 width={500}
                                 height={500}
-                                className="rounded-lg object-cover w-full h-auto max-h-[400px]"
+                                className="object-cover w-full h-auto max-h-[400px]"
                             />
                             <p className="mt-4 text-4xl text-neutral-400">
                                 {captions[activeIdx]}
@@ -173,7 +177,7 @@ const Expertise = () => {
                     </AnimatePresence>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
