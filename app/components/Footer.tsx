@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { FaHeart } from "react-icons/fa";
 
 const Footer = () => (
     <footer id="footer" className="w-full border-t border-neutral-800 py-6 px-4 md:px-12 bg-black text-neutral-400 text-xs flex flex-col md:flex-row md:items-end justify-between gap-2 mt-16">
@@ -8,6 +9,8 @@ const Footer = () => (
             <span>&copy; {new Date().getFullYear()} Hirusha Dinil</span>
             <span className="hidden md:inline">·</span>
             <span>All rights reserved.</span>
+            <span className="hidden md:inline">·</span>
+            <span>Handcrafted with <FaHeart className="text-red-900 inline" />.</span>
         </div>
         <div className="flex flex-col items-start gap-8 text-left w-full md:w-[32%]">
             <p className="text-xs md:text-sm text-neutral-400 max-w-xs mb-2">
