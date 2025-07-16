@@ -149,7 +149,7 @@ const WorkPageClient = ({ project, moreProjects }: WorkPageClientProps) => {
             {moreProjects.map((p) => (
               <Link
                 key={p.id}
-                href={`/work/${p.id}`}
+                href={`/me/work/${p.id}`}
                 className="relative group rounded-2xl overflow-hidden bg-neutral-800 shadow hover:shadow-xl transition focus:outline-none focus:ring-2 focus:ring-blue-400"
                 aria-label={`View project: ${p.title}`}
               >

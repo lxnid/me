@@ -14,7 +14,7 @@ const Projects = ({ count }: ProjectsProps) => {
       {projects.slice(0, count).map((project) => (
         <Link
           key={project.id}
-          href={`/work/${project.id}`}
+          href={`/me/work/${project.id}`}
           className="w-full h-[75vh] flex justify-center items-center relative"
         >
           <Image

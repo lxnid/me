@@ -23,7 +23,7 @@ export default function ProjectItem({ project, index }: { project: Project; inde
 		<motion.a
 			ref={itemRef}
 			key={project.id}
-			href={`/work/${project.id}`}
+			href={`/me/work/${project.id}`}
 			initial={{ opacity: 0, y: 24 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ delay: 0.08 * index, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
