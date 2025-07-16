@@ -28,6 +28,7 @@ interface WorkPageClientProps {
 }
 
 const WorkPageClient = ({ project, moreProjects }: WorkPageClientProps) => {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const [reveal, setReveal] = useState(false);
 
   useEffect(() => {
@@ -61,9 +62,12 @@ const WorkPageClient = ({ project, moreProjects }: WorkPageClientProps) => {
       {/* Hero Section */}
       <div className="relative w-full h-[52vw] min-h-[420px] max-h-[68vh] overflow-hidden flex items-end">
         <Image
-          src={`/${project.image}`}
+          src={`${basePath}/${project.image}`}
           alt={project.title}
           className="absolute inset-0 w-full h-full object-cover object-center blur-xs"
+          width={1200}
+          height={600}
+          unoptimized
         />
         <div className="relative z-10 p-8 md:p-16">
           <h1
@@ -133,9 +137,12 @@ const WorkPageClient = ({ project, moreProjects }: WorkPageClientProps) => {
           {project.secondaryImages.map((img, i) => (
             <Image
               key={img}
-              src={`/${img}`}
+              src={`${basePath}/${img}`}
               alt={`${project.title} secondary ${i + 1}`}
               className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg border border-neutral-800 bg-neutral-900"
+              width={800}
+              height={320}
+              unoptimized
             />
           ))}
         </div>
@@ -153,7 +160,14 @@ const WorkPageClient = ({ project, moreProjects }: WorkPageClientProps) => {
                 className="relative group rounded-2xl overflow-hidden bg-neutral-800 shadow hover:shadow-xl transition focus:outline-none focus:ring-2 focus:ring-blue-400"
                 aria-label={`View project: ${p.title}`}
               >
-                <Image src={`/${p.galleryImage}` || `/${p.image}`} alt={p.title} className="w-full h-64 object-cover object-center transition-transform group-hover:scale-105 duration-300 ease-in-out" />
+                <Image
+                  src={`${basePath}/${p.galleryImage || p.image}`}
+                  alt={p.title}
+                  className="w-full h-64 object-cover object-center transition-transform group-hover:scale-105 duration-300 ease-in-out"
+                  width={800}
+                  height={320}
+                  unoptimized
+                />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
                   <div className="text-lg font-semibold text-white mb-2">{p.title}</div>
                   <div className="flex flex-wrap gap-2">

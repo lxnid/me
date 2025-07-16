@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: 'export',
   devIndicators: false,
   reactStrictMode: true,
   compiler: {
@@ -8,6 +9,7 @@ const nextConfig: NextConfig = {
     // styledComponents: true,
   },
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -16,7 +18,6 @@ const nextConfig: NextConfig = {
         pathname: '/images/home/**',
       },
     ],
-    domains: ["images.unsplash.com", "static1.anpoimages.com", "images.pexels.com", "techcrunch.com", "cdn.dribbble.com"],
   },
 };
 
