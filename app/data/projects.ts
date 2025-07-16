@@ -89,7 +89,7 @@ export const projects: Project[] = [
 		date: "Ongoing",
 		headline: "A living canvas for my creative journey—this portfolio evolves to showcase my latest projects, skills, and design thinking.", 
 		image: "/workImages/portfolio_current/portfolio_current-min.jpg",
-		link: "https://lxnid.github.io/portfolio",
+		link: "/",
 		description:
 			"The current version of my personal portfolio, showcasing my latest work and skills.",
 		technologies: [
@@ -113,7 +113,7 @@ export const projects: Project[] = [
 		headline: "A Music Streaming Application - Developed using NEXT JS utilizing Spotify Web API (Unfinished)",
 		image: "/workImages/melodine/melodine-min.jpg",
 		secondaryImages: [],
-		link: "https://github.com/lxnid/melodine",
+		link: "https://lxnid.github.io/melodine",
 		description: "A web streaming app built with Next.js and integrated with the Spotify Web API, allowing users to search for songs and listen to demo tracks. As a personal project in progress, it provides a platform to refine my skills in API integration, UI design, and modern web development, while enhancing my understanding of API management and user interaction.",
 		technologies: ["Next.js", "React", "TypeScript", "Spotify Web API", "Tailwind CSS", "Framer Motion"],
 		duration: "Ongoing",
