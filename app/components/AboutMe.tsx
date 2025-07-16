@@ -9,7 +9,7 @@ export default function AboutMe() {
     return (
         <>
             <motion.section
-                id="about-me"
+                id="aboutMe"
                 className="w-full min-h-screen bg-black text-white flex flex-col md:flex-row items-start justify-center gap-12 mt-36"
                 initial={{ opacity: 0, y: 64 }}
                 whileInView={{ opacity: 1, y: 0 }}
