@@ -23,7 +23,7 @@ export default function HomePage() {
 				</div>
 			</section>
 
-			<section id="about-me">
+			<section id="about">
 				<AboutMe />
 			</section>
 		</main>

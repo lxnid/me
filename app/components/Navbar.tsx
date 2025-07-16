@@ -53,7 +53,7 @@ const Navbar = () => {
 
 			<div className="hidden md:flex justify-end gap-0.5 tracking-wider w-full uppercase">
 				<Link
-					href="#aboutMe"
+					href="#about"
 					className="overflow-hidden h-6 cursor-pointer"
 				>
 					<AnimatedText>about</AnimatedText>
