@@ -62,7 +62,7 @@ const WorkPageClient = ({ project, moreProjects }: WorkPageClientProps) => {
       {/* Hero Section */}
       <div className="relative w-full h-[52vw] min-h-[420px] max-h-[68vh] overflow-hidden flex items-end">
         <Image
-          src={`${basePath}/${project.image}`}
+          src={`/me/${basePath}/${project.image}`}
           alt={project.title}
           className="absolute inset-0 w-full h-full object-cover object-center blur-xs"
           width={1200}
@@ -137,7 +137,7 @@ const WorkPageClient = ({ project, moreProjects }: WorkPageClientProps) => {
           {project.secondaryImages.map((img, i) => (
             <Image
               key={img}
-              src={`${basePath}/${img}`}
+              src={`/me/${basePath}/${img}`}
               alt={`${project.title} secondary ${i + 1}`}
               className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg border border-neutral-800 bg-neutral-900"
               width={800}
@@ -161,7 +161,7 @@ const WorkPageClient = ({ project, moreProjects }: WorkPageClientProps) => {
                 aria-label={`View project: ${p.title}`}
               >
                 <Image
-                  src={`${basePath}/${p.galleryImage || p.image}`}
+                  src={`/me/${basePath}/${p.galleryImage || p.image}`}
                   alt={p.title}
                   className="w-full h-64 object-cover object-center transition-transform group-hover:scale-105 duration-300 ease-in-out"
                   width={800}
