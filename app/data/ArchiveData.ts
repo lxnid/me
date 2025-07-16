@@ -1,17 +1,22 @@
 export const archives = [
   {
     year: "2024",
-    url: "https://2024.hirusha.me/",
-    label: "Portfolio Website 2024 (Current)"
+    url: "https://lxnid.github.io/portfolio_site_v2",
+    label: "Portfolio Website 2024"
+  },
+  {
+    year: "2023",
+    url: "https://lxnid.github.io/portfolio_2024_v1",
+    label: "Portfolio Website 2023"
   },
   {
     year: "2022",
-    url: "https://2022.hirusha.me/",
+    url: "https://lxnid.github.io/portfolio_2022_demo",
     label: "Portfolio Website 2022"
   },
   {
-    year: "2020",
-    url: "https://2020.hirusha.me/",
-    label: "Portfolio Website 2020"
+    year: "2021",
+    url: "https://lxnid.github.io/portfolio_2023_v1",
+    label: "Portfolio Website 2021"
   },
 ];

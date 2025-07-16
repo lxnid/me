@@ -51,7 +51,7 @@ const WorkPage = () => {
 				<img
 					src={project.image}
 					alt={project.title}
-					className="absolute inset-0 w-full h-full object-cover object-center"
+					className="absolute inset-0 w-full h-full object-cover object-center blur-xs"
 				/>
 				<div className="relative z-10 p-8 md:p-16">
 					<h1
@@ -63,6 +63,7 @@ const WorkPage = () => {
 				</div>
 				<div className="absolute inset-0 bg-gradient-to-t from-neutral-950/95 to-transparent z-0" />
 			</div>
+
 
 			{/* Overview Section */}
 			<div className="max-w-7xl mx-auto px-4 py-16">
@@ -114,6 +115,21 @@ const WorkPage = () => {
 					</div>
 				)}
 			</div>
+
+
+			{/* Secondary Images Gallery */}
+			{project.secondaryImages && project.secondaryImages.length > 0 && (
+				<div className="w-full mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+					{project.secondaryImages.map((img, i) => (
+						<img
+							key={img}
+							src={img}
+							alt={`${project.title} secondary ${i + 1}`}
+							className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg border border-neutral-800 bg-neutral-900"
+						/>
+					))}
+				</div>
+			)}
 
 			{/* More Projects Section */}
 			<div className="bg-neutral-900 py-16">

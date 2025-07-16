@@ -4,6 +4,7 @@ export interface Project {
 	title: string;
 	headline: string;
 	image: string;
+	secondaryImages: string[];
 	link: string;
 	description: string;
 	technologies: string[];
@@ -17,54 +18,59 @@ export interface Project {
 
 export const projects: Project[] = [
 	{
-		galleryImage: "/workImages/g_portfolio_24.jpg", 
+		galleryImage: "/workImages/portfolio_24/g_portfolio_24.jpg", 
 		id: 1,
 		title: "Portfolio Website 2024",
 		date: "2024",
 		headline: "A bold reinvention of my digital identity for 2024, unifying design and technology into a seamless portfolio experience.", 
-		image: "/workImages/portfolio_24.jpg",
+		image: "/workImages/portfolio_24/portfolio_24.jpg",
+		secondaryImages: [],
 		link: "https://lxnid.github.io/portfolio_site_v2",
 		description:
-			"A modern portfolio website crafted in 2024 to reflect my evolving skills and creative vision. This project brings together thoughtful design, smooth user experience, and a unified digital identity—serving as a central hub for my work, story, and technical growth.",
-		technologies: ["ReactJS", "NextJS", "Tailwind CSS", "Framer Motion"],
+			"This portfolio reflects my abilities and serves as a platform to establish my online presence. Built with Next.js, React.js, Tailwind CSS, and Framer Motion, it dynamically showcases my web development expertise. Through this project, I gained valuable hands-on experience, enhancing my skills with modern web technologies.",
+		technologies: ["ReactJS", "NextJS", "Tailwind CSS", "Framer Motion", "TypeScript"],
 		duration: "3-4 weeks",
 		role: "Frontend Development",
 		status: "Completed",
 		process:
-			"The development process involved extensive research, prototyping, and iterative design. We focused on creating a seamless user experience while maintaining high performance standards and accessibility requirements.",
+			"The development process involved extensive research, prototyping, and iterative design. Focused on creating a seamless user experience while maintaining high performance standards and accessibility requirements.",
 		type: "Solo (Personal)",
 	},
 	{
-		galleryImage: "/workImages/todo.jpeg", 
+		galleryImage: "/workImages/todo/todo.jpeg", 
 		id: 3,
 		title: "To-Do Web App",
 		date: "2025",
-		headline: "Transforming everyday productivity with a beautifully simple, intuitive, and efficient web app for managing your daily tasks.", 
-		image: "/workImages/todo.jpeg",
+		headline: "Todo: A Comprehensive Todo Application Developed using React JS and Firebase with user authentication", 
+		image: "/workImages/todo/todo.jpeg",
+		secondaryImages: [],
 		link: "https://lxnid.github.io/todo-app",
 		description:
-			"A productivity app to manage daily tasks efficiently. Features include task creation, editing, and completion tracking.",
-		technologies: ["React", "TypeScript", "Redux", "Tailwind CSS"],
+			"A comprehensive Todo application built with React and Firebase, featuring user authentication and seamless task management. This project emphasizes modern frontend development, database integration, and user authentication workflows, while incorporating version control with Git and detailed project planning. It has been a valuable opportunity to enhance my expertise in building efficient, user-centric applications while maintaining organized, modular code and a well-structured development process.",
+		technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
 		duration: "1 week",
 		role: "Full-Stack Developer",
 		status: "Completed",
 		process:
-			"Developed the core task management features and implemented state management using Redux.",
+			"Developed the core task management features and implemented user managment and backend using Firebase.",
 		type: "Solo (Personal)",
 	},
 	{
-		galleryImage: "/workImages/weather.jpg", 
+		galleryImage: "/workImages/weather/weather.jpg", 
+		secondaryImages: [],
 		id: 2,
 		title: "Weather App",
 		date: "2024",
-		headline: "Delivering instant, accurate weather updates through a clean interface designed for clarity, speed, and everyday usability.", 
-		image: "/workImages/weather.jpg",
+		headline: "Simple Weather Client Web Application Developed using React JS, REST API and Python with FastAPI", 
+		image: "/workImages/weather/weather.jpg",
 		link: "https://lxnid.github.io/simple_weather",
 		description:
-			"A weather application providing real-time weather updates and forecasts. Built with a focus on clean UI and fast performance.",
+			"A full-stack web application, developed as my final project in HarvardX’s CS50 Python course, utilizing Python for the backend with FastAPI and React with Tailwind CSS for the frontend. This project sharpened my skills in API integration, UI responsiveness, backend management, and React hooks, deepening my expertise in web development.",
 		technologies: [
 			"React",
 			"TypeScript",
+			"Python",
+			"FastAPI",
 			"OpenWeatherMap API",
 			"Tailwind CSS",
 		],
@@ -76,12 +82,13 @@ export const projects: Project[] = [
 		type: "Solo (Personal)",
 	},
 	{
-		galleryImage: "/workImages/portfolio_current.jpg", 
+		galleryImage: "/workImages/portfolio_current/portfolio_current.jpg", 
+		secondaryImages: [],
 		id: 4,
 		title: "Current Portfolio",
 		date: "Ongoing",
 		headline: "A living canvas for my creative journey—this portfolio evolves to showcase my latest projects, skills, and design thinking.", 
-		image: "/workImages/portfolio_current.jpg",
+		image: "/workImages/portfolio_current/portfolio_current.jpg",
 		link: "https://lxnid.github.io/portfolio",
 		description:
 			"The current version of my personal portfolio, showcasing my latest work and skills.",
@@ -96,6 +103,23 @@ export const projects: Project[] = [
 		status: "In Progress",
 		process:
 			"Continuously updating and improving the portfolio to reflect new projects and skills.",
+		type: "Solo (Personal)",
+	},
+	{
+		galleryImage: "/workImages/melodine/melodine.jpg",
+		id: 5,
+		title: "Melodine: A Music Streaming Application",
+		date: "2024",
+		headline: "A Music Streaming Application - Developed using NEXT JS utilizing Spotify Web API (Unfinished)",
+		image: "/workImages/melodine/melodine.jpg",
+		secondaryImages: [],
+		link: "https://github.com/lxnid/melodine",
+		description: "A web streaming app built with Next.js and integrated with the Spotify Web API, allowing users to search for songs and listen to demo tracks. As a personal project in progress, it provides a platform to refine my skills in API integration, UI design, and modern web development, while enhancing my understanding of API management and user interaction.",
+		technologies: ["Next.js", "React", "TypeScript", "Spotify Web API", "Tailwind CSS", "Framer Motion"],
+		duration: "Ongoing",
+		role: "Full-Stack Developer",
+		status: "In Progress",
+		process: "Designed the UI, integrating Spotify Web API for search and playback and authentication.",
 		type: "Solo (Personal)",
 	},
 	// // --- DEMO PROJECTS BELOW ---

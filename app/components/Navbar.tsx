@@ -45,7 +45,9 @@ const Navbar = () => {
 				transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
 			}}
 		>
-			<Image src="/logo.svg" alt="logo" width={25} height={25} />
+			<Link href="/">
+				<Image src="/logo.svg" alt="logo" width={25} height={25} />
+			</Link>
 
 			{/* Info elements between logo and menu */}
 
