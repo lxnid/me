@@ -161,7 +161,7 @@ const WorkPageClient = ({ project, moreProjects }: WorkPageClientProps) => {
                 aria-label={`View project: ${p.title}`}
               >
                 <Image
-                  src={`/me/${basePath}/${p.galleryImage || p.image}`}
+                  src={`${basePath}/${p.galleryImage || p.image}`}
                   alt={p.title}
                   className="w-full h-64 object-cover object-center transition-transform group-hover:scale-105 duration-300 ease-in-out"
                   width={800}
