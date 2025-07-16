@@ -37,13 +37,12 @@ const Navbar = () => {
 
 
 	return (
-		<div
+		<motion.div
+			initial={{ y: -100, opacity: 0 }}
+			animate={{ y: showNavbar ? 0 : -100, opacity: 1 }}
+			transition={{ duration: 0.6, ease: "easeOut" }}
 			className={`fixed top-0 left-0 z-30 w-full md:h-20 px-4 pt-4 md:pt-0 ${isMenuOpen ? "bg-neutral-900 h-60" : "h-20 mix-blend-difference"
 				} md:px-12 flex items-start md:items-center text-white`}
-			style={{
-				transform: showNavbar ? 'translateY(0)' : 'translateY(-100%)',
-				transition: 'transform 0.4s cubic-bezier(0.4,0,0.2,1)',
-			}}
 		>
 			<Link href="/">
 				<Image src="/logo.svg" alt="logo" width={25} height={25} />
@@ -124,7 +123,7 @@ const Navbar = () => {
 					</motion.div>
 				)}
 			</AnimatePresence>
-		</div>
+		</motion.div>
 	);
 };
 

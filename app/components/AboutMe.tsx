@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from "react";
 import { BsArrowRightCircleFill, BsArrowRightCircle, BsArrowLeftCircle, BsArrowLeftCircleFill } from "react-icons/bs";
 import { motion } from "framer-motion";

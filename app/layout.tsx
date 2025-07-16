@@ -6,7 +6,6 @@ import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
 import Footer from "./components/Footer";
 
-
 export const metadata: Metadata = {
 	title: "Hirusha Dinil",
 	description: "Portfolio of Hirusha Dinil",
@@ -17,13 +16,12 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
+
 	return (
 		<html lang="en">
 			<body className="bg-[#000000] text-[#dddddd]">
 				<Navbar />
-				<SmoothScroll>
-					{children}
-				</SmoothScroll>
+				<SmoothScroll>{children}</SmoothScroll>
 				<Footer />
 			</body>
 		</html>
