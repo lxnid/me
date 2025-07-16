@@ -18,12 +18,12 @@ export interface Project {
 
 export const projects: Project[] = [
 	{
-		galleryImage: "/workImages/portfolio_24/g_portfolio_24-min.jpg", 
+		galleryImage: "workImages/portfolio_24/g_portfolio_24-min.jpg", 
 		id: 1,
 		title: "Portfolio Website 2024",
 		date: "2024",
 		headline: "A bold reinvention of my digital identity for 2024, unifying design and technology into a seamless portfolio experience.", 
-		image: "/workImages/portfolio_24/portfolio_24-min.jpg",
+		image: "workImages/portfolio_24/portfolio_24-min.jpg",
 		secondaryImages: [],
 		link: "https://lxnid.github.io/portfolio_site_v2",
 		description:
@@ -37,12 +37,12 @@ export const projects: Project[] = [
 		type: "Solo (Personal)",
 	},
 	{
-		galleryImage: "/workImages/todo/todo-min.jpeg", 
+		galleryImage: "workImages/todo/todo-min.jpeg", 
 		id: 3,
 		title: "To-Do Web App",
 		date: "2025",
 		headline: "Todo: A Comprehensive Todo Application Developed using React JS and Firebase with user authentication", 
-		image: "/workImages/todo/todo-min.jpeg",
+		image: "workImages/todo/todo-min.jpeg",
 		secondaryImages: [],
 		link: "https://lxnid.github.io/todo-app",
 		description:
@@ -56,13 +56,13 @@ export const projects: Project[] = [
 		type: "Solo (Personal)",
 	},
 	{
-		galleryImage: "/workImages/weather/weather-min.jpg", 
+		galleryImage: "workImages/weather/weather-min.jpg", 
 		secondaryImages: [],
 		id: 2,
 		title: "Weather App",
 		date: "2024",
 		headline: "Simple Weather Client Web Application Developed using React JS, REST API and Python with FastAPI", 
-		image: "/workImages/weather/weather-min.jpg",
+		image: "workImages/weather/weather-min.jpg",
 		link: "https://lxnid.github.io/simple_weather",
 		description:
 			"A full-stack web application, developed as my final project in HarvardX’s CS50 Python course, utilizing Python for the backend with FastAPI and React with Tailwind CSS for the frontend. This project sharpened my skills in API integration, UI responsiveness, backend management, and React hooks, deepening my expertise in web development.",
@@ -82,13 +82,13 @@ export const projects: Project[] = [
 		type: "Solo (Personal)",
 	},
 	{
-		galleryImage: "/workImages/portfolio_current/portfolio_current-min.jpg", 
+		galleryImage: "workImages/portfolio_current/portfolio_current-min.jpg", 
 		secondaryImages: [],
 		id: 4,
 		title: "Current Portfolio",
 		date: "Ongoing",
 		headline: "A living canvas for my creative journey—this portfolio evolves to showcase my latest projects, skills, and design thinking.", 
-		image: "/workImages/portfolio_current/portfolio_current-min.jpg",
+		image: "workImages/portfolio_current/portfolio_current-min.jpg",
 		link: "/",
 		description:
 			"The current version of my personal portfolio, showcasing my latest work and skills.",
@@ -106,12 +106,12 @@ export const projects: Project[] = [
 		type: "Solo (Personal)",
 	},
 	{
-		galleryImage: "/workImages/melodine/melodine-min.jpg",
+		galleryImage: "workImages/melodine/melodine-min.jpg",
 		id: 5,
 		title: "Melodine: A Music Streaming Application",
 		date: "2024",
 		headline: "A Music Streaming Application - Developed using NEXT JS utilizing Spotify Web API (Unfinished)",
-		image: "/workImages/melodine/melodine-min.jpg",
+		image: "workImages/melodine/melodine-min.jpg",
 		secondaryImages: [],
 		link: "https://lxnid.github.io/melodine",
 		description: "A web streaming app built with Next.js and integrated with the Spotify Web API, allowing users to search for songs and listen to demo tracks. As a personal project in progress, it provides a platform to refine my skills in API integration, UI design, and modern web development, while enhancing my understanding of API management and user interaction.",

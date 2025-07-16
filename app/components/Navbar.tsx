@@ -45,7 +45,7 @@ const Navbar = () => {
 				} md:px-12 flex items-start md:items-center text-white`}
 		>
 			<Link href="/">
-				<Image src="/logo.svg" alt="logo" width={25} height={25} />
+				<Image src="logo.svg" alt="logo" width={25} height={25} />
 			</Link>
 
 			{/* Info elements between logo and menu */}

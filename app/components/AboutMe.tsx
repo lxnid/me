@@ -25,7 +25,7 @@ export default function AboutMe() {
                     transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
                 >
                     <video
-                        src="/video/10994873-hd_720_1280_25fps_web.mp4"
+                        src="video/10994873-hd_720_1280_25fps_web.mp4"
                         className="object-cover w-full h-[110vh]"
                         autoPlay
                         loop
