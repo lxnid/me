@@ -1,5 +1,5 @@
 import { projects } from "../../data/projects";
-import WorkPageClient from "./WorkPageClient";
+import WorkPageClient from "../../components/WorkPageClient";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Page(props: any) {

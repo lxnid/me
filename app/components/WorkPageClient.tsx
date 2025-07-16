@@ -61,7 +61,7 @@ const WorkPageClient = ({ project, moreProjects }: WorkPageClientProps) => {
       {/* Hero Section */}
       <div className="relative w-full h-[52vw] min-h-[420px] max-h-[68vh] overflow-hidden flex items-end">
         <Image
-          src={project.image}
+          src={`/${project.image}`}
           alt={project.title}
           className="absolute inset-0 w-full h-full object-cover object-center blur-xs"
         />
@@ -133,7 +133,7 @@ const WorkPageClient = ({ project, moreProjects }: WorkPageClientProps) => {
           {project.secondaryImages.map((img, i) => (
             <Image
               key={img}
-              src={img}
+              src={`/${img}`}
               alt={`${project.title} secondary ${i + 1}`}
               className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg border border-neutral-800 bg-neutral-900"
             />
@@ -153,7 +153,7 @@ const WorkPageClient = ({ project, moreProjects }: WorkPageClientProps) => {
                 className="relative group rounded-2xl overflow-hidden bg-neutral-800 shadow hover:shadow-xl transition focus:outline-none focus:ring-2 focus:ring-blue-400"
                 aria-label={`View project: ${p.title}`}
               >
-                <Image src={p.galleryImage || p.image} alt={p.title} className="w-full h-64 object-cover object-center transition-transform group-hover:scale-105 duration-300 ease-in-out" />
+                <Image src={`/${p.galleryImage}` || `/${p.image}`} alt={p.title} className="w-full h-64 object-cover object-center transition-transform group-hover:scale-105 duration-300 ease-in-out" />
                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
                   <div className="text-lg font-semibold text-white mb-2">{p.title}</div>
                   <div className="flex flex-wrap gap-2">
