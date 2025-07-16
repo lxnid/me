@@ -2,10 +2,6 @@
 
 A modern, interactive developer portfolio built with Next.js, React, and TailwindCSS. This site showcases my projects, skills, and experience with smooth animations, 3D effects, and a clean, responsive design.
 
-![Portfolio Screenshot](public/screenshot.png)
-
----
-
 ## 🚀 Features
 - Project gallery with detail pages
 - Animated hero and about sections
