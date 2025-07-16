@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { projects } from "../../data/projects";
-import { useRef } from "react";
+
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import Link from "next/link";
 import { BsArrowRightCircleFill, BsArrowRightCircle } from "react-icons/bs";

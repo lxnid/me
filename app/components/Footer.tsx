@@ -14,7 +14,7 @@ const Footer = () => (
         </div>
         <div className="flex flex-col items-start gap-8 text-left w-full md:w-[32%]">
             <p className="text-xs md:text-sm text-neutral-400 max-w-xs mb-2">
-                Hi, I'm Hirusha — a creative developer and designer passionate about building purposeful digital experiences. Let's connect and create something meaningful together.
+                Hi, I&apos;m Hirusha — a creative developer and designer passionate about building purposeful digital experiences. Let&apos;s connect and create something meaningful together.
             </p>
             <div className="flex flex-col gap-1 w-full">
                 <Link

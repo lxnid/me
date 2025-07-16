@@ -1,4 +1,19 @@
-export const archives = [
+export interface Archive {
+  /**
+   * The year of the archive.
+   */
+  year: string;
+  /**
+   * The URL of the archive.
+   */
+  url: string;
+  /**
+   * The label of the archive.
+   */
+  label: string;
+}
+
+export const archives: Archive[] = [
   {
     year: "2024",
     url: "https://lxnid.github.io/portfolio_site_v2",

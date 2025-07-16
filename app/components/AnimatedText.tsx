@@ -17,7 +17,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ children, className }) => {
         const letters = container.querySelectorAll('.letter-container');
         const timelines: gsap.core.Timeline[] = [];
 
-        letters.forEach((letter, index) => {
+        letters.forEach((letter) => {
             const original = letter.querySelector('.original') as HTMLElement;
             const duplicate = letter.querySelector('.duplicate') as HTMLElement;
 

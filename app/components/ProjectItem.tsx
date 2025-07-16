@@ -3,12 +3,14 @@ import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-export default function ProjectItem({ project, index }: { project: any; index: any }) {
+import { Project } from "../data/projects";
+
+export default function ProjectItem({ project, index }: { project: Project; index: number }) {
 	const [isHovered, setIsHovered] = useState(false);
 	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 	const itemRef = useRef<HTMLAnchorElement>(null);
 
-	const handleMouseMove = (e: any) => {
+	const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
 		const rect = itemRef.current?.getBoundingClientRect();
 		if (!rect) return;
 		setMousePosition({
