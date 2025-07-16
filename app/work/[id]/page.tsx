@@ -8,6 +8,7 @@ import Link from "next/link";
 import { BsArrowRightCircleFill, BsArrowRightCircle } from "react-icons/bs";
 
 import { useState, useEffect } from "react";
+import Button from "@/app/components/Button";
 
 const WorkPage = () => {
 	const { id } = useParams();
@@ -109,18 +110,7 @@ const WorkPage = () => {
 				</div>
 				{project.link && (
 					<div className="mt-10">
-						<Link
-							href={project.link}
-							target="_blank"
-							rel="noopener noreferrer"
-							className="group w-fit h-fit px-5 py-3 text-xl opacity-70 hover:opacity-100 rounded-full gap-2 hover:gap-4 mr-2 hover:mr-0 transition-all duration-300 ease-in-out border border-neutral-400 flex justify-evenly items-center"
-						>
-							<h2>Visit website</h2>
-							<div className="relative w-8 h-8">
-								<BsArrowRightCircleFill className="text-3xl absolute transition-all duration-300 opacity-100 group-hover:opacity-0" />
-								<BsArrowRightCircle className="text-3xl absolute transition-all duration-300 opacity-0 group-hover:opacity-100" />
-							</div>
-						</Link>
+						<Button href={project.link} label="Visit website" />
 					</div>
 				)}
 			</div>
