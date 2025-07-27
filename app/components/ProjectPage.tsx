@@ -4,11 +4,7 @@ import { motion } from "framer-motion";
 import { IoArrowForwardCircleOutline, IoLogoVercel } from "react-icons/io5";
 import { generateSlug } from "../utils/slugify";
 import { Project } from "../data/projects";
-import {
-	FaBullseye,
-	FaReact,
-	FaAws,
-} from "react-icons/fa";
+import { FaBullseye, FaReact, FaAws, FaGithub } from "react-icons/fa";
 import {
 	BiLogoCss3,
 	BiLogoDocker,
@@ -33,8 +29,6 @@ import { RiNextjsFill } from "react-icons/ri";
 import { AiTwotoneApi } from "react-icons/ai";
 import { SiRender } from "react-icons/si";
 
-
-
 interface WorkPageClientProps {
 	project: Project | undefined;
 	moreProjects: Project[];
@@ -46,12 +40,12 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 	// Animation variants for Framer Motion
 	const fadeInUp = {
 		hidden: { opacity: 0, y: 20 },
-		visible: { opacity: 1, y: 0 }
+		visible: { opacity: 1, y: 0 },
 	};
 
 	const fadeInLeft = {
 		hidden: { opacity: 0, x: 30 },
-		visible: { opacity: 1, x: 0 }
+		visible: { opacity: 1, x: 0 },
 	};
 
 	const staggerContainer = {
@@ -59,9 +53,9 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 		visible: {
 			opacity: 1,
 			transition: {
-				staggerChildren: 0.1
-			}
-		}
+				staggerChildren: 0.1,
+			},
+		},
 	};
 
 	if (!project) {
@@ -167,7 +161,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 
 			{/* Overview Section */}
 			<div className="max-w-7xl mx-auto px-4 py-16">
-				<motion.div 
+				<motion.div
 					className="mb-10"
 					initial="hidden"
 					whileInView="visible"
@@ -197,7 +191,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 					</motion.p>
 				</motion.div>
 
-				<motion.div 
+				<motion.div
 					className="text-sm md:text-base flex items-center gap-6"
 					initial="hidden"
 					whileInView="visible"
@@ -211,46 +205,141 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 					>
 						Technologies
 					</motion.div>
-					<motion.div 
+					<motion.div
 						className="flex flex-wrap gap-3"
 						variants={staggerContainer}
 					>
-						{project.technologies.map((tech: string, index: number) => (
+						{project.technologies.map(
+							(tech: string, index: number) => (
+								<motion.div
+									key={tech}
+									className="flex items-center gap-2 bg-neutral-800/50 px-4 py-2 rounded-full border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-700/50 transition-all duration-500 ease-out"
+									variants={fadeInLeft}
+									transition={{
+										duration: 0.5,
+										delay: 0.5 + index * 0.1,
+									}}
+									title={tech}
+								>
+									<span className="text-sm">
+										{getTechIcon(tech)}
+									</span>
+									<span className="text-neutral-300 text-sm font-medium">
+										{tech}
+									</span>
+								</motion.div>
+							)
+						)}
+					</motion.div>
+				</motion.div>
+			</div>
+
+
+			{/* Optional Secondary Image */}
+			{project.secondaryImage && (
+				<motion.div
+					className="w-full py-16"
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true, amount: 0.3 }}
+					variants={fadeInUp}
+					transition={{ duration: 0.8 }}
+				>
+					<div className="w-full">
+						<Image
+							src={`/me/${basePath}/${project.secondaryImage}`}
+							alt={`${project.title} secondary view`}
+							className="w-full object-cover rounded-2xl shadow-2xl border border-neutral-800 bg-neutral-900"
+							width={1200}
+							height={600}
+							unoptimized
+						/>
+					</div>
+				</motion.div>
+			)}
+
+			{/* Dynamic Sections */}
+			{project.sections && project.sections.length > 0 && (
+				<div className="max-w-7xl mx-auto px-4 py-16">
+					<motion.div
+						className="space-y-16"
+						initial="hidden"
+						whileInView="visible"
+						viewport={{ once: true, amount: 0.2 }}
+						variants={staggerContainer}
+					>
+						{project.sections.map((section, index) => (
 							<motion.div
-								key={tech}
-								className="flex items-center gap-2 bg-neutral-800/50 px-4 py-2 rounded-full border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-700/50 transition-all duration-500 ease-out"
-								variants={fadeInLeft}
-								transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-								title={tech}
+								key={index}
+								className="max-w-6xl"
+								variants={fadeInUp}
+								transition={{
+									duration: 0.7,
+									delay: index * 0.1,
+								}}
 							>
-								<span className="text-sm">
-									{getTechIcon(tech)}
-								</span>
-								<span className="text-neutral-300 text-sm font-medium">
-									{tech}
-								</span>
+								<h3 className="text-xl md:text-2xl font-medium text-neutral-100 mb-4 leading-relaxed">
+									{section.title}
+								</h3>
+								{Array.isArray(section.content) ? (
+								section.content.map((paragraph, paragraphIndex) => (
+									<p key={paragraphIndex} className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-4">
+										{paragraph}
+									</p>
+								))
+							) : (
+								<p className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-4">
+									{section.content}
+								</p>
+							)}
+								{section.list && (
+									<ul className="text-neutral-300 space-y-2 w-full">
+										{section.list.map((item, itemIndex) => (
+											<li key={itemIndex} className="flex items-start text-lg w-full">
+												<span className="mr-3 mt-1.5 text-xs">●</span>
+												<span className="leading-relaxed">{item}</span>
+											</li>
+										))}
+									</ul>
+								)}
 							</motion.div>
 						))}
 					</motion.div>
-				</motion.div>
+				</div>
+			)}
 
-				{project.link && (
-					<motion.div 
-						className="mt-20"
+			{/* Action Buttons */}
+			{(project.link || project.githubUrl) && (
+				<div className="max-w-7xl mx-auto px-4 py-16">
+					<motion.div
+						className="flex justify-end gap-4"
 						initial="hidden"
 						whileInView="visible"
 						viewport={{ once: true, amount: 0.5 }}
 						variants={fadeInUp}
 						transition={{ duration: 0.6, delay: 0.2 }}
 					>
-						<Button href={project.link} label="Visit website" />
+						{project.githubUrl && (
+							<a
+								href={project.githubUrl}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="inline-flex items-center px-6 py-3 bg-neutral-800 hover:bg-neutral-900 text-white font-medium rounded-full border-neutral-700 border opacity-70 hover:opacity-100 transition-all duration-300 ease-in-out"
+							>
+								<FaGithub className="text-2xl mr-2"/>
+								GitHub
+							</a>
+						)}
+						{project.link && (
+							<Button href={project.link} label="Visit website" />
+						)}
 					</motion.div>
-				)}
-			</div>
+				</div>
+			)}
 
 			{/* Secondary Images Gallery */}
 			{project.secondaryImages && project.secondaryImages.length > 0 && (
-				<motion.div 
+				<motion.div
 					className="w-full mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-2 gap-6"
 					initial="hidden"
 					whileInView="visible"
@@ -279,7 +368,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 			{/* More Projects Section */}
 			<div className="bg-neutral-900 py-16">
 				<div className="max-w-7xl mx-auto px-4">
-					<motion.h3 
+					<motion.h3
 						className="text-3xl font-semibold mb-8 text-neutral-100"
 						initial="hidden"
 						whileInView="visible"
@@ -289,7 +378,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 					>
 						More projects
 					</motion.h3>
-					<motion.div 
+					<motion.div
 						className="grid md:grid-cols-2 gap-8"
 						initial="hidden"
 						whileInView="visible"
@@ -300,7 +389,10 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 							<motion.div
 								key={p.id}
 								variants={fadeInUp}
-								transition={{ duration: 0.6, delay: index * 0.2 }}
+								transition={{
+									duration: 0.6,
+									delay: index * 0.2,
+								}}
 							>
 								<Link
 									href={`/work/${generateSlug(p.title)}`}
@@ -308,7 +400,9 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 									aria-label={`View project: ${p.title}`}
 								>
 									<Image
-										src={`/me/${basePath}/${p.galleryImage || p.image}`}
+										src={`/me/${basePath}/${
+											p.galleryImage || p.image
+										}`}
 										alt={p.title}
 										className="w-full h-64 object-cover object-center transition-transform group-hover:scale-105 duration-300 ease-in-out"
 										width={800}
@@ -320,14 +414,16 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 											{p.title}
 										</div>
 										<div className="flex flex-wrap gap-2">
-											{p.technologies.slice(0, 6).map((tag) => (
-												<span
-													key={tag}
-													className="bg-neutral-100/80 text-neutral-900 px-3 py-1 rounded-full text-xs font-medium"
-												>
-													{tag}
-												</span>
-											))}
+											{p.technologies
+												.slice(0, 6)
+												.map((tag) => (
+													<span
+														key={tag}
+														className="bg-neutral-100/80 text-neutral-900 px-3 py-1 rounded-full text-xs font-medium"
+													>
+														{tag}
+													</span>
+												))}
 										</div>
 										<IoArrowForwardCircleOutline className="absolute bottom-6 right-6 text-4xl" />
 									</div>
