@@ -14,6 +14,9 @@ export interface Project {
 	status: string;
 	process: string;
 	type: string;
+	hasDetailedContent?: boolean; // Indicates if detailed content is available
+	category?: string; // Project category for filtering
+	featured?: boolean; // Whether to feature this project
 }
 
 export const projects: Project[] = [
@@ -35,6 +38,9 @@ export const projects: Project[] = [
 		process:
 			"The development process involved extensive research, prototyping, and iterative design. Focused on creating a seamless user experience while maintaining high performance standards and accessibility requirements.",
 		type: "Solo (Personal)",
+		hasDetailedContent: true,
+		category: "Web Development",
+		featured: true,
 	},
 	{
 		galleryImage: "workImages/todo/todo-min.jpeg", 
@@ -54,6 +60,9 @@ export const projects: Project[] = [
 		process:
 			"Developed the core task management features and implemented user managment and backend using Firebase.",
 		type: "Solo (Personal)",
+		hasDetailedContent: true,
+		category: "Web Development",
+		featured: true,
 	},
 	{
 		galleryImage: "workImages/weather/weather-min.jpg", 
@@ -80,6 +89,9 @@ export const projects: Project[] = [
 		process:
 			"Designed and implemented the UI, integrated with weather APIs, and ensured responsive design for all devices.",
 		type: "Solo (Personal)",
+		hasDetailedContent: true,
+		category: "Full-Stack Development",
+		featured: true,
 	},
 	{
 		galleryImage: "workImages/portfolio_current/portfolio_current-min.jpg", 
@@ -104,6 +116,9 @@ export const projects: Project[] = [
 		process:
 			"Continuously updating and improving the portfolio to reflect new projects and skills.",
 		type: "Solo (Personal)",
+		hasDetailedContent: true,
+		category: "Web Development",
+		featured: false,
 	},
 	{
 		galleryImage: "workImages/melodine/melodine-min.jpg",
@@ -121,6 +136,9 @@ export const projects: Project[] = [
 		status: "In Progress",
 		process: "Designed the UI, integrating Spotify Web API for search and playback and authentication.",
 		type: "Solo (Personal)",
+		hasDetailedContent: true,
+		category: "Web Development",
+		featured: true,
 	},
 	// // --- DEMO PROJECTS BELOW ---
 	// {

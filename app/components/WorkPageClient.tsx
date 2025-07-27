@@ -6,6 +6,7 @@ import Link from "next/link";
 import { BsArrowRightCircleFill, BsArrowRightCircle } from "react-icons/bs";
 import Button from "@/app/components/Button";
 import Image from "next/image";
+import { getProjectContent, ProjectContent } from "@/app/data/projectContent";
 
 interface Project {
   id: number;
@@ -20,6 +21,9 @@ interface Project {
   link?: string;
   secondaryImages?: string[];
   galleryImage?: string;
+  hasDetailedContent?: boolean;
+  category?: string;
+  featured?: boolean;
 }
 
 interface WorkPageClientProps {
@@ -30,10 +34,15 @@ interface WorkPageClientProps {
 const WorkPageClient = ({ project, moreProjects }: WorkPageClientProps) => {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const [reveal, setReveal] = useState(false);
+  const [detailedContent, setDetailedContent] = useState<ProjectContent | null>(null);
 
   useEffect(() => {
     setReveal(true);
-  }, []);
+    if (project?.hasDetailedContent) {
+      const content = getProjectContent(project.id);
+      setDetailedContent(content || null);
+    }
+  }, [project]);
 
   if (!project) {
     return (
@@ -130,6 +139,186 @@ const WorkPageClient = ({ project, moreProjects }: WorkPageClientProps) => {
           </div>
         )}
       </div>
+
+      {/* Detailed Content Sections */}
+      {detailedContent && (
+        <>
+          {/* Project Overview Section */}
+          <div className="max-w-7xl mx-auto px-4 py-16 border-t border-neutral-800">
+            <h2 className="text-4xl font-semibold mb-8 text-neutral-100">Project Overview</h2>
+            <div className="grid md:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-2xl font-medium mb-4 text-neutral-200">The Challenge</h3>
+                <p className="text-neutral-300 leading-relaxed mb-6">{detailedContent.overview.challenge}</p>
+                <h3 className="text-2xl font-medium mb-4 text-neutral-200">Project Goals</h3>
+                <ul className="space-y-2">
+                  {detailedContent.overview.goals.map((goal, index) => (
+                    <li key={index} className="text-neutral-300 flex items-start">
+                      <span className="text-blue-400 mr-2">•</span>
+                      {goal}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-2xl font-medium mb-4 text-neutral-200">Overview</h3>
+                <p className="text-neutral-300 leading-relaxed">{detailedContent.overview.description}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Problem Analysis Section */}
+          <div className="bg-neutral-900 py-16">
+            <div className="max-w-7xl mx-auto px-4">
+              <h2 className="text-4xl font-semibold mb-8 text-neutral-100">Problem Analysis & Solution</h2>
+              <div className="grid md:grid-cols-2 gap-12">
+                <div>
+                  <h3 className="text-2xl font-medium mb-4 text-neutral-200">Key Challenges</h3>
+                  <ul className="space-y-4">
+                    {detailedContent.problemAnalysis.keyProblems.map((problem, index) => (
+                      <li key={index} className="text-neutral-300">
+                        <span className="font-medium text-red-400">Challenge {index + 1}:</span> {problem}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-medium mb-4 text-neutral-200">Solution Approach</h3>
+                  <p className="text-neutral-300 leading-relaxed">{detailedContent.problemAnalysis.solutionApproach}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Technical Details Section */}
+          <div className="max-w-7xl mx-auto px-4 py-16">
+            <h2 className="text-4xl font-semibold mb-8 text-neutral-100">Technical Implementation</h2>
+            <div className="grid md:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-2xl font-medium mb-4 text-neutral-200">Architecture</h3>
+                <p className="text-neutral-300 leading-relaxed mb-6">{detailedContent.technicalDetails.architecture}</p>
+                <h3 className="text-2xl font-medium mb-4 text-neutral-200">Key Features</h3>
+                <ul className="space-y-2">
+                  {detailedContent.technicalDetails.keyFeatures.map((feature, index) => (
+                    <li key={index} className="text-neutral-300 flex items-start">
+                      <span className="text-green-400 mr-2">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                {detailedContent.technicalDetails.performanceMetrics && (
+                  <>
+                    <h3 className="text-2xl font-medium mb-4 text-neutral-200">Performance Metrics</h3>
+                    <ul className="space-y-2">
+                      {detailedContent.technicalDetails.performanceMetrics.map((metric, index) => (
+                        <li key={index} className="text-neutral-300 flex items-start">
+                          <span className="text-blue-400 mr-2">📊</span>
+                          {metric}
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Development Process Section */}
+          <div className="bg-neutral-900 py-16">
+            <div className="max-w-7xl mx-auto px-4">
+              <h2 className="text-4xl font-semibold mb-8 text-neutral-100">Development Process</h2>
+              <div className="grid md:grid-cols-2 gap-12">
+                <div>
+                  <h3 className="text-2xl font-medium mb-6 text-neutral-200">Development Phases</h3>
+                  <div className="space-y-6">
+                    {detailedContent.developmentProcess.phases.map((phase, index) => (
+                      <div key={index} className="border-l-2 border-blue-400 pl-4">
+                        <h4 className="font-semibold text-neutral-200">{phase.name}</h4>
+                        {phase.duration && <p className="text-sm text-neutral-400 mb-2">{phase.duration}</p>}
+                        <p className="text-neutral-300">{phase.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-medium mb-4 text-neutral-200">Challenges & Solutions</h3>
+                  <div className="space-y-6">
+                    {detailedContent.developmentProcess.challenges.map((challenge, index) => (
+                      <div key={index}>
+                        <h4 className="font-medium text-red-400 mb-2">Challenge:</h4>
+                        <p className="text-neutral-300 mb-2">{challenge}</p>
+                        {detailedContent.developmentProcess.solutions[index] && (
+                          <>
+                            <h4 className="font-medium text-green-400 mb-2">Solution:</h4>
+                            <p className="text-neutral-300">{detailedContent.developmentProcess.solutions[index]}</p>
+                          </>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Results & Lessons Section */}
+          <div className="max-w-7xl mx-auto px-4 py-16">
+            <h2 className="text-4xl font-semibold mb-8 text-neutral-100">Results & Insights</h2>
+            <div className="grid md:grid-cols-2 gap-12">
+              <div>
+                <h3 className="text-2xl font-medium mb-4 text-neutral-200">Achievements</h3>
+                <ul className="space-y-2 mb-6">
+                  {detailedContent.results.achievements.map((achievement, index) => (
+                    <li key={index} className="text-neutral-300 flex items-start">
+                      <span className="text-green-400 mr-2">🎯</span>
+                      {achievement}
+                    </li>
+                  ))}
+                </ul>
+                {detailedContent.results.metrics && (
+                  <>
+                    <h3 className="text-2xl font-medium mb-4 text-neutral-200">Key Metrics</h3>
+                    <ul className="space-y-2">
+                      {detailedContent.results.metrics.map((metric, index) => (
+                        <li key={index} className="text-neutral-300 flex items-start">
+                          <span className="text-blue-400 mr-2">📈</span>
+                          {metric}
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </div>
+              <div>
+                <h3 className="text-2xl font-medium mb-4 text-neutral-200">Lessons Learned</h3>
+                <ul className="space-y-2 mb-6">
+                  {detailedContent.lessonsLearned.map((lesson, index) => (
+                    <li key={index} className="text-neutral-300 flex items-start">
+                      <span className="text-yellow-400 mr-2">💡</span>
+                      {lesson}
+                    </li>
+                  ))}
+                </ul>
+                {detailedContent.futureImprovements && (
+                  <>
+                    <h3 className="text-2xl font-medium mb-4 text-neutral-200">Future Improvements</h3>
+                    <ul className="space-y-2">
+                      {detailedContent.futureImprovements.map((improvement, index) => (
+                        <li key={index} className="text-neutral-300 flex items-start">
+                          <span className="text-purple-400 mr-2">🚀</span>
+                          {improvement}
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </>
+      )}
 
       {/* Secondary Images Gallery */}
       {project.secondaryImages && project.secondaryImages.length > 0 && (
