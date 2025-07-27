@@ -505,7 +505,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 
 			{/* More Projects Section */}
 			<div className="bg-neutral-900 py-16">
-				<div className="max-w-screen overflow-hidden sm:max-w-7xl mx-auto px-4">
+				<div className="max-w-screen sm:max-w-7xl mx-auto px-4">
 					<motion.h3
 						className="text-3xl font-semibold mb-8 text-neutral-100"
 						initial="hidden"
@@ -531,6 +531,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 									duration: 0.6,
 									delay: index * 0.2,
 								}}
+								className="overflow-hidden"
 							>
 								<Link
 									href={`/work/${generateSlug(p.title)}`}

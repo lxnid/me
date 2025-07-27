@@ -31,7 +31,6 @@ export const projects: Project[] = [
 			"A bold reinvention of my digital identity for 2024, unifying design and technology into a seamless portfolio experience.",
 		image: "workImages/portfolio_24/portfolio_24-min.jpg",
 		secondaryImage: "workImages/portfolio_24/g_portfolio_24-min.jpg",
-		tertiaryImage: "workImages/portfolio_24/g_portfolio_24-min.jpg",
 		link: "https://lxnid.github.io/portfolio_site_v2",
 		githubUrl: "https://github.com/lxnid/portfolio_site_v2",
 		description:
