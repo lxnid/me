@@ -531,7 +531,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 									duration: 0.6,
 									delay: index * 0.2,
 								}}
-								className="overflow-hidden"
+								className="overflow-hidden rounded-2xl"
 							>
 								<Link
 									href={`/work/${generateSlug(p.title)}`}
