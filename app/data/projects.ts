@@ -10,8 +10,8 @@ export interface Project {
 	title: string;
 	headline: string;
 	image: string;
-	secondaryImages: string[];
-	secondaryImage?: string; // Optional secondary image for middle section
+	secondaryImage?: string;
+	tertiaryImage?: string;
 	link: string;
 	githubUrl?: string;
 	description: string;
@@ -30,8 +30,8 @@ export const projects: Project[] = [
 		headline:
 			"A bold reinvention of my digital identity for 2024, unifying design and technology into a seamless portfolio experience.",
 		image: "workImages/portfolio_24/portfolio_24-min.jpg",
-		secondaryImages: [],
 		secondaryImage: "workImages/portfolio_24/g_portfolio_24-min.jpg",
+		tertiaryImage: "workImages/portfolio_24/g_portfolio_24-min.jpg",
 		link: "https://lxnid.github.io/portfolio_site_v2",
 		githubUrl: "https://github.com/lxnid/portfolio_site_v2",
 		description:
@@ -45,43 +45,23 @@ export const projects: Project[] = [
 		],
 		role: "Full-Stack Development",
 		sections: [
-				{
-					title: "The Challenge: What I Set Out To Solve",
-					content:
-						"My primary challenge was to create a digital presence that could cut through the noise. I wanted to build a site that not only looked unique but also felt exceptionally responsive and engaging. This meant addressing the common pitfalls of how fast lines and clunky user interfaces. I wanted to create a space where every interaction felt deliberate and every element served a purpose. More importantly, I wanted to effectively communicate my strategic thinking and problem-solving skills, ensuring that visitors could quickly understand my capabilities and approach to development. My goal was to craft a cohesive and professional brand identity that would resonate with potential employers, clients, and peers alike.",
-				},
-				{
-					title: "Design Philosophy",
-					content: 
-						"The design emphasizes clean aesthetics, intuitive navigation, and seamless user experience. Every element was carefully crafted to showcase projects effectively while maintaining fast loading times and accessibility standards. The color palette was chosen to create a professional yet approachable atmosphere, with careful attention to contrast ratios for optimal readability. Typography plays a crucial role in establishing hierarchy and guiding the user's attention through the content. Interactive elements are designed with subtle animations that provide feedback without being distracting, creating a polished and engaging experience that reflects the quality of work presented."
-					
-				},
 			{
-				title: "Architecting the Solution",
+				title: "The Challenge",
 				content:
 					"My primary challenge was to create a digital presence that could cut through the noise. I wanted to build a site that not only looked unique but also felt exceptionally responsive and engaging. This meant addressing the common pitfalls of how fast lines and clunky user interfaces. I wanted to create a space where every interaction felt deliberate and every element served a purpose. More importantly, I wanted to effectively communicate my strategic thinking and problem-solving skills, ensuring that visitors could quickly understand my capabilities and approach to development. My goal was to craft a cohesive and professional brand identity that would resonate with potential employers, clients, and peers alike.",
 			},
 			{
-				title: "",
-				content:
-					"",
-				list: [
-					"Framework: Next.js 13+ (App Router) for its powerful server-side rendering, automatic optimizations, and exceptional developer experience.",
-					"Styling: Tailwind CSS for rapid development, consistent design language, and scalable component-based styling.",
-					"Animation: Framer Motion to introduce subtle, meaningful micro-interactions that enhanced the user experience without compromising performance.",
+				title: "Architecting the Solution",
+				content: [
+					"To bring this vision to life, I designed a solution focused on performance, maintainability, and a seamless user experience. I chose Next.js 13+ with the App Router for its server-side rendering and optimizations, Tailwind CSS for rapid, responsive UI development, and Framer Motion for subtle, performant animations.",
+					"Following professional best practices, I applied atomic design principles to build a reusable component system and managed state with React hooks. Performance was enhanced through next/image optimization and lazy loading via dynamic imports. My workflow reflected a production-ready setup, using a Git feature-branch strategy, ESLint and Prettier for code consistency, and component testing for reliability.",
 				],
-			},
-			{
-				title: "",
-				content:
-					"My development process was grounded in professional best practices. The frontend was built using atomic design principles, creating a clean, logical, more cohesive codebase. I ensured the site efficiently displayed both desktop and mobile devices, with a focus on performance optimization. Throughout the development process, I maintained a professional environment, incorporating a Git-based version control strategy, strict code quality enforcement, and ESLint and Prettier, and component testing to ensure reliability.",
 			},
 			{
 				title: "Project Reflection",
 				content: [
 					"The project was a resounding success, both as a technical artifact and as a professional tool. The site achieved excellent Core Web Vitals scores and a minimal bundle size, confirming its technical performance. This quality was evident, leading to a tangible increase in professional inquiries and networking opportunities. The project demonstrated my ability to balance technical excellence with user experience, high engagement and full accessibility compliance.",
 					"Ultimately, this project was a pivotal learning experience. It allowed me to move from theoretical knowledge to practical mastery of the modern web development stack. The experience was invaluable in end-to-end development, solidifying my skills and confidence. This experience became a comprehensive exercise in building a modern web application from the ground up, establishing a foundation of best practices and a scalable architecture that serves as a template for future projects.",
-					"The project was a resounding success, both as a technical artifact and as a professional tool. The site achieved excellent Core Web Vitals scores and a minimal bundle size, confirming its technical performance. This quality was evident, leading to a tangible increase in professional inquiries and networking opportunities. The project demonstrated my ability to balance technical excellence with user experience, high engagement and full accessibility compliance.",
 				],
 			},
 		],
@@ -94,62 +74,36 @@ export const projects: Project[] = [
 		headline:
 			"A comprehensive todo application built with React and Firebase, featuring secure user authentication and seamless task management across devices",
 		image: "workImages/todo/todo-min.jpeg",
-		secondaryImages: [],
 		secondaryImage: "workImages/todo/todo-min.jpeg",
+		tertiaryImage: "",
 		link: "https://lxnid.github.io/todo-app",
 		githubUrl: "https://github.com/lxnid/todo-app",
 		description:
 			"For any developer, building a to-do application is a classic learning project. My goal was to elevate this concept into a production-ready, full-stack solution that addresses the real-world challenges of modern task management: data persistence, cross-device synchronization, and user privacy. This project showcases a secure, responsive, and feature-rich To-Do Web Application built with React and Firebase, demonstrating expertise in modern frontend architecture and robust backend integration.",
-		technologies: ["React.js", "Firebase Authentication", "Firestore Database", "React Hooks", "Tailwind CSS"],
+		technologies: [
+			"React.js",
+			"Firebase Authentication",
+			"Firestore Database",
+			"React Hooks",
+			"Tailwind CSS",
+		],
 		role: "Full-Stack Development",
 		sections: [
 			{
-				title: "Overview",
+				title: "Challenge",
 				content:
-					[
-						"My To-Do Web Application represents a comprehensive full-stack solution for personal task management. It combines React's modern frontend capabilities with Firebase's robust backend infrastructure. This project specifically demonstrates my expertise in Firebase integration, secure user authentication workflows, and real-time database synchronization, while maintaining a clean, scalable code architecture.",
-						"I built this application to explore and overcome the practical challenges of integrating a powerful backend service like Firebase with a dynamic frontend framework like React. The result is a responsive, secure, and feature-rich To-Do application that showcases my full-stack development capabilities.",
-					]
+					"The project aimed to overcome significant technical hurdles in achieving a seamless full-stack integration between React and Firebase. Key challenges included: ensuring effortless Firebase Authentication for user management, developing robust Firestore Database Management for efficient data handling and real-time synchronization, creating an effective Real-Time Data Sync Model for instant updates across devices, and designing a scalable architectural pattern for modular integration between the React frontend and Firebase backend. Addressing these specific challenges was central to building a high-performing To-Do application.",
 			},
 			{
-				title: "Goals & Development Challenges",
-				content: [
-					"While building this application, my focus was squarely on the development process itself. I aimed to tackle specific technical challenges to deepen my understanding of full-stack integration.",
-					"My Objectives:"
-				],
-				list: [
-					"Seamless Firebase Authentication Integration: To successfully implement and manage user authentication flows (signup, login, session management) using Firebase Authentication within a React environment.",
-					"Robust Firestore Database Management: To design and integrate a NoSQL database structure with Firestore, ensuring efficient data storage, retrieval, and real-time performance.",
-					"Real-Time Data Flow Mastery: To implement real-time listeners for instant data synchronization across devices, understanding the intricacies of real-time database interactions.",
-					"Scalable Architecture for Integration: To design a modular application that effectively separates concerns between the React frontend and Firebase backend interactions."
-				]
+				title: "Development",
+				content:
+					"The application's development focused on integration, utilizing React with functional components and hooks for a modular frontend. React Context API managed global state, and custom hooks encapsulated Firebase logic for cleaner code. Firebase integration involved configuring authentication for email/password login and managing global authentication state. Firestore database design was optimized for real-time queries with security rules, and real-time listeners ensured immediate UI updates and synchronization across devices.",
 			},
 			{
-				title: "How I Built It: Focusing on Integration",
-				content: [
-					"Frontend Architecture",
-					"I built the frontend using React with functional components and hooks, adopting a modular architecture. The key here was effectively managing state between local components and Firebase-connected components. I created a clear separation of concerns, with dedicated components for authentication, task management, and UI presentation. This approach made the codebase maintainable and allowed for efficient state management. Crucially, I created custom hooks to encapsulate Firebase integration logic, making components cleaner and promoting reusability across the application.",
-					"Firebase Integration Deep Dive",
-				],
-				list: [
-					"Authentication Setup: I configured Firebase Authentication to support email/password login and registration. A significant part of the learning curve involved properly managing the authentication state globally across the application and ensuring that protected access routes are properly secured.",
-					"Database Design: I focused on structuring Firestore collections to optimize for real-time queries specific to a To-Do app, ensuring user data isolation and security. This involved understanding how to structure data for efficient queries and implementing proper security rules for user-specific data.",
-					"Real-Time Implementation: Implementing Firestore real-time listeners was central to achieving instant updates. This involved understanding how to subscribe to changes, handle data snapshots, and efficiently update state, which provides immediate feedback across devices."
-				]
+				title: "Reflection",
+				content:
+					"This project significantly enhanced full-stack development skills, providing hands-on experience with Firebase services like Authentication, Firestore, and real-time synchronization. It also solidified mastery of professional workflows for cloud-based service platforms. The project successfully demonstrated the ability to build production-ready applications by overcoming real-world integration challenges, proving competence in creating scalable and maintainable web applications.",
 			},
-			{
-				title: "Impact and Learning Outcomes",
-				content: [
-					"This project significantly enhanced my ability to build complete applications that integrate frontend and backend technologies seamlessly. I gained comprehensive, hands-on experience with Firebase services (including Authentication, Firestore, and real-time listeners), which are essential skills for modern web development. The experience provided valuable insights into building scalable, maintainable applications that grow from the ground up.",
-				]
-			},
-			{
-				title: "Project Reflection",
-				content: [
-					"My To-Do Web Application successfully demonstrates my ability to build complete, production-ready applications by tackling real-world challenges in modern web development. The project showcases my proficiency in React frontend development, Firebase backend integration, and full-stack development skills, providing hands-on experience with Firebase integration, real-time data synchronization, and managing complex application state. This project serves as a strong example of my capability to deliver applications that balance technical excellence with practical functionality.",
-					"This project has significantly deepened my expertise in modern web development practices and provided valuable experience in building scalable, maintainable applications that grow from the ground up."
-				]
-			}
 		],
 	},
 	{
@@ -160,11 +114,11 @@ export const projects: Project[] = [
 		headline:
 			"Simple Weather Client Web Application Developed using React JS, REST API and Python with FastAPI",
 		image: "workImages/weather/weather-min.jpg",
-		secondaryImages: [],
+		tertiaryImage: "",
 		link: "https://lxnid.github.io/simple_weather",
 		githubUrl: "https://github.com/lxnid/simple_weather",
 		description:
-			"A full-stack web application, developed as my final project in HarvardX's CS50 Python course, utilizing Python for the backend with FastAPI and React with Tailwind CSS for the frontend. This project sharpened my skills in API integration, UI responsiveness, backend management, and React hooks, deepening my expertise in web development.",
+			"As a computer science student passionate about self-learning through projects, I'm thrilled to share a deep dive into 'Simple Weather,' a personal project that served as my final capstone for HarvardX's CS50P. This application is a testament to building a functional, real-world solution from the ground up, integrating both a Python backend and a React frontend to deliver real-time weather information.",
 		technologies: [
 			"React",
 			"TypeScript",
@@ -176,23 +130,16 @@ export const projects: Project[] = [
 		role: "Full-Stack Development",
 		sections: [
 			{
-				title: "Technical Implementation",
-				content: "Built with React and modern JavaScript, the app features comprehensive weather functionality:",
-				list: [
-					"Real-time weather data integration with OpenWeatherMap API",
-					"Responsive design that works seamlessly across all devices",
-					"Geolocation support for automatic location detection",
-					"5-day weather forecast with detailed hourly breakdowns",
-					"Dynamic weather icons and animations"
-				]
+				title: "Challenges & Solutions",
+				content: "The 'Simple Weather' project aimed to tackle key full-stack integration challenges. These included robust API integration with external services like PositionStack and WeatherAPI, establishing seamless communication between a React frontend and a FastAPI backend, and designing an intuitive and responsive user interface with clear data display. My solution involved utilizing Python's requests for API calls within the FastAPI backend, implementing CORS middleware for secure frontend-backend communication, and leveraging React's component-based architecture with Tailwind CSS for dynamic and responsive UI design.",
 			},
 			{
-				title: "User Experience Focus",
-				content: [
-					"The interface prioritizes clarity and ease of use, with intuitive icons, clear typography, and logical information hierarchy that makes weather data accessible at a glance.",
-					"Special attention was given to loading states and error handling, ensuring users always understand what's happening with their weather requests. The app gracefully handles network issues and provides helpful feedback.",
-					"Accessibility features were built in from the ground up, including proper ARIA labels, keyboard navigation support, and high contrast ratios for users with visual impairments."
-				]
+				title: "Architecture & Development Approach",
+				content: "The project employs a client-server architecture. The frontend, built with React, JavaScript, and Tailwind CSS, is the user interface responsible for interactions and API requests. The backend, developed using Python with FastAPI, acts as an intermediary, handling reverse geocoding via PositionStack API and fetching weather data from WeatherAPI. My development approach was iterative, starting with a stable backend API before building the React frontend, ensuring modularity and easier debugging. Version control with Git/GitHub and respective package managers (Node.js for frontend, pip for backend) were integral to the workflow.",
+			},
+			{
+				title: "Learning Outcomes & Reflection",
+				content: "This project provided invaluable learning outcomes, significantly enhancing my understanding of full-stack development, API design and consumption, and modern web frameworks like React and FastAPI. It reinforced the importance of modular programming and effective dependency management. As a self-taught CS student, this experience was crucial in translating theoretical knowledge into practical application, demonstrating my ability to independently build and deploy a functional web service. 'Simple Weather' stands as a significant milestone, showcasing my skills and readiness to tackle future development challenges for clients and recruiters.",
 			},
 		],
 	},
@@ -202,12 +149,12 @@ export const projects: Project[] = [
 		title: "Current Portfolio",
 		date: "Ongoing",
 		headline:
-			"A living canvas for my creative journey—this portfolio evolves to showcase my latest projects, skills, and design thinking.",
+			"Crafting My Digital Identity – The Portfolio Website",
 		image: "workImages/portfolio_current/portfolio_current-min.jpg",
-		secondaryImages: [],
-		link: "/",
+		link: "https://lxnid.github.io/me",
+		githubUrl: "https://github.com/lxnid/me",
 		description:
-			"The current version of my personal portfolio, showcasing my latest work and skills.",
+			"As a computer science student dedicated to showcasing my journey and capabilities, building my personal portfolio website, 'lxnid.github.io/me,' was an essential project. This wasn't just a static webpage; it was an exercise in self-branding, design, and front-end development, serving as my digital resume and a dynamic display of my work.",
 		technologies: [
 			"Next.js",
 			"TypeScript",
@@ -215,6 +162,23 @@ export const projects: Project[] = [
 			"Tailwind CSS",
 		],
 		role: "Full-Stack Development",
+		sections: [
+			{
+				title: "Challenge",
+				content:
+					"Driven by the ambition to upgrade from my previous site, my core challenge for this portfolio was to craft a new digital presence that embodied a modern, classic, and sleek design. This necessitated creating intuitive UX/UI and incorporating simple yet sophisticated interactive functionalities and animations. My solution leveraged Next.js for a robust framework, Tailwind CSS for a streamlined and responsive design system, and GSAP alongside Framer Motion to deliver smooth, high-performance animations and interactive elements. This approach ensured a clean presentation and efficient content delivery, addressing the need for both aesthetics and functionality.",
+			},
+			{
+				title: "Development",
+				content:
+					"The portfolio website is built as a static application utilizing Next.js, which provides a powerful foundation for routing and pre-rendering, ensuring optimal performance. The visual design and responsiveness are meticulously managed with Tailwind CSS, allowing for rapid and precise styling. For dynamic interactivity and captivating animations, I integrated both GSAP (GreenSock Animation Platform) and Framer Motion, enabling smooth transitions and engaging user experiences. My iterative development approach focused on building a modular structure with Next.js components, managing version control with Git/GitHub, and deploying seamlessly via GitHub Pages.",
+			},
+			{
+				title: "Reflection",
+				content:
+					"This project significantly advanced my front-end development expertise, particularly in building a highly interactive and visually refined site. I gained hands-on mastery of Next.js for modern web application structure, Tailwind CSS for efficient and sleek styling, and the powerful animation libraries GSAP and Framer Motion to achieve simple yet impactful interactive elements and seamless transitions. This endeavor, a clear evolution from my previous site, profoundly demonstrated my ability to execute a precise design vision and deliver a polished, high-performance digital identity, serving as a strong testament to my skills for clients and recruiters.",
+			},
+		],
 	},
 	// {
 	// 	id: 5,

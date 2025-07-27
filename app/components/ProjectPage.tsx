@@ -176,7 +176,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 						({project.date})
 					</motion.p>
 					<motion.h2
-						className="text-2xl md:text-3xl font-medium text-neutral-100 mb-4"
+						className="text-2xl md:text-4xl font-medium text-neutral-100 mb-4"
 						variants={fadeInUp}
 						transition={{ duration: 0.7, delay: 0.2 }}
 					>
@@ -234,76 +234,242 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 				</motion.div>
 			</div>
 
-
-			{/* Optional Secondary Image */}
-			{project.secondaryImage && (
+			{project.tertiaryImage && (
 				<motion.div
-					className="w-full py-16"
-					initial="hidden"
-					whileInView="visible"
+					className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-16"
+					initial={{ opacity: 0 }}
+					whileInView={{ opacity: 1 }}
 					viewport={{ once: true, amount: 0.3 }}
-					variants={fadeInUp}
-					transition={{ duration: 0.8 }}
+					transition={{
+						duration: 0.8,
+						ease: "easeOut",
+						delay: 0.3,
+					}}
 				>
-					<div className="w-full">
-						<Image
-							src={`/me/${basePath}/${project.secondaryImage}`}
-							alt={`${project.title} secondary view`}
-							className="w-full object-cover rounded-2xl shadow-2xl border border-neutral-800 bg-neutral-900"
-							width={1200}
-							height={600}
-							unoptimized
-						/>
-					</div>
+					<Image
+						src={`/me/${basePath}/${project.tertiaryImage}`}
+						alt={`${project.title} tertiary view`}
+						className="w-full h-[60vh] object-cover"
+						width={1920}
+						height={1080}
+						unoptimized
+					/>
 				</motion.div>
 			)}
 
-			{/* Dynamic Sections */}
+			{/* Dynamic Sections - Limited to 3 with secondary image between 2nd and 3rd */}
 			{project.sections && project.sections.length > 0 && (
 				<div className="max-w-7xl mx-auto px-4 py-16">
 					<motion.div
-						className="space-y-16"
+						className="space-y-24"
 						initial="hidden"
 						whileInView="visible"
 						viewport={{ once: true, amount: 0.2 }}
 						variants={staggerContainer}
 					>
-						{project.sections.map((section, index) => (
+						{/* First Section */}
+						{project.sections[0] && (
 							<motion.div
-								key={index}
-								className="max-w-6xl"
-								variants={fadeInUp}
+								className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16"
+								initial={{ opacity: 0, y: 50 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true, amount: 0.3 }}
 								transition={{
-									duration: 0.7,
-									delay: index * 0.1,
+									duration: 0.6,
+									ease: "easeOut",
+									delay: 0.1,
 								}}
 							>
-								<h3 className="text-xl md:text-2xl font-medium text-neutral-100 mb-4 leading-relaxed">
-									{section.title}
-								</h3>
-								{Array.isArray(section.content) ? (
-								section.content.map((paragraph, paragraphIndex) => (
-									<p key={paragraphIndex} className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-4">
-										{paragraph}
-									</p>
-								))
-							) : (
-								<p className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-4">
-									{section.content}
-								</p>
-							)}
-								{section.list && (
-									<ul className="text-neutral-300 space-y-2 w-full">
-										{section.list.map((item, itemIndex) => (
-											<li key={itemIndex} className="flex items-start text-lg w-full">
-												<span className="mr-3 mt-1.5 text-xs">●</span>
-												<span className="leading-relaxed">{item}</span>
-											</li>
-										))}
-									</ul>
-								)}
+								<div className="lg:col-span-3">
+									<h3 className="text-xl md:text-2xl font-medium text-neutral-100 leading-relaxed top-32">
+										{project.sections[0].title}
+									</h3>
+								</div>
+								<div className="lg:col-span-9">
+									{Array.isArray(
+										project.sections[0].content
+									) ? (
+										project.sections[0].content.map(
+											(paragraph, paragraphIndex) => (
+												<p
+													key={paragraphIndex}
+													className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-6"
+												>
+													{paragraph}
+												</p>
+											)
+										)
+									) : (
+										<p className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-6">
+											{project.sections[0].content}
+										</p>
+									)}
+									{project.sections[0].list && (
+										<ul className="text-neutral-300 space-y-3 w-full">
+											{project.sections[0].list.map(
+												(item, itemIndex) => (
+													<li
+														key={itemIndex}
+														className="flex items-start text-lg w-full"
+													>
+														<span className="mr-4 mt-1.5 text-xs text-neutral-500">
+															●
+														</span>
+														<span className="leading-relaxed">
+															{item}
+														</span>
+													</li>
+												)
+											)}
+										</ul>
+									)}
+								</div>
 							</motion.div>
-						))}
+						)}
+
+						{/* Second Section */}
+						{project.sections[1] && (
+							<motion.div
+								className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16"
+								initial={{ opacity: 0, y: 50 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true, amount: 0.3 }}
+								transition={{
+									duration: 0.6,
+									ease: "easeOut",
+									delay: 0.2,
+								}}
+							>
+								<div className="lg:col-span-3">
+									<h3 className="text-xl md:text-2xl font-medium text-neutral-100 leading-relaxed top-32">
+										{project.sections[1].title}
+									</h3>
+								</div>
+								<div className="lg:col-span-9">
+									{Array.isArray(
+										project.sections[1].content
+									) ? (
+										project.sections[1].content.map(
+											(paragraph, paragraphIndex) => (
+												<p
+													key={paragraphIndex}
+													className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-6"
+												>
+													{paragraph}
+												</p>
+											)
+										)
+									) : (
+										<p className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-6">
+											{project.sections[1].content}
+										</p>
+									)}
+									{project.sections[1].list && (
+										<ul className="text-neutral-300 space-y-3 w-full">
+											{project.sections[1].list.map(
+												(item, itemIndex) => (
+													<li
+														key={itemIndex}
+														className="flex items-start text-lg w-full"
+													>
+														<span className="mr-4 mt-1.5 text-xs text-neutral-500">
+															●
+														</span>
+														<span className="leading-relaxed">
+															{item}
+														</span>
+													</li>
+												)
+											)}
+										</ul>
+									)}
+								</div>
+							</motion.div>
+						)}
+
+						{/* Tertiary Image between 2nd and 3rd sections */}
+						{project.tertiaryImage && (
+							<motion.div
+								className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-16"
+								initial={{ opacity: 0 }}
+								whileInView={{ opacity: 1 }}
+								viewport={{ once: true, amount: 0.3 }}
+								transition={{
+									duration: 0.8,
+									ease: "easeOut",
+									delay: 0.3,
+								}}
+							>
+								<Image
+									src={`/me/${basePath}/${project.tertiaryImage}`}
+									alt={`${project.title} tertiary view`}
+									className="w-full h-[60vh] object-cover"
+									width={1920}
+									height={1080}
+									unoptimized
+								/>
+							</motion.div>
+						)}
+
+						{/* Third Section */}
+						{project.sections[2] && (
+							<motion.div
+								className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16"
+								initial={{ opacity: 0, y: 50 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								viewport={{ once: true, amount: 0.3 }}
+								transition={{
+									duration: 0.6,
+									ease: "easeOut",
+									delay: 0.3,
+								}}
+							>
+								<div className="lg:col-span-3">
+									<h3 className="text-xl md:text-2xl font-medium text-neutral-100 leading-relaxed top-32">
+										{project.sections[2].title}
+									</h3>
+								</div>
+								<div className="lg:col-span-9">
+									{Array.isArray(
+										project.sections[2].content
+									) ? (
+										project.sections[2].content.map(
+											(paragraph, paragraphIndex) => (
+												<p
+													key={paragraphIndex}
+													className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-6"
+												>
+													{paragraph}
+												</p>
+											)
+										)
+									) : (
+										<p className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-6">
+											{project.sections[2].content}
+										</p>
+									)}
+									{project.sections[2].list && (
+										<ul className="text-neutral-300 space-y-3 w-full">
+											{project.sections[2].list.map(
+												(item, itemIndex) => (
+													<li
+														key={itemIndex}
+														className="flex items-start text-lg w-full"
+													>
+														<span className="mr-4 mt-1.5 text-xs text-neutral-500">
+															●
+														</span>
+														<span className="leading-relaxed">
+															{item}
+														</span>
+													</li>
+												)
+											)}
+										</ul>
+									)}
+								</div>
+							</motion.div>
+						)}
 					</motion.div>
 				</div>
 			)}
@@ -326,7 +492,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 								rel="noopener noreferrer"
 								className="inline-flex items-center px-6 py-3 bg-neutral-800 hover:bg-neutral-900 text-white font-medium rounded-full border-neutral-700 border opacity-70 hover:opacity-100 transition-all duration-300 ease-in-out"
 							>
-								<FaGithub className="text-2xl mr-2"/>
+								<FaGithub className="text-2xl mr-2" />
 								GitHub
 							</a>
 						)}
@@ -337,37 +503,9 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 				</div>
 			)}
 
-			{/* Secondary Images Gallery */}
-			{project.secondaryImages && project.secondaryImages.length > 0 && (
-				<motion.div
-					className="w-full mx-auto px-4 py-10 grid grid-cols-1 md:grid-cols-2 gap-6"
-					initial="hidden"
-					whileInView="visible"
-					viewport={{ once: true, amount: 0.2 }}
-					variants={staggerContainer}
-				>
-					{project.secondaryImages.map((img, i) => (
-						<motion.div
-							key={img}
-							variants={fadeInUp}
-							transition={{ duration: 0.6, delay: i * 0.2 }}
-						>
-							<Image
-								src={`/me/${basePath}/${img}`}
-								alt={`${project.title} secondary ${i + 1}`}
-								className="w-full h-64 md:h-80 object-cover rounded-xl shadow-lg border border-neutral-800 bg-neutral-900"
-								width={800}
-								height={320}
-								unoptimized
-							/>
-						</motion.div>
-					))}
-				</motion.div>
-			)}
-
 			{/* More Projects Section */}
 			<div className="bg-neutral-900 py-16">
-				<div className="max-w-7xl mx-auto px-4">
+				<div className="max-w-screen overflow-hidden sm:max-w-7xl mx-auto px-4">
 					<motion.h3
 						className="text-3xl font-semibold mb-8 text-neutral-100"
 						initial="hidden"
