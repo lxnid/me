@@ -30,7 +30,7 @@ export const projects: Project[] = [
 		secondaryImages: [],
 		link: "https://lxnid.github.io/portfolio_site_v2",
 		description:
-			"This portfolio reflects my abilities and serves as a platform to establish my online presence. Built with Next.js, React.js, Tailwind CSS, and Framer Motion, it dynamically showcases my web development expertise. Through this project, I gained valuable hands-on experience, enhancing my skills with modern web technologies.",
+			"In the digital world, a portfolio is far more than a simple collection of work; it is a developer's professional identity, a testament to their philosophy and skill. When I set out to build my previous portfolio, I was driven by a desire to solve a problem I saw across the industry: too many developer sites felt generic, suffered from poor performance, and ultimately failed to communicate the depth of the creator's technical expertise. This project was my response—a thoughtfully architected platform designed to be as performant and well-crafted as the work it showcased.",
 		technologies: ["ReactJS", "NextJS", "Tailwind CSS", "Framer Motion", "TypeScript"],
 		duration: "3-4 weeks",
 		role: "Frontend Development",

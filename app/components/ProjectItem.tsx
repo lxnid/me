@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 import { Project } from "../data/projects";
+import { generateSlug } from "../utils/slugify";
 
 export default function ProjectItem({ project, index }: { project: Project; index: number }) {
 	const [isHovered, setIsHovered] = useState(false);
@@ -23,7 +24,7 @@ export default function ProjectItem({ project, index }: { project: Project; inde
 		<motion.a
 			ref={itemRef}
 			key={project.id}
-			href={`/me/work/${project.id}`}
+			href={`/me/work/${generateSlug(project.title)}`}
 			initial={{ opacity: 0, y: 24 }}
 			animate={{ opacity: 1, y: 0 }}
 			transition={{ delay: 0.08 * index, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
