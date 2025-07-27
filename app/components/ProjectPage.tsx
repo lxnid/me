@@ -133,7 +133,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 	};
 
 	return (
-		<div className="bg-neutral-950 min-h-screen">
+		<div className="bg-neutral-950 min-h-screen tracking-wide">
 			{/* Hero Section */}
 			<div className="relative w-full h-[52vw] min-h-screen overflow-hidden flex items-end">
 				<Image

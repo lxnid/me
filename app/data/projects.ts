@@ -95,18 +95,61 @@ export const projects: Project[] = [
 			"A comprehensive todo application built with React and Firebase, featuring secure user authentication and seamless task management across devices",
 		image: "workImages/todo/todo-min.jpeg",
 		secondaryImages: [],
+		secondaryImage: "workImages/todo/todo-min.jpeg",
 		link: "https://lxnid.github.io/todo-app",
 		githubUrl: "https://github.com/lxnid/todo-app",
 		description:
 			"For any developer, building a to-do application is a classic learning project. My goal was to elevate this concept into a production-ready, full-stack solution that addresses the real-world challenges of modern task management: data persistence, cross-device synchronization, and user privacy. This project showcases a secure, responsive, and feature-rich To-Do Web Application built with React and Firebase, demonstrating expertise in modern frontend architecture and robust backend integration.",
-		technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
+		technologies: ["React.js", "Firebase Authentication", "Firestore Database", "React Hooks", "Tailwind CSS"],
 		role: "Full-Stack Development",
 		sections: [
 			{
-				title: "Project Overview",
+				title: "Overview",
 				content:
-					"Todo: A Comprehensive Todo Application Developed using React JS and Firebase with user authentication",
+					[
+						"My To-Do Web Application represents a comprehensive full-stack solution for personal task management. It combines React's modern frontend capabilities with Firebase's robust backend infrastructure. This project specifically demonstrates my expertise in Firebase integration, secure user authentication workflows, and real-time database synchronization, while maintaining a clean, scalable code architecture.",
+						"I built this application to explore and overcome the practical challenges of integrating a powerful backend service like Firebase with a dynamic frontend framework like React. The result is a responsive, secure, and feature-rich To-Do application that showcases my full-stack development capabilities.",
+					]
 			},
+			{
+				title: "Goals & Development Challenges",
+				content: [
+					"While building this application, my focus was squarely on the development process itself. I aimed to tackle specific technical challenges to deepen my understanding of full-stack integration.",
+					"My Objectives:"
+				],
+				list: [
+					"Seamless Firebase Authentication Integration: To successfully implement and manage user authentication flows (signup, login, session management) using Firebase Authentication within a React environment.",
+					"Robust Firestore Database Management: To design and integrate a NoSQL database structure with Firestore, ensuring efficient data storage, retrieval, and real-time performance.",
+					"Real-Time Data Flow Mastery: To implement real-time listeners for instant data synchronization across devices, understanding the intricacies of real-time database interactions.",
+					"Scalable Architecture for Integration: To design a modular application that effectively separates concerns between the React frontend and Firebase backend interactions."
+				]
+			},
+			{
+				title: "How I Built It: Focusing on Integration",
+				content: [
+					"Frontend Architecture",
+					"I built the frontend using React with functional components and hooks, adopting a modular architecture. The key here was effectively managing state between local components and Firebase-connected components. I created a clear separation of concerns, with dedicated components for authentication, task management, and UI presentation. This approach made the codebase maintainable and allowed for efficient state management. Crucially, I created custom hooks to encapsulate Firebase integration logic, making components cleaner and promoting reusability across the application.",
+					"Firebase Integration Deep Dive",
+				],
+				list: [
+					"Authentication Setup: I configured Firebase Authentication to support email/password login and registration. A significant part of the learning curve involved properly managing the authentication state globally across the application and ensuring that protected access routes are properly secured.",
+					"Database Design: I focused on structuring Firestore collections to optimize for real-time queries specific to a To-Do app, ensuring user data isolation and security. This involved understanding how to structure data for efficient queries and implementing proper security rules for user-specific data.",
+					"Real-Time Implementation: Implementing Firestore real-time listeners was central to achieving instant updates. This involved understanding how to subscribe to changes, handle data snapshots, and efficiently update state, which provides immediate feedback across devices."
+				]
+			},
+			{
+				title: "Impact and Learning Outcomes",
+				content: [
+					"This project significantly enhanced my ability to build complete applications that integrate frontend and backend technologies seamlessly. I gained comprehensive, hands-on experience with Firebase services (including Authentication, Firestore, and real-time listeners), which are essential skills for modern web development. The experience provided valuable insights into building scalable, maintainable applications that grow from the ground up.",
+				]
+			},
+			{
+				title: "Project Reflection",
+				content: [
+					"My To-Do Web Application successfully demonstrates my ability to build complete, production-ready applications by tackling real-world challenges in modern web development. The project showcases my proficiency in React frontend development, Firebase backend integration, and full-stack development skills, providing hands-on experience with Firebase integration, real-time data synchronization, and managing complex application state. This project serves as a strong example of my capability to deliver applications that balance technical excellence with practical functionality.",
+					"This project has significantly deepened my expertise in modern web development practices and provided valuable experience in building scalable, maintainable applications that grow from the ground up."
+				]
+			}
 		],
 	},
 	{
