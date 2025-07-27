@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import { projects } from "../data/projects";
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
+import { generateSlug } from "../utils/slugify";
 
 interface ProjectsProps {
   count: number;
@@ -14,7 +15,7 @@ const Projects = ({ count }: ProjectsProps) => {
       {projects.slice(0, count).map((project) => (
         <Link
           key={project.id}
-          href={`/work/${project.id}`}
+          href={`/work/${generateSlug(project.title)}`}
           className="w-full h-[75vh] flex justify-center items-center relative"
         >
           <Image
