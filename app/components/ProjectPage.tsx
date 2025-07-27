@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { IoArrowForwardCircleOutline, IoLogoVercel } from "react-icons/io5";
 import { generateSlug } from "../utils/slugify";
+import { Project } from "../data/projects";
 import {
 	FaBullseye,
 	FaReact,
@@ -32,23 +33,7 @@ import { RiNextjsFill } from "react-icons/ri";
 import { AiTwotoneApi } from "react-icons/ai";
 import { SiRender } from "react-icons/si";
 
-interface Project {
-	id: number;
-	image: string;
-	title: string;
-	date: string;
-	headline: string;
-	description: string;
-	technologies: string[];
-	process: string;
-	status: string;
-	link?: string;
-	secondaryImages?: string[];
-	galleryImage?: string;
-	hasDetailedContent?: boolean;
-	category?: string;
-	featured?: boolean;
-}
+
 
 interface WorkPageClientProps {
 	project: Project | undefined;
