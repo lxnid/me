@@ -95,13 +95,6 @@ export default function AboutOverlay({ open, onClose }: { open: boolean; onClose
                             </div>
 
                         </div>
-                        {/* <div className="mb-6">
-                            <div className="uppercase mb-2 tracking-widest">Recognitions</div>
-                            <div>Honorable Mention (Awwwards)</div>
-                            <div>Special Kudos (CSSDA)</div>
-                            <div>UI, UX & Innovation Awards (CSSDA)</div>
-                            <div>Site of the Day (GSAP Showcase)</div>
-                        </div> */}
                     </div>
                 </div>
             </motion.div>
