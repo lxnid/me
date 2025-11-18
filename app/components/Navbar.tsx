@@ -99,7 +99,7 @@ const Navbar = () => {
 						transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
 					>
 						{[
-							{ href: '#about-me', label: 'About' },
+							{ href: '#about', label: 'About' },
 							{ href: '/work', label: 'Work' },
 							{ href: '#footer', label: 'Contact' },
 							{ href: '/archive', label: 'Archive' }
