@@ -27,14 +27,24 @@ const Navbar = () => {
 	}, []);
 
 	const toggleMenu = () => {
-		if (isMenuOpen) {
-			setIsMenuOpen(false);
-		} else {
-			setIsMenuOpen(true);
-		}
+		setIsMenuOpen(!isMenuOpen);
 	};
 
+	const closeMenu = () => {
+		setIsMenuOpen(false);
+	};
 
+	// Lock body scroll when menu is open
+	useEffect(() => {
+		if (isMenuOpen) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = 'unset';
+		}
+		return () => {
+			document.body.style.overflow = 'unset';
+		};
+	}, [isMenuOpen]);
 
 	return (
 		<motion.div
@@ -115,6 +125,7 @@ const Navbar = () => {
 								<Link
 									href={item.href}
 									className="block py-2 text-sm font-light uppercase tracking-wider hover:text-neutral-300 w-full"
+									onClick={closeMenu}
 								>
 									{item.label}
 								</Link>
