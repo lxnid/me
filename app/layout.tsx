@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "./components/SmoothScroll";
 import Footer from "./components/Footer";
+import StructuredData from "./components/StructuredData";
 
 export const metadata: Metadata = {
 	title: "Hirusha Dinil",
@@ -20,6 +21,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className="bg-[#000000] text-[#dddddd]">
+				<StructuredData />
 				<Navbar />
 				<SmoothScroll>{children}</SmoothScroll>
 				<Footer />
