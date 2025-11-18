@@ -1,8 +1,6 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
-
 import { RiArrowRightUpLine } from "react-icons/ri";
 import { Archive } from "../data/ArchiveData";
 
