@@ -142,6 +142,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 					className="absolute inset-0 w-full h-full object-cover object-center blur-xs"
 					width={1200}
 					height={600}
+					priority
 					unoptimized
 				/>
 				<div className="relative z-10 p-8 md:p-16">
@@ -252,6 +253,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 						className="w-full h-[60vh] object-cover"
 						width={1920}
 						height={1080}
+						loading="lazy"
 						unoptimized
 					/>
 				</motion.div>
@@ -406,6 +408,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 									className="w-full h-[60vh] object-cover"
 									width={1920}
 									height={1080}
+									loading="lazy"
 									unoptimized
 								/>
 							</motion.div>
@@ -546,6 +549,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 										className="w-full h-64 object-cover object-center transition-transform group-hover:scale-105 duration-300 ease-in-out"
 										width={800}
 										height={320}
+										loading="lazy"
 										unoptimized
 									/>
 									<div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">

@@ -128,10 +128,10 @@ const Header = () => {
 							ref={linksRef}
 							className="flex flex-col pointer-events-auto"
 						>
-							<Link href="https://lk.linkedin.com/in/hirusha-rubasinghe-66bbba313" className="overflow-hidden h-6">
+							<Link href="https://lk.linkedin.com/in/hirusha-rubasinghe-66bbba313" target="_blank" rel="noopener noreferrer" className="overflow-hidden h-6">
 								<AnimatedText>LINKEDIN</AnimatedText>
 							</Link>
-							<Link href="https://github.com/lxnid" className="overflow-hidden h-6">
+							<Link href="https://github.com/lxnid" target="_blank" rel="noopener noreferrer" className="overflow-hidden h-6">
 								<AnimatedText>GITHUB</AnimatedText>
 							</Link>
 							<Link href="mailto:hirushadinil@gmail.com" className="overflow-hidden h-6">

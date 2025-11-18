@@ -29,7 +29,12 @@ export default function AboutMe() {
                         autoPlay
                         loop
                         muted
+                        playsInline
+                        preload="none"
+                        aria-label="Background video"
                     />
+                    {/* TODO: Add poster image for better loading experience
+                        poster="/video/video-poster.jpg" */}
                 </motion.div>
 
                 {/* Right: Introductory text */}
