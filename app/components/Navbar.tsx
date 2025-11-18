@@ -26,9 +26,7 @@ const Navbar = () => {
 		return () => window.removeEventListener('scroll', handleScroll);
 	}, []);
 
-	const toggleMenu = () => {
-		setIsMenuOpen(!isMenuOpen);
-	};
+	const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
 	const closeMenu = () => {
 		setIsMenuOpen(false);
