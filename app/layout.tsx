@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import type { Metadata } from "next";
 import SmoothScroll from "./components/SmoothScroll";
 import Footer from "./components/Footer";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 export const metadata: Metadata = {
 	title: "Hirusha Dinil",
@@ -20,7 +21,9 @@ export default function RootLayout({
 		<html lang="en">
 			<body className="bg-[#000000] text-[#dddddd]">
 				<Navbar />
-				<SmoothScroll>{children}</SmoothScroll>
+				<ErrorBoundary>
+					<SmoothScroll>{children}</SmoothScroll>
+				</ErrorBoundary>
 				<Footer />
 			</body>
 		</html>
