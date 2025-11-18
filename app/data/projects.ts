@@ -179,18 +179,51 @@ export const projects: Project[] = [
 			},
 		],
 	},
-	// {
-	// 	id: 5,
-	// 	galleryImage: "workImages/melodine/melodine-min.jpg",
-	// 	title: "Melodine: A Music Streaming Application",
-	// 	date: "2024",
-	// 	headline: "A Music Streaming Application - Developed using NEXT JS utilizing Spotify Web API (Unfinished)",
-	// 	image: "workImages/melodine/melodine-min.jpg",
-	// 	secondaryImages: [],
-	// 	link: "https://lxnid.github.io/melodine",
-	// 	description:
-	// 		"A web streaming app built with Next.js and integrated with the Spotify Web API, allowing users to search for songs and listen to demo tracks. As a personal project in progress, it provides a platform to refine my skills in API integration, UI design, and modern web development, while enhancing my understanding of API management and user interaction.",
-	// 	technologies: ["Next.js", "React", "TypeScript", "Spotify Web API", "Tailwind CSS", "Framer Motion"],
-	// 	role: "Frontend Developer",
-	// },
+	{
+		id: 5,
+		galleryImage: "workImages/melodine/melodine-min.jpg",
+		title: "Melodie",
+		date: "2025",
+		headline:
+			"A modern music streaming platform with Spotify integration, featuring personalized recommendations and seamless playlist management",
+		image: "workImages/melodine/melodine-min.jpg",
+		secondaryImage: "workImages/melodine/melodine.jpg",
+		link: "https://melodine.onrender.com",
+		githubUrl: "https://github.com/lxnid/melodine",
+		description:
+			"As a passionate developer and music enthusiast, I set out to create Melodie—a contemporary web application that bridges the gap between music discovery and personal library management. This project represents my exploration into building a production-ready application with modern web technologies, OAuth authentication, and third-party API integration. Melodie provides users with a beautiful interface to explore their music library, discover new tracks, and manage playlists with a sleek, responsive design that works seamlessly across all devices.",
+		technologies: [
+			"Next.js",
+			"React",
+			"TypeScript",
+			"Spotify API",
+			"NextAuth.js",
+			"Zustand",
+			"TanStack Query",
+			"Tailwind CSS",
+			"Framer Motion",
+		],
+		role: "Full-Stack Development",
+		sections: [
+			{
+				title: "The Challenge",
+				content:
+					"Building a music streaming application presented unique challenges beyond typical web development. The primary obstacles included implementing secure OAuth 2.0 authentication with Spotify, managing complex asynchronous data fetching and caching for optimal performance, designing an intuitive user interface that could handle vast music libraries, and ensuring responsive design across all device sizes. Additionally, I needed to architect a scalable state management solution that could efficiently handle user preferences, playlist data, and real-time updates without compromising performance.",
+			},
+			{
+				title: "Technical Implementation",
+				content: [
+					"To address these challenges, I built Melodie on a modern tech stack centered around Next.js 15 and React 19, leveraging their latest features for optimal performance. Authentication is handled through NextAuth.js with Spotify's OAuth strategy, ensuring secure and seamless user login. For state management, I implemented Zustand—a lightweight yet powerful solution that eliminates the complexity of Redux while maintaining excellent performance.",
+					"Data fetching and caching are managed by TanStack Query (formerly React Query), which provides intelligent caching strategies, automatic background refetching, and optimistic updates. This ensures users experience minimal loading times and smooth interactions. The UI is crafted with Tailwind CSS 4 for rapid, responsive design, while Framer Motion adds polished animations that enhance the user experience without sacrificing performance. The entire application is containerized with Docker and deployed with automated CI/CD through GitHub Actions, demonstrating professional deployment practices.",
+				],
+			},
+			{
+				title: "Results & Insights",
+				content: [
+					"Melodie successfully delivers a production-ready music streaming experience that rivals commercial applications. The integration of TanStack Query significantly improved perceived performance through intelligent data caching, while Zustand's minimal footprint kept the bundle size small. The OAuth implementation provides a secure, frictionless authentication flow that users can trust.",
+					"This project deepened my understanding of modern web architecture, particularly in areas of authentication, API integration, and state management. Working with Spotify's extensive API taught me valuable lessons about rate limiting, pagination, and error handling in production environments. The experience of deploying a containerized application with automated CI/CD workflows has prepared me for professional development teams and enterprise-scale projects. Melodie stands as a testament to my ability to architect, build, and deploy sophisticated web applications using cutting-edge technologies.",
+				],
+			},
+		],
+	},
 ];
