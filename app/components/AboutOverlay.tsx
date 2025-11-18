@@ -89,7 +89,7 @@ export default function AboutOverlay({ open, onClose }: { open: boolean; onClose
                         </div>
                         <div className="mt-8">
                             <div className="uppercase mb-2 tracking-widest">
-                                <Link href="/resume.pdf" target="_blank" className="flex items-start gap-2 hover:opacity-70 transition-colors duration-300 w-fit">
+                                <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="flex items-start gap-2 hover:opacity-70 transition-colors duration-300 w-fit">
                                     Resume <LuExternalLink className="text-lg" />
                                 </Link>
                             </div>
