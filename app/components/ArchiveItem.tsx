@@ -1,8 +1,6 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
-
 import { RiArrowRightUpLine } from "react-icons/ri";
 import { Archive } from "../data/ArchiveData";
 
@@ -27,5 +25,4 @@ const ArchiveItem = ({ archive, index }: { archive: Archive; index: number }) =>
     );
 };
 
-// TODO: Replace 'unknown' with the correct type if possible
 export default ArchiveItem;
