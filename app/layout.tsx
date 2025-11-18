@@ -1,5 +1,5 @@
 import "./globals.css"; // Import global styles here
-import React from "react";
+import type { ReactNode } from "react";
 import Navbar from "./components/Navbar";
 import type { Metadata } from "next";
 import SmoothScroll from "./components/SmoothScroll";
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
 	children,
 }: {
-	children: React.ReactNode;
+	children: ReactNode;
 }) {
 
 	return (
