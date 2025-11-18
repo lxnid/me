@@ -8,10 +8,14 @@ interface ButtonProps {
 }
 
 const Button = ({ href, label }: ButtonProps) => {
+    // Determine if link is external
+    const isExternal = href.startsWith('http') || href.startsWith('//');
+
     return (
         <Link
             href={href}
-            target="_blank"
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
             className="group w-fit h-fit px-5 py-3 text-xl opacity-70 hover:opacity-100 rounded-full gap-2 hover:gap-4 mr-2 hover:mr-0 transition-all duration-300 ease-in-out border border-neutral-400 flex justify-evenly items-center"
         >
             <h2>{label}</h2>

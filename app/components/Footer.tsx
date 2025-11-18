@@ -34,6 +34,7 @@ const Footer = () => (
                 <Link
                     href="https://www.linkedin.com/in/hirusha-rubasinghe-66bbba313"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center justify-between gap-2 tracking-wide border-t border-neutral-700 pt-2 hover:text-neutral-300 transition-colors text-xs md:text-sm"
                 >
                     LinkedIn
@@ -42,6 +43,7 @@ const Footer = () => (
                 <Link
                     href="https://github.com/lxnid"
                     target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center justify-between gap-2 tracking-wide border-t border-neutral-700 pt-2 hover:text-neutral-300 transition-colors text-xs md:text-sm"
                 >
                     GitHub
