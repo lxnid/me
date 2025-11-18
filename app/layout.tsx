@@ -92,6 +92,21 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<head>
+				{/* Preload critical fonts for better performance */}
+				<link
+					rel="preload"
+					href="/me/fonts/ppneuemontreal-book.otf"
+					as="font"
+					type="font/otf"
+					crossOrigin="anonymous"
+				/>
+				<link
+					rel="preload"
+					href="/me/fonts/ppneuemontreal-medium.otf"
+					as="font"
+					type="font/otf"
+					crossOrigin="anonymous"
+				/>
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<meta name="theme-color" content="#000000" />
 			</head>
