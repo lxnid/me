@@ -27,5 +27,4 @@ const ArchiveItem = ({ archive, index }: { archive: Archive; index: number }) =>
     );
 };
 
-// TODO: Replace 'unknown' with the correct type if possible
 export default ArchiveItem;
