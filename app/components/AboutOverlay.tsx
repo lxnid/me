@@ -36,6 +36,7 @@ const skills = [
     "Firebase",
     "Firebase Authentication",
     "Firestore Database",
+    "AWS",
 
     // Authentication & Security
     "NextAuth.js",
