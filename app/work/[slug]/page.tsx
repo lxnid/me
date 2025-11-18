@@ -2,8 +2,13 @@ import { projects } from "../../data/projects";
 import ProjectPage from "../../components/ProjectPage";
 import { generateSlug } from "../../utils/slugify";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function Page(props: any) {
+interface PageProps {
+	params: Promise<{
+		slug: string;
+	}>;
+}
+
+export default async function Page(props: PageProps) {
 	const { params } = props;
 	const resolvedParams = await params;
 	const project = projects.find(
