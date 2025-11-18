@@ -179,18 +179,63 @@ export const projects: Project[] = [
 			},
 		],
 	},
-	// {
-	// 	id: 5,
-	// 	galleryImage: "workImages/melodine/melodine-min.jpg",
-	// 	title: "Melodine: A Music Streaming Application",
-	// 	date: "2024",
-	// 	headline: "A Music Streaming Application - Developed using NEXT JS utilizing Spotify Web API (Unfinished)",
-	// 	image: "workImages/melodine/melodine-min.jpg",
-	// 	secondaryImages: [],
-	// 	link: "https://lxnid.github.io/melodine",
-	// 	description:
-	// 		"A web streaming app built with Next.js and integrated with the Spotify Web API, allowing users to search for songs and listen to demo tracks. As a personal project in progress, it provides a platform to refine my skills in API integration, UI design, and modern web development, while enhancing my understanding of API management and user interaction.",
-	// 	technologies: ["Next.js", "React", "TypeScript", "Spotify Web API", "Tailwind CSS", "Framer Motion"],
-	// 	role: "Frontend Developer",
-	// },
+	{
+		id: 5,
+		galleryImage: "workImages/melodine/melodine-min.jpg",
+		title: "Melodine: A Music Streaming Application",
+		date: "2024",
+		headline:
+			"A contemporary music streaming platform with Spotify integration, delivering seamless library management and personalized discovery through modern web technologies",
+		image: "workImages/melodine/melodine-min.jpg",
+		secondaryImage: "workImages/melodine/melodine.jpg",
+		link: "https://melodine.onrender.com",
+		githubUrl: "https://github.com/lxnid/melodine",
+		description:
+			"In an era where music streaming has become ubiquitous, I set out to create a platform that goes beyond simple playback—Melodine is a thoughtfully designed music streaming application that leverages the Spotify Web API to deliver a beautiful, intuitive interface for exploring and managing your music library. This project represents a deep dive into OAuth authentication, real-time data management, and creating performant user experiences with modern React patterns. More than just a Spotify client, Melodine demonstrates expertise in full-stack architecture, state management, and building production-ready applications with comprehensive DevOps workflows.",
+		technologies: [
+			"Next.js 15",
+			"React 19",
+			"TypeScript",
+			"NextAuth.js",
+			"Spotify Web API",
+			"Tailwind CSS 4",
+			"Zustand",
+			"TanStack Query",
+			"Framer Motion",
+			"Docker",
+		],
+		role: "Full-Stack Development",
+		sections: [
+			{
+				title: "The Challenge",
+				content: [
+					"Building a music streaming platform presented several significant technical challenges that required careful architectural decisions. The primary challenge was implementing secure OAuth authentication with Spotify while maintaining a seamless user experience across sessions. Additionally, managing complex state for playback controls, playlists, and user preferences demanded a robust state management solution that could handle real-time updates efficiently.",
+					"Performance optimization was crucial—fetching and displaying large music libraries without compromising responsiveness required strategic data fetching patterns and caching mechanisms. The application also needed to handle Spotify's rate limits gracefully while providing instant feedback to users. Finally, creating a modern, responsive UI that felt native across all device sizes while incorporating smooth animations posed design and implementation challenges.",
+				],
+			},
+			{
+				title: "Technical Architecture & Implementation",
+				content: [
+					"The solution leverages Next.js 15 with the App Router for optimized routing and server-side rendering capabilities. Authentication is handled through NextAuth.js, implementing Spotify's OAuth 2.0 flow with 11 different permission scopes including playback control, playlist modification, and library access. This ensures users have full control over their Spotify experience while maintaining security best practices.",
+					"For state management, I implemented Zustand for global application state, providing a lightweight yet powerful solution for managing user data, playback state, and UI preferences. TanStack Query handles server state management, enabling efficient data fetching, caching, and synchronization with Spotify's API. This combination ensures optimal performance and a responsive user experience even with large datasets.",
+					"The frontend utilizes React 19's latest features combined with Tailwind CSS 4 for rapid, responsive design implementation. Framer Motion powers the smooth animations and transitions that enhance the user experience without compromising performance. The entire application is containerized with Docker and deployed using GitHub Actions, demonstrating a production-ready CI/CD pipeline.",
+				],
+			},
+			{
+				title: "Features & User Experience",
+				content: [
+					"Melodine offers comprehensive Spotify integration, providing users with full access to their music library, playlists, and personalized recommendations. The discovery tools include robust search functionality for tracks, artists, albums, and playlists, complemented by personalized sections displaying top artists and recent listening activity.",
+					"The interface prioritizes user experience with responsive design optimized for all device sizes, from mobile phones to desktop displays. Every interaction is enhanced with thoughtful animations and transitions, creating an engaging and polished experience that rivals native applications.",
+				],
+			},
+			{
+				title: "Project Reflection & Learning Outcomes",
+				content: [
+					"This project significantly advanced my full-stack development capabilities, particularly in areas of OAuth implementation, complex state management, and real-time data synchronization. Working with Spotify's comprehensive API taught me valuable lessons about API design, rate limiting strategies, and handling asynchronous operations at scale.",
+					"The implementation of modern DevOps practices—including Docker containerization and automated GitHub Actions workflows—provided hands-on experience in building and deploying production-ready applications. This project demonstrates my ability to architect scalable solutions, make informed technical decisions, and deliver polished user experiences that meet real-world requirements.",
+					"Melodine stands as a testament to my growth as a developer, showcasing the ability to integrate multiple complex technologies into a cohesive, performant application while maintaining clean code architecture and professional development practices.",
+				],
+			},
+		],
+	},
 ];
