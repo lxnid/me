@@ -185,13 +185,13 @@ export const projects: Project[] = [
 		title: "Melodine: A Music Streaming Application",
 		date: "2024",
 		headline:
-			"A contemporary music streaming platform with Spotify integration, delivering seamless library management and personalized discovery through modern web technologies",
+			"A personal development project built to deepen my understanding of OAuth authentication, state management, and API integration through building a Spotify-powered music platform",
 		image: "workImages/melodine/melodine-min.jpg",
 		secondaryImage: "workImages/melodine/melodine.jpg",
 		link: "https://melodine.onrender.com",
 		githubUrl: "https://github.com/lxnid/melodine",
 		description:
-			"In an era where music streaming has become ubiquitous, I set out to create a platform that goes beyond simple playback—Melodine is a thoughtfully designed music streaming application that leverages the Spotify Web API to deliver a beautiful, intuitive interface for exploring and managing your music library. This project represents a deep dive into OAuth authentication, real-time data management, and creating performant user experiences with modern React patterns. More than just a Spotify client, Melodine demonstrates expertise in full-stack architecture, state management, and building production-ready applications with comprehensive DevOps workflows.",
+			"As a passionate developer eager to expand my skill set beyond basic web development, I embarked on building Melodine—a music streaming application that would challenge me to master OAuth authentication, complex state management, and third-party API integration. This wasn't about creating the next Spotify competitor; it was about pushing myself to understand how modern authentication flows work, how to manage real-time data efficiently, and how to build a production-ready application with professional DevOps workflows. Through this project, I aimed to bridge the gap between tutorial-level knowledge and the practical skills required to build scalable, secure applications that interact with external services.",
 		technologies: [
 			"Next.js 15",
 			"React 19",
@@ -207,33 +207,33 @@ export const projects: Project[] = [
 		role: "Full-Stack Development",
 		sections: [
 			{
-				title: "The Challenge",
+				title: "Learning Objectives & Challenges",
 				content: [
-					"Building a music streaming platform presented several significant technical challenges that required careful architectural decisions. The primary challenge was implementing secure OAuth authentication with Spotify while maintaining a seamless user experience across sessions. Additionally, managing complex state for playback controls, playlists, and user preferences demanded a robust state management solution that could handle real-time updates efficiently.",
-					"Performance optimization was crucial—fetching and displaying large music libraries without compromising responsiveness required strategic data fetching patterns and caching mechanisms. The application also needed to handle Spotify's rate limits gracefully while providing instant feedback to users. Finally, creating a modern, responsive UI that felt native across all device sizes while incorporating smooth animations posed design and implementation challenges.",
+					"My primary goal with Melodine was to gain hands-on experience with OAuth 2.0 authentication—a critical skill I had only understood theoretically. I wanted to truly grasp how secure user authentication works when integrating with third-party services, understanding the flow from authorization to token management and refresh cycles. This meant diving deep into NextAuth.js and implementing Spotify's OAuth flow with 11 different permission scopes.",
+					"Beyond authentication, I challenged myself to master modern state management patterns. I needed to understand when to use global state versus server state, how to handle real-time data synchronization, and how to optimize performance when dealing with large datasets. Managing playback controls, playlists, and user preferences while maintaining a responsive UI taught me invaluable lessons about architectural decisions and their trade-offs. Additionally, working with Spotify's API rate limits forced me to think critically about caching strategies and efficient data fetching—skills that translate directly to any production application.",
 				],
 			},
 			{
-				title: "Technical Architecture & Implementation",
+				title: "Technical Implementation & Learning Process",
 				content: [
-					"The solution leverages Next.js 15 with the App Router for optimized routing and server-side rendering capabilities. Authentication is handled through NextAuth.js, implementing Spotify's OAuth 2.0 flow with 11 different permission scopes including playback control, playlist modification, and library access. This ensures users have full control over their Spotify experience while maintaining security best practices.",
-					"For state management, I implemented Zustand for global application state, providing a lightweight yet powerful solution for managing user data, playback state, and UI preferences. TanStack Query handles server state management, enabling efficient data fetching, caching, and synchronization with Spotify's API. This combination ensures optimal performance and a responsive user experience even with large datasets.",
-					"The frontend utilizes React 19's latest features combined with Tailwind CSS 4 for rapid, responsive design implementation. Framer Motion powers the smooth animations and transitions that enhance the user experience without compromising performance. The entire application is containerized with Docker and deployed using GitHub Actions, demonstrating a production-ready CI/CD pipeline.",
+					"I chose Next.js 15 with the App Router specifically to learn server-side rendering and modern React patterns. Implementing NextAuth.js was my first real exposure to production-grade authentication, where I learned about session management, secure token storage, and handling authorization callbacks. Each error message and failed authentication attempt taught me something new about OAuth security best practices.",
+					"For state management, I deliberately chose to learn both Zustand and TanStack Query to understand their distinct purposes. Zustand helped me grasp global client state management with a simpler API than Redux, while TanStack Query revolutionized my understanding of server state—teaching me about query invalidation, background refetching, and optimistic updates. This dual approach clarified the distinction between client and server state, a concept that significantly improved how I architect applications.",
+					"The DevOps side presented entirely new challenges. I had never containerized an application before, so learning Docker taught me about reproducible environments and deployment consistency. Setting up GitHub Actions for CI/CD pipelines gave me practical experience with automated testing and deployment workflows—skills that transformed my development process and understanding of professional software delivery.",
 				],
 			},
 			{
-				title: "Features & User Experience",
+				title: "What I Built & Achieved",
 				content: [
-					"Melodine offers comprehensive Spotify integration, providing users with full access to their music library, playlists, and personalized recommendations. The discovery tools include robust search functionality for tracks, artists, albums, and playlists, complemented by personalized sections displaying top artists and recent listening activity.",
-					"The interface prioritizes user experience with responsive design optimized for all device sizes, from mobile phones to desktop displays. Every interaction is enhanced with thoughtful animations and transitions, creating an engaging and polished experience that rivals native applications.",
+					"Through building Melodine, I created a functional music streaming interface that connects to Spotify's API, allowing users to browse their library, search for music, view their top artists, and explore playlists. The application handles user authentication securely, manages session persistence, and provides a responsive interface that works seamlessly across devices.",
+					"More importantly than the features themselves, I achieved my learning goals: I can now confidently implement OAuth authentication in any application, I understand how to architect applications with proper state management separation, and I've gained practical experience with modern DevOps practices including containerization and automated deployment pipelines.",
 				],
 			},
 			{
-				title: "Project Reflection & Learning Outcomes",
+				title: "Key Takeaways & Growth",
 				content: [
-					"This project significantly advanced my full-stack development capabilities, particularly in areas of OAuth implementation, complex state management, and real-time data synchronization. Working with Spotify's comprehensive API taught me valuable lessons about API design, rate limiting strategies, and handling asynchronous operations at scale.",
-					"The implementation of modern DevOps practices—including Docker containerization and automated GitHub Actions workflows—provided hands-on experience in building and deploying production-ready applications. This project demonstrates my ability to architect scalable solutions, make informed technical decisions, and deliver polished user experiences that meet real-world requirements.",
-					"Melodine stands as a testament to my growth as a developer, showcasing the ability to integrate multiple complex technologies into a cohesive, performant application while maintaining clean code architecture and professional development practices.",
+					"This project fundamentally changed how I approach web development. Working with Spotify's comprehensive API taught me how to read API documentation effectively, handle asynchronous operations properly, and debug integration issues systematically. Understanding rate limiting and implementing caching strategies gave me insights into building applications that scale and perform well under real-world constraints.",
+					"The most valuable lesson came from encountering and solving real problems that tutorials don't cover—handling token expiration gracefully, managing loading states across multiple components, optimizing re-renders, and debugging authentication flows. These challenges taught me to think like a professional developer, not just follow guides.",
+					"Melodine represents a significant milestone in my journey from student to developer. It's the project where theoretical knowledge transformed into practical expertise, where I learned that building software isn't just about making things work—it's about understanding why they work, making informed architectural decisions, and writing maintainable code that others can understand and extend.",
 				],
 			},
 		],
