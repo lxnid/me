@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import type { Metadata } from "next";
 import SmoothScroll from "./components/SmoothScroll";
 import Footer from "./components/Footer";
+import StructuredData from "./components/StructuredData";
 import ErrorBoundary from "./components/ErrorBoundary";
 
 export const metadata: Metadata = {
@@ -95,6 +96,7 @@ export default function RootLayout({
 				<meta name="theme-color" content="#000000" />
 			</head>
 			<body className="bg-[#000000] text-[#dddddd]">
+				<StructuredData />
 				<Navbar />
 				<ErrorBoundary>
 					<SmoothScroll>{children}</SmoothScroll>
