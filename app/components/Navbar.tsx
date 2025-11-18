@@ -27,14 +27,24 @@ const Navbar = () => {
 	}, []);
 
 	const toggleMenu = () => {
-		if (isMenuOpen) {
-			setIsMenuOpen(false);
-		} else {
-			setIsMenuOpen(true);
-		}
+		setIsMenuOpen(!isMenuOpen);
 	};
 
+	const closeMenu = () => {
+		setIsMenuOpen(false);
+	};
 
+	// Lock body scroll when menu is open
+	useEffect(() => {
+		if (isMenuOpen) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = 'unset';
+		}
+		return () => {
+			document.body.style.overflow = 'unset';
+		};
+	}, [isMenuOpen]);
 
 	return (
 		<motion.div
@@ -45,7 +55,7 @@ const Navbar = () => {
 				} md:px-12 flex items-start md:items-center text-white`}
 		>
 			<Link href="/">
-				<Image src="/me/logo.svg" alt="logo" width={25} height={25} />
+				<Image src="/me/logo.svg" alt="Hirusha Dinil Portfolio" width={25} height={25} priority unoptimized />
 			</Link>
 
 			{/* Info elements between logo and menu */}
@@ -99,7 +109,7 @@ const Navbar = () => {
 						transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
 					>
 						{[
-							{ href: '#about-me', label: 'About' },
+							{ href: '#about', label: 'About' },
 							{ href: '/work', label: 'Work' },
 							{ href: '#footer', label: 'Contact' },
 							{ href: '/archive', label: 'Archive' }
@@ -115,6 +125,7 @@ const Navbar = () => {
 								<Link
 									href={item.href}
 									className="block py-2 text-sm font-light uppercase tracking-wider hover:text-neutral-300 w-full"
+									onClick={closeMenu}
 								>
 									{item.label}
 								</Link>
