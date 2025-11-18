@@ -6,6 +6,7 @@ import SmoothScroll from "./components/SmoothScroll";
 import Footer from "./components/Footer";
 import StructuredData from "./components/StructuredData";
 import ErrorBoundary from "./components/ErrorBoundary";
+import CustomCursor from "./components/CustomCursor";
 
 export const metadata: Metadata = {
 	title: {
@@ -111,6 +112,7 @@ export default function RootLayout({
 				<meta name="theme-color" content="#000000" />
 			</head>
 			<body className="bg-[#000000] text-[#dddddd]">
+				<CustomCursor />
 				<StructuredData />
 				<Navbar />
 				<ErrorBoundary>
