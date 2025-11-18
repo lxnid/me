@@ -53,12 +53,6 @@ export default function AboutMe() {
                         <p className="text-sm mb-8 opacity-80 w-3/4">
                             I focus on delivering meaningful, innovative solutions that reflect your unique vision and values—always adapting to the latest trends while staying true to authenticity.
                         </p>
-                        {/* <button
-                        className="flex items-center gap-2 px-6 py-3 border border-white rounded-full text-white hover:bg-white hover:text-black transition-colors text-lg font-medium"
-                    >
-                        More about me
-                        <span className="ml-2">→</span>
-                    </button> */}
                         <button
                             onClick={() => setOverlayOpen(true)}
                             className="group w-fit h-fit px-5 py-3 text-xl opacity-70 hover:opacity-100 rounded-full gap-2 hover:gap-4 ml-2 hover:ml-0 transition-all duration-300 ease-in-out border border-neutral-400 flex justify-evenly items-center"
