@@ -16,7 +16,7 @@ const Projects = ({ count }: ProjectsProps) => {
         <Link
           key={project.id}
           href={`/work/${generateSlug(project.title)}`}
-          className="w-full h-[75vh] flex justify-center items-center relative"
+          className="cursor-hover-project w-full h-[75vh] flex justify-center items-center relative"
         >
           <Image
             src={project.image}

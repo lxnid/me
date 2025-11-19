@@ -3,6 +3,68 @@ import Link from "next/link";
 import React from "react";
 import { LuExternalLink } from "react-icons/lu";
 
+// Comprehensive skills list aggregated from all projects and tech stacks
+const skills = [
+    // Frontend Frameworks & Libraries
+    "React",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+
+    // Styling & Animation
+    "Tailwind CSS",
+    "CSS",
+    "HTML",
+    "Framer Motion",
+    "GSAP",
+
+    // State Management
+    "React Hooks",
+    "React Context API",
+    "Zustand",
+
+    // Data Fetching & APIs
+    "TanStack Query",
+    "REST APIs",
+    "Spotify API",
+    "OpenWeatherMap API",
+
+    // Backend & Databases
+    "Python",
+    "FastAPI",
+    "Flask",
+    "Firebase",
+    "Firebase Authentication",
+    "Firestore Database",
+    "AWS",
+
+    // Authentication & Security
+    "NextAuth.js",
+    "OAuth 2.0",
+    "Data Security",
+
+    // DevOps & Deployment
+    "Docker",
+    "CI/CD",
+    "GitHub Actions",
+    "Git",
+    "GitHub",
+
+    // Other Languages & Tools
+    "Java",
+    "Linux",
+    "VMs",
+
+    // Design & UX
+    "Figma",
+    "Responsive Design",
+    "UI/UX Design",
+
+    // Methodologies
+    "Agile",
+    "Full-Stack Development",
+];
+
 export default function AboutOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
     return (
         <>
@@ -63,28 +125,11 @@ export default function AboutOverlay({ open, onClose }: { open: boolean; onClose
                         <div className="mb-6">
                             <div className="uppercase mb-2 tracking-widest">Expertise</div>
                             <div className="flex flex-wrap gap-2 mb-1">
-                                <span className="bg-neutral-700 rounded px-2 py-1">ReactJS</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">NextJS</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">JavaScript/TypeScript</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">Python</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">HTML/CSS</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">Git</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">Java</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">TailwindCSS</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">Firebase</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">Flask</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">FastAPI</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">Framer Motion</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">GSAP</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">Database</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">GitHub</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">REST APIs</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">AI</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">Figma</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">VMs/Linux</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">Responsive Design</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">Agile</span>
-                                <span className="bg-neutral-700 rounded px-2 py-1">Data Security</span>
+                                {skills.map((skill, index) => (
+                                    <span key={index} className="bg-neutral-700 rounded px-2 py-1">
+                                        {skill}
+                                    </span>
+                                ))}
                             </div>
                         </div>
                         <div className="mt-8">
