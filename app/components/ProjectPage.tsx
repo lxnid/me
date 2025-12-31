@@ -259,7 +259,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 				</motion.div>
 			)}
 
-			{/* Dynamic Sections - Limited to 3 with secondary image between 2nd and 3rd */}
+			{/* Dynamic Sections */}
 			{project.sections && project.sections.length > 0 && (
 				<div className="max-w-7xl mx-auto px-4 py-16">
 					<motion.div
@@ -269,9 +269,9 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 						viewport={{ once: true, amount: 0.2 }}
 						variants={staggerContainer}
 					>
-						{/* First Section */}
-						{project.sections[0] && (
+						{project.sections.map((section, index) => (
 							<motion.div
+								key={index}
 								className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16"
 								initial={{ opacity: 0, y: 50 }}
 								whileInView={{ opacity: 1, y: 0 }}
@@ -279,19 +279,17 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 								transition={{
 									duration: 0.6,
 									ease: "easeOut",
-									delay: 0.1,
+									delay: 0.1 * (index % 3),
 								}}
 							>
 								<div className="lg:col-span-3">
 									<h3 className="text-xl md:text-2xl font-medium text-neutral-100 leading-relaxed top-32">
-										{project.sections[0].title}
+										{section.title}
 									</h3>
 								</div>
 								<div className="lg:col-span-9">
-									{Array.isArray(
-										project.sections[0].content
-									) ? (
-										project.sections[0].content.map(
+									{Array.isArray(section.content) ? (
+										section.content.map(
 											(paragraph, paragraphIndex) => (
 												<p
 													key={paragraphIndex}
@@ -303,12 +301,12 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 										)
 									) : (
 										<p className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-6">
-											{project.sections[0].content}
+											{section.content}
 										</p>
 									)}
-									{project.sections[0].list && (
+									{section.list && (
 										<ul className="text-neutral-300 space-y-3 w-full">
-											{project.sections[0].list.map(
+											{section.list.map(
 												(item, itemIndex) => (
 													<li
 														key={itemIndex}
@@ -327,152 +325,7 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 									)}
 								</div>
 							</motion.div>
-						)}
-
-						{/* Second Section */}
-						{project.sections[1] && (
-							<motion.div
-								className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16"
-								initial={{ opacity: 0, y: 50 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								viewport={{ once: true, amount: 0.3 }}
-								transition={{
-									duration: 0.6,
-									ease: "easeOut",
-									delay: 0.2,
-								}}
-							>
-								<div className="lg:col-span-3">
-									<h3 className="text-xl md:text-2xl font-medium text-neutral-100 leading-relaxed top-32">
-										{project.sections[1].title}
-									</h3>
-								</div>
-								<div className="lg:col-span-9">
-									{Array.isArray(
-										project.sections[1].content
-									) ? (
-										project.sections[1].content.map(
-											(paragraph, paragraphIndex) => (
-												<p
-													key={paragraphIndex}
-													className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-6"
-												>
-													{paragraph}
-												</p>
-											)
-										)
-									) : (
-										<p className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-6">
-											{project.sections[1].content}
-										</p>
-									)}
-									{project.sections[1].list && (
-										<ul className="text-neutral-300 space-y-3 w-full">
-											{project.sections[1].list.map(
-												(item, itemIndex) => (
-													<li
-														key={itemIndex}
-														className="flex items-start text-lg w-full"
-													>
-														<span className="mr-4 mt-1.5 text-xs text-neutral-500">
-															●
-														</span>
-														<span className="leading-relaxed">
-															{item}
-														</span>
-													</li>
-												)
-											)}
-										</ul>
-									)}
-								</div>
-							</motion.div>
-						)}
-
-						{/* Tertiary Image between 2nd and 3rd sections */}
-						{project.tertiaryImage && (
-							<motion.div
-								className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-16"
-								initial={{ opacity: 0 }}
-								whileInView={{ opacity: 1 }}
-								viewport={{ once: true, amount: 0.3 }}
-								transition={{
-									duration: 0.8,
-									ease: "easeOut",
-									delay: 0.3,
-								}}
-							>
-								<Image
-									src={`/me/${basePath}/${project.tertiaryImage}`}
-									alt={`${project.title} tertiary view`}
-									className="w-full h-[60vh] object-cover"
-									width={1920}
-									height={1080}
-									loading="lazy"
-									unoptimized
-								/>
-							</motion.div>
-						)}
-
-						{/* Third Section */}
-						{project.sections[2] && (
-							<motion.div
-								className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16"
-								initial={{ opacity: 0, y: 50 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								viewport={{ once: true, amount: 0.3 }}
-								transition={{
-									duration: 0.6,
-									ease: "easeOut",
-									delay: 0.3,
-								}}
-							>
-								<div className="lg:col-span-3">
-									<h3 className="text-xl md:text-2xl font-medium text-neutral-100 leading-relaxed top-32">
-										{project.sections[2].title}
-									</h3>
-								</div>
-								<div className="lg:col-span-9">
-									{Array.isArray(
-										project.sections[2].content
-									) ? (
-										project.sections[2].content.map(
-											(paragraph, paragraphIndex) => (
-												<p
-													key={paragraphIndex}
-													className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-6"
-												>
-													{paragraph}
-												</p>
-											)
-										)
-									) : (
-										<p className="text-lg text-neutral-300 leading-relaxed tracking-wide mb-6">
-											{project.sections[2].content}
-										</p>
-									)}
-									{project.sections[2].list && (
-										<ul className="text-neutral-300 space-y-3 w-full">
-											{project.sections[2].list.map(
-												(item, itemIndex) => (
-													<li
-														key={itemIndex}
-														className="flex items-start text-lg w-full"
-													>
-														<span className="mr-4 mt-1.5 text-xs text-neutral-500">
-															●
-														</span>
-														<span className="leading-relaxed">
-															{item}
-														</span>
-													</li>
-												)
-											)}
-										</ul>
-									)}
-								</div>
-							</motion.div>
-						)}
+						))}
 					</motion.div>
 				</div>
 			)}
