@@ -120,9 +120,9 @@ const Header = () => {
           <div className="h-full w-full flex items-end justify-between text-xs md:text-sm text-white uppercase">
             <h1
               ref={textRef}
-              className="text-5xl md:text-[6rem] leading-none text-[#dddddd] text-start mt-[28vh] opacity-0 uppercase"
+              className="text-4xl md:text-[6rem] font-medium leading-none text-[#dddddd] text-start mt-[28vh] opacity-0 uppercase"
             >
-              DINIL
+              DINIL <span className="opacity-50">RUBASINGHE</span>
             </h1>
             <div ref={linksRef} className="flex flex-col pointer-events-auto">
               <Link
