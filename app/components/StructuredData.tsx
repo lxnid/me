@@ -7,7 +7,7 @@ export default function StructuredData() {
 	const personSchema = {
 		"@context": "https://schema.org",
 		"@type": "Person",
-		"name": "Hirusha Dinil",
+		"name": "Hirusha Dinil Rubasinghe",
 		"url": "https://lxnid.github.io/me",
 		"sameAs": [
 			"https://www.linkedin.com/in/hirusha-rubasinghe-66bbba313",
