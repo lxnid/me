@@ -122,7 +122,7 @@ const Header = () => {
               ref={textRef}
               className="text-5xl md:text-[6rem] leading-none text-[#dddddd] text-start mt-[28vh] opacity-0 uppercase"
             >
-              HIRUSHA DINIL
+              DINIL
             </h1>
             <div ref={linksRef} className="flex flex-col pointer-events-auto">
               <Link

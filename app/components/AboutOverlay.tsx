@@ -147,7 +147,7 @@ export default function AboutOverlay({
         <div className="flex-1 flex flex-col justify-between p-8 md:p-12 lg:p-16 overflow-y-auto">
           <div>
             <p className="text-xs md:text-sm uppercase tracking-wide mb-6 opacity-70">
-              <span className="font-medium text-lg">Hirusha Dinil</span> is a
+              <span className="font-medium text-lg">Hirusha Dinil Rubasinghe</span> is a
               developer focus on digital experience and creative development.
             </p>
             <p className="text-base md:text-lg leading-relaxed mb-8">

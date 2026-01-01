@@ -50,7 +50,7 @@ export default function AboutMe() {
               About me
             </h2>
             <p className="text-2xl md:text-3xl font-medium leading-snug mb-6">
-              Stay ahead of the curve with a creative technologist passionate
+              I am Hirusha Dinil Rubasinghe, a creative technologist passionate
               about blending design, technology, and strategy. I thrive on
               solving complex problems, building engaging digital experiences,
               and helping brands stand out in a rapidly changing world. Let’s
