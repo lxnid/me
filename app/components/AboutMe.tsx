@@ -17,12 +17,14 @@ export default function AboutMe() {
       >
         {/* Left: Image */}
         <motion.div
-          className="flex-1 flex overflow-hidden items-center justify-center md:w-1/4 h-full sticky top-0"
+          className="relative flex-1 flex overflow-hidden items-center justify-center md:w-1/4 h-full sticky top-0"
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ amount: 0.3 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
+          {/* Top gradient overlay */}
+          <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-10 pointer-events-none" />
           <video
             src="video/10994873-hd_720_1280_25fps_web.mp4"
             className="object-cover w-full h-[150vh]"
@@ -33,6 +35,8 @@ export default function AboutMe() {
             preload="none"
             aria-label="Background video"
           />
+          {/* Bottom gradient overlay */}
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none" />
           {/* TODO: Add poster image for better loading experience
                         poster="/video/video-poster.jpg" */}
         </motion.div>
