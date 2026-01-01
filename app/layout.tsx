@@ -10,13 +10,13 @@ import CustomCursor from "./components/CustomCursor";
 
 export const metadata: Metadata = {
 	title: {
-		default: "Hirusha Dinil | Creative Developer & Designer",
-		template: "%s | Hirusha Dinil",
+		default: "Hirusha Dinil Rubasinghe | Creative Developer & Designer",
+		template: "%s | Hirusha Dinil Rubasinghe",
 	},
 	description:
 		"Creative developer and designer specializing in modern web development with React, Next.js, and TypeScript. Building engaging digital experiences with cutting-edge technology.",
 	keywords: [
-		"Hirusha Dinil",
+		"Hirusha Dinil Rubasinghe",
 		"Web Developer",
 		"Full Stack Developer",
 		"React Developer",
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
 		"Frontend Development",
 		"Creative Developer",
 	],
-	authors: [{ name: "Hirusha Dinil", url: "https://lxnid.github.io/me" }],
-	creator: "Hirusha Dinil",
-	publisher: "Hirusha Dinil",
+	authors: [{ name: "Hirusha Dinil Rubasinghe", url: "https://lxnid.github.io/me" }],
+	creator: "Hirusha Dinil Rubasinghe",
+	publisher: "Hirusha Dinil Rubasinghe",
 	metadataBase: new URL("https://lxnid.github.io"),
 	alternates: {
 		canonical: "/me",
@@ -38,22 +38,22 @@ export const metadata: Metadata = {
 		type: "website",
 		locale: "en_US",
 		url: "https://lxnid.github.io/me",
-		title: "Hirusha Dinil | Creative Developer & Designer",
+		title: "Hirusha Dinil Rubasinghe | Creative Developer & Designer",
 		description:
 			"Creative developer and designer specializing in modern web development with React, Next.js, and TypeScript. Building engaging digital experiences.",
-		siteName: "Hirusha Dinil Portfolio",
+		siteName: "Hirusha Dinil Rubasinghe Portfolio",
 		images: [
 			{
 				url: "/me/og-image.jpg", // TODO: Add actual OG image
 				width: 1200,
 				height: 630,
-				alt: "Hirusha Dinil - Creative Developer & Designer",
+				alt: "Hirusha Dinil Rubasinghe - Creative Developer & Designer",
 			},
 		],
 	},
 	twitter: {
 		card: "summary_large_image",
-		title: "Hirusha Dinil | Creative Developer & Designer",
+		title: "Hirusha Dinil Rubasinghe | Creative Developer & Designer",
 		description:
 			"Creative developer and designer specializing in modern web development. Building engaging digital experiences.",
 		images: ["/me/og-image.jpg"], // TODO: Add actual Twitter card image
