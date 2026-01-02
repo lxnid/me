@@ -222,30 +222,50 @@ export const projects: Project[] = [
     id: 4,
     galleryImage: "workImages/portfolio_current/portfolio_current-min.jpg",
     title: "Current Portfolio",
-    date: "Ongoing",
-    headline: "Crafting My Digital Identity – The Portfolio Website",
+    date: "2025",
+    headline:
+      "A strategic migration from Next.js to Astro, embracing island architecture for optimal performance while preserving rich React-powered interactions",
     image: "workImages/portfolio_current/portfolio_current-min.jpg",
-    link: "https://lxnid.github.io/me",
+    link: "https://dinilr.com",
     githubUrl: "https://github.com/lxnid/me",
     description:
-      "As a computer science student dedicated to showcasing my journey and capabilities, building my personal portfolio website, 'lxnid.github.io/me,' was an essential project. This wasn't just a static webpage; it was an exercise in self-branding, design, and front-end development, serving as my digital resume and a dynamic display of my work.",
-    technologies: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS"],
+      "This portfolio represents more than a showcase of my work—it's a testament to continuous improvement and architectural decision-making. Originally built with Next.js, I strategically migrated the entire codebase to Astro to leverage its island architecture and superior static site performance. The migration preserved all existing React components and animations while dramatically reducing JavaScript bundle sizes. Deployed on Cloudflare Pages, the site now loads faster than ever while maintaining the rich interactivity that makes a portfolio memorable.",
+    technologies: [
+      "Astro",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS 4",
+      "Framer Motion",
+      "GSAP",
+      "Lenis",
+    ],
     role: "Full-Stack Development",
     sections: [
       {
-        title: "Challenge",
-        content:
-          "Driven by the ambition to upgrade from my previous site, my core challenge for this portfolio was to craft a new digital presence that embodied a modern, classic, and sleek design. This necessitated creating intuitive UX/UI and incorporating simple yet sophisticated interactive functionalities and animations. My solution leveraged Next.js for a robust framework, Tailwind CSS for a streamlined and responsive design system, and GSAP alongside Framer Motion to deliver smooth, high-performance animations and interactive elements. This approach ensured a clean presentation and efficient content delivery, addressing the need for both aesthetics and functionality.",
+        title: "The Migration Decision",
+        content: [
+          "After building and maintaining my portfolio with Next.js, I recognized an opportunity to improve performance without sacrificing functionality. Astro's island architecture offered the perfect solution: static HTML by default with selective hydration only where interactivity is needed. This meant my hero animations, smooth scrolling, and interactive project pages could remain fully functional while eliminating unnecessary JavaScript from static content.",
+          "The decision wasn't about abandoning React—it was about using it more strategically. Astro allowed me to keep all my React components (Framer Motion animations, GSAP scroll effects, Lenis smooth scrolling) while wrapping them in a framework optimized for content-focused sites.",
+        ],
       },
       {
-        title: "Development",
-        content:
-          "The portfolio website is built as a static application utilizing Next.js, which provides a powerful foundation for routing and pre-rendering, ensuring optimal performance. The visual design and responsiveness are meticulously managed with Tailwind CSS, allowing for rapid and precise styling. For dynamic interactivity and captivating animations, I integrated both GSAP (GreenSock Animation Platform) and Framer Motion, enabling smooth transitions and engaging user experiences. My iterative development approach focused on building a modular structure with Next.js components, managing version control with Git/GitHub, and deploying seamlessly via GitHub Pages.",
+        title: "Architecture & Implementation",
+        content: [
+          "The migration involved converting Next.js pages to Astro's file-based routing, transforming layout components into Astro layouts, and carefully applying client directives to control hydration. Components requiring browser APIs use `client:only=\"react\"`, while scroll-triggered animations use `client:visible` to defer loading until needed.",
+          "I leveraged Tailwind CSS 4's new Vite plugin integration for faster builds and smaller CSS output. The animation stack—Framer Motion for component transitions, GSAP with ScrollTrigger for scroll-based effects, and Lenis for buttery-smooth scrolling—works seamlessly within Astro's partial hydration model. Each technology loads only when its component enters the viewport.",
+        ],
       },
       {
-        title: "Reflection",
+        title: "Deployment Evolution",
         content:
-          "This project significantly advanced my front-end development expertise, particularly in building a highly interactive and visually refined site. I gained hands-on mastery of Next.js for modern web application structure, Tailwind CSS for efficient and sleek styling, and the powerful animation libraries GSAP and Framer Motion to achieve simple yet impactful interactive elements and seamless transitions. This endeavor, a clear evolution from my previous site, profoundly demonstrated my ability to execute a precise design vision and deliver a polished, high-performance digital identity, serving as a strong testament to my skills for clients and recruiters.",
+          "Moving from GitHub Pages to Cloudflare Pages marked another significant improvement. Cloudflare's edge network provides faster global delivery, automatic SSL, and seamless Git integration for continuous deployment. The build process is straightforward: Astro generates a static `dist` folder that Cloudflare serves directly from its CDN, resulting in sub-second page loads worldwide.",
+      },
+      {
+        title: "Results & Reflection",
+        content: [
+          "The migration delivered measurable improvements: significantly smaller JavaScript bundles, faster Time to Interactive, and improved Core Web Vitals scores—all while maintaining the exact same user experience. Visitors still enjoy smooth animations, engaging hover effects, and seamless navigation, but the underlying delivery is now far more efficient.",
+          "This project reinforced a crucial lesson: the best technology choice depends on the use case. Next.js excels for dynamic applications, but for a content-focused portfolio, Astro's approach of shipping minimal JavaScript by default proved superior. The experience deepened my understanding of modern web architecture and the trade-offs between different rendering strategies.",
+        ],
       },
     ],
   },
