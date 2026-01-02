@@ -53,7 +53,7 @@ const Navbar = () => {
 
       <div className="hidden md:flex justify-end gap-0.5 tracking-wider w-full uppercase">
         <a
-          href="#about"
+          href="/about"
           className="overflow-hidden h-6 cursor-pointer"
         >
           <AnimatedText>about</AnimatedText>
@@ -99,7 +99,7 @@ const Navbar = () => {
             transition={{ duration: 0.35, ease: [0.4, 0, 0.2, 1] }}
           >
             {[
-              { href: '#about', label: 'About' },
+              { href: '/about', label: 'About' },
               { href: '/work', label: 'Work' },
               { href: '/contact', label: 'Contact' },
               { href: '/archive', label: 'Archive' }

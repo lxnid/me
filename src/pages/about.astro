@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AboutPageContent from '../components/AboutPageContent';
+
+const title = "About | Hirusha Dinil Rubasinghe";
+const description = "Learn more about Hirusha Dinil Rubasinghe, a creative developer blending design and technology.";
+---
+
+<BaseLayout title={title} description={description}>
+  <AboutPageContent client:load />
+</BaseLayout>
