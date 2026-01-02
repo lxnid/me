@@ -109,7 +109,7 @@ const Header = () => {
             </h1>
             <div ref={linksRef} className="flex flex-col pointer-events-auto">
               <a
-                href="https://lk.linkedin.com/in/hirusha-rubasinghe-66bbba313"
+                href="https://www.linkedin.com/in/hirusha-dinil-rubasinghe-66bbba313/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="overflow-hidden h-6"

@@ -15,7 +15,7 @@ const contactLinks = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/hirusha-rubasinghe-66bbba313",
+    href: "https://www.linkedin.com/in/hirusha-dinil-rubasinghe-66bbba313/",
     description: "Let's connect professionally",
     external: true,
   },
