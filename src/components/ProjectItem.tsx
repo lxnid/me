@@ -72,7 +72,7 @@ export default function ProjectItem({ project, index }: { project: Project; inde
           }}
         >
           <img
-            src={project.galleryImage || project.image}
+            src={`/${project.galleryImage || project.image}`}
             alt={project.title}
             width={300}
             height={300}
