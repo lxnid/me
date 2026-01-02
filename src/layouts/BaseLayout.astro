@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import SmoothScroll from '../components/SmoothScroll';
 import CustomCursor from '../components/CustomCursor';
+import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   title?: string;
@@ -62,6 +63,8 @@ const structuredData = {
     <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
 
     <title>{title}</title>
+
+    <ViewTransitions />
 
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

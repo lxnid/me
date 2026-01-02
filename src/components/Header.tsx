@@ -63,10 +63,9 @@ const Header = () => {
       tl.to(textElement, { opacity: 1, duration: 0 }).from(chars, {
         opacity: 0,
         y: 40,
-        delay: 0.2,
-        duration: 1.8,
-        ease: "back.out(1.7)",
-        stagger: 0.03,
+        duration: 2.2,
+        ease: "power4.out",
+        stagger: 0.02,
       });
 
       tl.from(

@@ -16,7 +16,7 @@ export default function AboutMe() {
         initial={{ opacity: 0, x: -40 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ amount: 0.3 }}
-        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
       >
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-10 pointer-events-none" />
         <video
@@ -37,7 +37,7 @@ export default function AboutMe() {
         initial={{ opacity: 0, x: 0 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ amount: 0.3 }}
-        transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
       >
         <div className="flex flex-col justify-center items-start md:px-20 px-10">
           <h2 className="text-lg md:text-xl mb-4 font-light opacity-80">

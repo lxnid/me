@@ -33,7 +33,7 @@ export default function AboutPageContent() {
              <h1 className="text-6xl md:text-8xl font-medium uppercase leading-none tracking-tighter">
                 About
             </h1>
-            <h1 className="text-6xl md:text-8xl font-medium uppercase leading-none tracking-tighter text-neutral-500">
+            <h1 className="text-6xl md:text-8xl font-medium uppercase leading-none tracking-tighter text-neutral-400">
                 Me
             </h1>
         </div>
@@ -42,7 +42,7 @@ export default function AboutPageContent() {
       {/* Content Side (Right) */}
       <div className="w-full md:w-7/12 p-8 md:p-16 lg:p-24 md:pt-32 flex flex-col justify-start">
          <div>
-            <h2 className="text-xl md:text-2xl font-light mb-8 opacity-80 uppercase tracking-wide">
+            <h2 className="text-xl md:text-lg mb-8 opacity-80 uppercase tracking-wide">
                 Hirusha Dinil Rubasinghe
             </h2>
             
