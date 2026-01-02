@@ -38,7 +38,7 @@ export default function MagneticWrapper({
   return (
     <motion.div
       ref={ref}
-      className={className}
+      className={`w-fit inline-block ${className}`}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       animate={{

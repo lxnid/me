@@ -1,4 +1,5 @@
 import { LuExternalLink } from "react-icons/lu";
+import Button from "./Button";
 
 const skills = [
   "React", "Next.js", "TypeScript", "JavaScript", "Astro",
@@ -89,6 +90,10 @@ export default function AboutPageContent() {
                   </span>
                 ))}
               </div>
+            </div>
+
+            <div className="mt-12 pt-12 border-t border-neutral-800">
+               <Button href="/work" label="See My Work" />
             </div>
          </div>
       </div>
