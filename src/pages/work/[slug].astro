@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectPage from '../../components/ProjectPage';
+import { projects } from '../../data/projects';
+import { generateSlug } from '../../utils/slugify';
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: generateSlug(project.title) },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: typeof projects[0];
+}
+
+const { project } = Astro.props;
+const otherProjects = projects.filter((p) => p.id !== project.id).slice(0, 2);
+---
+
+<BaseLayout
+  title={`${project.title} | Hirusha Dinil Rubasinghe`}
+  description={project.description.slice(0, 160)}
+  ogImage={`/${project.image}`}
+>
+  <ProjectPage client:load project={project} moreProjects={otherProjects} />
+</BaseLayout>
