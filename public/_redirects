@@ -1,0 +1,2 @@
+# Redirect old GitHub Pages URLs to new domain
+/me/* /:splat 301

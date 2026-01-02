@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header';
+import Projects from '../components/Projects.astro';
+import Button from '../components/Button';
+import AboutMe from '../components/AboutMe';
+---
+
+<BaseLayout>
+  <!-- Hero Section with Background Video -->
+  <section class="relative w-full h-[70vh] overflow-hidden">
+    <Header client:only="react" />
+  </section>
+
+  <!-- Projects Section -->
+  <Projects count={3} />
+
+  <!-- View All Work Button -->
+  <div class="flex justify-center py-12 px-6">
+    <Button client:visible href="/work" label="View All Work" />
+  </div>
+
+  <!-- About Section -->
+  <AboutMe client:visible />
+</BaseLayout>

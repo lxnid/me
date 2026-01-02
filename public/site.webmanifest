@@ -1,21 +1,21 @@
 {
-    "name": "Hirusha Dinil Rubasinghe",
-    "short_name": "Hirusha Dinil",
-    "icons": [
-        {
-            "src": "/me/favicon.ico",
-            "sizes": "64x64 32x32 24x24 16x16",
-            "type": "image/x-icon"
-        },
-        {
-            "src": "/me/logo_dark.svg",
-            "type": "image/svg+xml",
-            "sizes": "192x192 512x512"
-        }
-    ],
-    "theme_color": "#000000",
-    "background_color": "#000000",
-    "display": "standalone",
-    "start_url": "/me",
-    "scope": "/me/"
+  "name": "Hirusha Dinil Rubasinghe",
+  "short_name": "Hirusha Dinil",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/logo_dark.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192 512x512"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
 }

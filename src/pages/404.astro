@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { BsArrowRightCircleFill, BsArrowRightCircle } from 'react-icons/bs';
+---
+
+<BaseLayout title="404 - Page Not Found | Hirusha Dinil Rubasinghe">
+  <section class="min-h-screen flex items-center justify-center px-6">
+    <div class="text-center">
+      <h1 class="text-[8rem] md:text-[12rem] font-bold text-neutral-800 leading-none">404</h1>
+      <h2 class="text-2xl md:text-4xl font-semibold text-neutral-100 mb-4">Page Not Found</h2>
+      <p class="text-neutral-400 mb-8 max-w-md mx-auto">
+        The page you're looking for doesn't exist or has been moved to a different location.
+      </p>
+      <a
+        href="/"
+        class="group inline-flex items-center gap-3 px-6 py-3 text-lg border border-neutral-600 rounded-full hover:border-neutral-400 transition-all duration-300"
+      >
+        <span>Go Home</span>
+        <span class="relative w-6 h-6">
+          <svg class="w-6 h-6 absolute transition-opacity duration-300 opacity-100 group-hover:opacity-0" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+          </svg>
+          <svg class="w-6 h-6 absolute transition-opacity duration-300 opacity-0 group-hover:opacity-100" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
