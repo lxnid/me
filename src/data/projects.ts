@@ -71,7 +71,7 @@ export const projects: Project[] = [
     title: "Multi-Tenant Booking Platform",
     date: "2024 - 2025",
     headline:
-      "A production SaaS platform built collaboratively with Software-Lifecycle-Consultants, where co-engineered a multi-tenant booking system with complex scheduling, secure authentication, and enterprise-grade deployment pipelines",
+      "A production SaaS platform built collaboratively with Software-Lifecycle-Consultants, where I co-engineered a multi-tenant booking system with complex scheduling, secure authentication, and enterprise-grade deployment pipelines",
     image: "workImages/cycleparadise/mikkel-bech-yjAFnkLtKY0-unsplash-min.jpg",
     secondaryImage: "workImages/cycleparadise/cycleparadise-min.png",
     link: "https://cycleparadise.bike",
