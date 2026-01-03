@@ -71,7 +71,7 @@ export const projects: Project[] = [
     title: "Multi-Tenant Booking Platform",
     date: "2024 - 2025",
     headline:
-      "A production SaaS platform built collaboratively with Software-Lifecycle-Consultants, where I contributed to architecting a multi-tenant booking system with complex scheduling, secure authentication, and enterprise-grade deployment pipelines",
+      "A production SaaS platform built collaboratively with Software-Lifecycle-Consultants, where co-engineered a multi-tenant booking system with complex scheduling, secure authentication, and enterprise-grade deployment pipelines",
     image: "workImages/cycleparadise/mikkel-bech-yjAFnkLtKY0-unsplash-min.jpg",
     secondaryImage: "workImages/cycleparadise/cycleparadise-min.png",
     link: "https://cycleparadise.bike",
@@ -107,7 +107,7 @@ export const projects: Project[] = [
       {
         title: "My Contributions: Architecture & Implementation",
         content: [
-          "Within the team, I contributed significantly to the full-stack development—working across the Astro frontend, PostgreSQL database layer with Prisma ORM, and the deployment infrastructure. I helped implement the hybrid rendering architecture that combines static generation for SEO-critical marketing pages with server-side rendering for dynamic booking functionality.",
+          "Within the team, I spearheaded the full-stack development—working across the Astro frontend, PostgreSQL database layer with Prisma ORM, and the deployment infrastructure. I helped implement the hybrid rendering architecture that combines static generation for SEO-critical marketing pages with server-side rendering for dynamic booking functionality.",
           "I worked on the authentication system implementing session-based authentication with HttpOnly cookies and bcrypt password hashing for the admin panel. The JWT-secured API endpoints ensure distinct access levels between administrators and public users, with Role-Based Access Control (RBAC) governing permissions across the platform.",
           "The DevOps pipeline was another area where I made key contributions—containerizing the application using Docker with multi-stage builds and helping configure the GitHub Actions workflow that automates testing, building, and deployment to a Linux VPS.",
         ],
