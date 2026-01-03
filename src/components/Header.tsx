@@ -99,14 +99,14 @@ const Header = () => {
     <>
       <div className="z-20 absolute w-full h-full flex justify-center items-center pointer-events-none">
         <div className="flex flex-col justify-evenly px-12 py-10 items-center h-full w-full relative">
-          <div className="h-full w-full flex items-end justify-between text-xs md:text-sm text-white uppercase">
+          <div className="h-full w-full flex flex-col md:flex-row items-start md:items-end justify-end md:justify-between gap-6 md:gap-0 text-xs md:text-sm text-white uppercase">
             <h1
               ref={textRef}
-              className="text-4xl md:text-[6rem] font-medium leading-none text-[#dddddd] text-start mt-[28vh] opacity-0 uppercase"
+              className="text-5xl md:text-[6rem] font-medium leading-none text-[#dddddd] text-start mt-auto md:mt-[28vh] opacity-0 uppercase"
             >
-              DINIL <span className="opacity-50">RUBASINGHE</span>
+              DINIL<br className="md:hidden" /> <span className="opacity-50">RUBASINGHE</span>
             </h1>
-            <div ref={linksRef} className="flex flex-col pointer-events-auto">
+            <div ref={linksRef} className="flex flex-col pointer-events-auto mt-5">
               <a
                 href="https://www.linkedin.com/in/hirusha-dinil-rubasinghe-66bbba313/"
                 target="_blank"
