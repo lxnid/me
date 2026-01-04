@@ -34,6 +34,7 @@ const blogCollection = defineCollection({
 
       // Categorization
       tags: z.array(z.string()).min(1, 'At least one tag is required'),
+      keywords: z.array(z.string()).optional(),
 
       // Publishing controls
       draft: z.boolean().default(false),
