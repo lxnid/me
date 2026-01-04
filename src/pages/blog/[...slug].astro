@@ -141,7 +141,10 @@ const breadcrumbSchema = {
         alt={imageAlt}
         class="w-full h-full object-cover scale-105"
       />
-      <!-- Refined gradient overlay -->
+      <!-- Refined gradient overlays -->
+      <!-- Top gradient for navbar visibility -->
+      <div class="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#0c0c0c] via-[#0c0c0c]/70 to-transparent z-10"></div>
+      <!-- Bottom gradient for text readability -->
       <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#0c0c0c]/60 to-[#0c0c0c]"></div>
       <div class="absolute inset-0 bg-[#0c0c0c]/20"></div>
     </div>

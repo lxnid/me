@@ -92,6 +92,9 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
           width={1200}
           height={600}
         />
+        {/* Top gradient for navbar visibility */}
+        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-neutral-950 via-neutral-950/70 to-transparent z-10" />
+        
         <div className="relative z-10 p-8 md:p-16">
           <motion.h1
             className="text-[clamp(2.5rem,8vw,7rem)] font-light leading-none text-neutral-100 drop-shadow-lg"
