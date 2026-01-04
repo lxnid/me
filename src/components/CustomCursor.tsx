@@ -24,7 +24,9 @@ export default function CustomCursor() {
       }
     `;
     document.head.appendChild(style);
-    return () => document.head.removeChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
   }, []);
 
   // Effect 2: Mouse movement, visibility, and click handling (runs once)
