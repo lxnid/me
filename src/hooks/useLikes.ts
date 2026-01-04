@@ -9,6 +9,7 @@ import {
   updateDoc,
   increment,
   onSnapshot,
+  deleteField,
 } from '../lib/firebase';
 
 interface UseLikesReturn {
@@ -34,8 +35,8 @@ export function useLikes(postSlug: string): UseLikesReturn {
   const lastLikeTimeRef = useRef(0);
   const unsubscribeRef = useRef<(() => void) | null>(null);
 
-  // Check if Firebase is available
-  const firebaseAvailable = useRef(false);
+  // Sanitize slug to ensure valid document ID
+  const cleanSlug = postSlug.replace(/\//g, '-');
 
   useEffect(() => {
     // Initialize and check localStorage for liked state
@@ -50,11 +51,10 @@ export function useLikes(postSlug: string): UseLikesReturn {
       return;
     }
 
-    firebaseAvailable.current = true;
     const db = firebase.db;
 
     // Set up real-time listener for like count
-    const postRef = doc(db, 'blog-likes', postSlug);
+    const postRef = doc(db, 'blog-likes', cleanSlug);
 
     unsubscribeRef.current = onSnapshot(
       postRef,
@@ -79,7 +79,7 @@ export function useLikes(postSlug: string): UseLikesReturn {
         unsubscribeRef.current();
       }
     };
-  }, [postSlug]);
+  }, [postSlug, cleanSlug]);
 
   const toggleLike = useCallback(async () => {
     // Rate limiting
@@ -96,7 +96,7 @@ export function useLikes(postSlug: string): UseLikesReturn {
       return;
     }
 
-    const postRef = doc(db, 'blog-likes', postSlug);
+    const postRef = doc(db, 'blog-likes', cleanSlug);
     const likedPosts = JSON.parse(localStorage.getItem(LIKE_STORAGE_KEY) || '{}');
 
     try {
@@ -104,24 +104,39 @@ export function useLikes(postSlug: string): UseLikesReturn {
       const docSnap = await getDoc(postRef);
 
       if (hasLiked) {
-        // Unlike
+        // --- UNLIKE Action ---
+        console.log('Unliking post:', cleanSlug);
+        
+        // Always remove fingerprint, even if count logic is weird
+        const updates: any = {
+          [`fingerprints.${fingerprint}`]: deleteField(),
+        };
+
         if (docSnap.exists()) {
           const currentCount = docSnap.data().count || 0;
           if (currentCount > 0) {
-            await updateDoc(postRef, {
-              count: increment(-1),
-            });
+            updates.count = increment(-1);
           }
+          await updateDoc(postRef, updates);
         }
+        
         delete likedPosts[postSlug];
         setHasLiked(false);
+        
       } else {
-        // Like
+        // --- LIKE Action ---
+        console.log('Liking post:', cleanSlug);
+
         if (docSnap.exists()) {
-          // Check if already liked by this fingerprint (anti-spam)
           const data = docSnap.data();
-          if (data.fingerprints?.[fingerprint]) {
-            // Already liked by this device, update local state
+          const currentCount = data.count || 0;
+
+          // Anti-spam check:
+          // Only block if fingerprint exists AND count > 0.
+          // If count is 0, it's a desync state (broken doc), so we allow "re-liking" to fix it.
+          if (data.fingerprints?.[fingerprint] && currentCount > 0) {
+            console.log('Duplicate like detected for fingerprint');
+            // Update local state to match server reality
             likedPosts[postSlug] = true;
             setHasLiked(true);
             localStorage.setItem(LIKE_STORAGE_KEY, JSON.stringify(likedPosts));
@@ -139,6 +154,7 @@ export function useLikes(postSlug: string): UseLikesReturn {
             fingerprints: { [fingerprint]: true },
           });
         }
+        
         likedPosts[postSlug] = true;
         setHasLiked(true);
       }
@@ -147,7 +163,7 @@ export function useLikes(postSlug: string): UseLikesReturn {
     } catch (error) {
       console.error('Error toggling like:', error);
     }
-  }, [postSlug, hasLiked]);
+  }, [postSlug, cleanSlug, hasLiked]);
 
   return {
     likeCount,

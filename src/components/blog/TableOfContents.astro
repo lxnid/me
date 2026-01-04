@@ -14,9 +14,9 @@ const tocHeadings = headings.filter((heading) => heading.depth >= 2 && heading.d
   tocHeadings.length > 0 && (
     <div class="not-prose my-6">
       <details class="group">
-        <summary class="flex items-center gap-2 cursor-pointer list-none select-none py-2 border-b border-theme-border-muted/50 hover:border-theme-border transition-colors">
+        <summary class="flex items-center gap-2 cursor-pointer list-none select-none py-2 border-b border-theme-border-muted/50 hover:border-theme-border transition-colors group/summary">
           <svg
-            class="w-4 h-4 text-theme-text-muted transform transition-transform duration-200 group-open:rotate-90 flex-shrink-0"
+            class="w-4 h-4 text-theme-text-muted transform transition-transform duration-200 group-open:rotate-90 flex-shrink-0 group-hover/summary:brightness-150 transition-all"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -24,7 +24,7 @@ const tocHeadings = headings.filter((heading) => heading.depth >= 2 && heading.d
           >
             <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
           </svg>
-          <span class="text-xs font-medium text-theme-text-muted uppercase tracking-widest">Contents</span>
+          <span class="text-xs font-medium text-theme-text-muted uppercase tracking-widest group-hover/summary:brightness-150 transition-all">Contents</span>
         </summary>
 
         <nav class="pt-4 pb-2">

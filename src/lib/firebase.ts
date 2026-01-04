@@ -7,6 +7,7 @@ import {
   updateDoc,
   increment,
   onSnapshot,
+  deleteField,
   type Firestore,
 } from 'firebase/firestore';
 
@@ -107,11 +108,4 @@ export async function getDeviceFingerprint(): Promise<string> {
 }
 
 // Re-export Firestore functions for convenience
-export {
-  doc,
-  getDoc,
-  setDoc,
-  updateDoc,
-  increment,
-  onSnapshot,
-};
+export { doc, getDoc, setDoc, updateDoc, increment, onSnapshot, deleteField };

@@ -8,7 +8,16 @@ author:
   avatar: /avatar.jpg
 image: ./images/aws-debugging.jpg
 imageAlt: "debugging icon with code"
-tags: ["aws", "serverless", "cloudwatch", "software-engineering", "internship", "lambda", "devops"]
+tags:
+  [
+    "aws",
+    "serverless",
+    "cloudwatch",
+    "software-engineering",
+    "internship",
+    "lambda",
+    "devops",
+  ]
 draft: false
 featured: true
 readTime: 12
@@ -60,7 +69,7 @@ With this data I built a modern data pipeline involving AI: using LLMs to parse 
 
 This eliminated the need for lines worth of complex RegEx parsers for each variation from our workload instead enabling us to map different keywords and query dynamically using the relational data.
 
-![workflow diagram](./images/workflow-diagram.svg)
+![workflow diagram](./images/workflow-diagram.jpg)
 
 ## The Serverless Architecture: A Technical Deep-Dive
 
@@ -69,21 +78,24 @@ To ensure the dashboard was scalable, cost-effective, and didn't require infrast
 ### Breakdown
 
 **Frontend: React + Typescript + Tailwind + ReCharts**
+
 - Single-page application for snappy, responsive UI
 - Real-time updates via polling (considered WebSockets, deemed overkill)
 - Deployed to S3 + CloudFront for global CDN distribution
 
 **Backend (API Layer): Node.js with Fastify + AWS API Gateway**
+
 - RESTful endpoints
 - Pagination for efficient data transfer
 
 **Backend (Data Collection Layer): AWS Lambda + AWS EventBridge + AWS RDS**
+
 - Cost effective approach paying only for compute that is being used
 - RDS with PostgreSQL to manage and store relational data
 
 **Data: AWS CloudWatch + Activepieces**
 
-![architecture diagram](./images/architecture-diagram.svg)
+![architecture diagram](./images/architecture-diagram.jpg)
 
 ## Challenges and Solutions: What Went Wrong (And How I Fixed It)
 
@@ -159,9 +171,9 @@ I'm currently in my second year pursuing a BSc in Computing major in Software En
 
 Want to discuss this project, technology, or opportunities?
 
-- **LinkedIn**: [Your LinkedIn URL]
-- **GitHub**: [Your GitHub profile with related projects]
-- **Portfolio**: [Your personal website]
-- **Email**: [Your professional email]
+- **LinkedIn**: [hirusha-dinil-rubasinghe](https://www.linkedin.com/in/hirusha-dinil-rubasinghe-66bbba313/)
+- **GitHub**: [github/lxnid](https://github.com/lxnid)
+- **Portfolio**: [dinilr.com](https://dinilr.com)
+- **Email**: [me@mail](mailto:offbeat-zombies.3q@icloud.com)
 
 If you found this breakdown helpful, feel free to share it with aspiring engineers who might benefit from seeing the messy, real-world journey of building production software.

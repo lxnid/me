@@ -94,6 +94,7 @@ const articleSchema = {
 >
   <!-- Structured Data -->
   <script
+    is:inline
     type="application/ld+json"
     set:html={JSON.stringify(articleSchema)}
     slot="head"
@@ -188,7 +189,7 @@ const articleSchema = {
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(`https://dinilr.com/blog/${post.slug}`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              class="share-icon p-2.5 text-theme-text-muted hover:text-theme-text-primary"
+              class="p-2.5 text-theme-text-muted hover:text-theme-text-primary hover:brightness-150 transition-all duration-300"
               aria-label="Share on X"
             >
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -199,7 +200,7 @@ const articleSchema = {
               href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://dinilr.com/blog/${post.slug}`)}`}
               target="_blank"
               rel="noopener noreferrer"
-              class="share-icon p-2.5 text-theme-text-muted hover:text-theme-text-primary"
+              class="p-2.5 text-theme-text-muted hover:text-theme-text-primary hover:brightness-150 transition-all duration-300"
               aria-label="Share on LinkedIn"
             >
               <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -208,7 +209,7 @@ const articleSchema = {
             </a>
             <button
               onclick="navigator.clipboard.writeText(window.location.href)"
-              class="share-icon p-2.5 text-theme-text-muted hover:text-theme-text-primary"
+              class="p-2.5 text-theme-text-muted hover:text-theme-text-primary hover:brightness-150 transition-all duration-300"
               aria-label="Copy link"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">

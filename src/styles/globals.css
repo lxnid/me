@@ -465,19 +465,3 @@ canvas {
 .prose-lg h3 {
   font-size: 1.375rem;
 }
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   SHARE ICONS - Interactive hover animations
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.share-icon {
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.share-icon:hover {
-  transform: scale(1.15);
-}
-
-.share-icon:active {
-  transform: scale(0.95);
-}
