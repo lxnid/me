@@ -70,13 +70,13 @@ const structuredData = {
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body class="bg-[#000000] text-[#dddddd]">
-    <CustomCursor client:only="react" />
+    <CustomCursor client:idle />
     <SmoothScroll client:only="react">
       <Navbar client:only="react" />
       <main>
         <slot />
       </main>
     </SmoothScroll>
-    <Footer client:load />
+    <Footer client:visible />
   </body>
 </html>

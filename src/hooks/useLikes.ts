@@ -105,8 +105,6 @@ export function useLikes(postSlug: string): UseLikesReturn {
 
       if (hasLiked) {
         // --- UNLIKE Action ---
-        console.log('Unliking post:', cleanSlug);
-        
         // Always remove fingerprint, even if count logic is weird
         const updates: any = {
           [`fingerprints.${fingerprint}`]: deleteField(),
@@ -125,8 +123,6 @@ export function useLikes(postSlug: string): UseLikesReturn {
         
       } else {
         // --- LIKE Action ---
-        console.log('Liking post:', cleanSlug);
-
         if (docSnap.exists()) {
           const data = docSnap.data();
           const currentCount = data.count || 0;
@@ -135,7 +131,6 @@ export function useLikes(postSlug: string): UseLikesReturn {
           // Only block if fingerprint exists AND count > 0.
           // If count is 0, it's a desync state (broken doc), so we allow "re-liking" to fix it.
           if (data.fingerprints?.[fingerprint] && currentCount > 0) {
-            console.log('Duplicate like detected for fingerprint');
             // Update local state to match server reality
             likedPosts[postSlug] = true;
             setHasLiked(true);

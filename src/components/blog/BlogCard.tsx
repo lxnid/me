@@ -1,15 +1,11 @@
 import { motion } from 'framer-motion';
 import type { CollectionEntry } from 'astro:content';
+import { fadeInUp } from '../../lib/animations';
 
 interface BlogCardProps {
   post: CollectionEntry<'blog'>;
   index: number;
 }
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
-};
 
 /**
  * Blog post card component

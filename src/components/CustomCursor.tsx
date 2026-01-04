@@ -13,8 +13,8 @@ export default function CustomCursor() {
   const cursorXSpring = useSpring(cursorX, springConfig);
   const cursorYSpring = useSpring(cursorY, springConfig);
 
+  // Effect 1: Inject global cursor-hiding style (runs once)
   useEffect(() => {
-    // Add global cursor style
     const style = document.createElement('style');
     style.textContent = `
       @media (pointer: fine) {
@@ -24,7 +24,11 @@ export default function CustomCursor() {
       }
     `;
     document.head.appendChild(style);
+    return () => document.head.removeChild(style);
+  }, []);
 
+  // Effect 2: Mouse movement, visibility, and click handling (runs once)
+  useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX - 16);
       cursorY.set(e.clientY - 16);
@@ -34,25 +38,13 @@ export default function CustomCursor() {
     const handleMouseEnter = () => setIsVisible(true);
     const handleMouseLeave = () => setIsVisible(false);
 
-    const projectElements = document.querySelectorAll('.cursor-hover-project');
-
-    const handleMouseOver = () => setCursorVariant("hover");
-    const handleMouseOut = () => setCursorVariant("default");
-
-    // Handle link clicks
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (target.closest('a') || target.closest('button')) {
         setIsClicking(true);
-        // Reset after a delay in case navigation doesn't happen (e.g. new tab or same page)
         setTimeout(() => setIsClicking(false), 500);
       }
     };
-
-    projectElements.forEach((el) => {
-      el.addEventListener("mouseenter", handleMouseOver);
-      el.addEventListener("mouseleave", handleMouseOut);
-    });
 
     window.addEventListener("mousemove", moveCursor);
     window.addEventListener("mousedown", handleClick);
@@ -60,18 +52,32 @@ export default function CustomCursor() {
     document.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
-      document.head.removeChild(style);
       window.removeEventListener("mousemove", moveCursor);
       window.removeEventListener("mousedown", handleClick);
       document.removeEventListener("mouseenter", handleMouseEnter);
       document.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [cursorX, cursorY]);
 
+  // Effect 3: Project element hover listeners (runs once)
+  useEffect(() => {
+    const projectElements = document.querySelectorAll('.cursor-hover-project');
+
+    const handleMouseOver = () => setCursorVariant("hover");
+    const handleMouseOut = () => setCursorVariant("default");
+
+    projectElements.forEach((el) => {
+      el.addEventListener("mouseenter", handleMouseOver);
+      el.addEventListener("mouseleave", handleMouseOut);
+    });
+
+    return () => {
       projectElements.forEach((el) => {
         el.removeEventListener("mouseenter", handleMouseOver);
         el.removeEventListener("mouseleave", handleMouseOut);
       });
     };
-  }, [cursorX, cursorY]);
+  }, []);
 
   const variants = {
     default: {

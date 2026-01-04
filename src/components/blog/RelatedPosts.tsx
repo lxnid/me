@@ -1,24 +1,10 @@
 import { motion } from 'framer-motion';
 import type { CollectionEntry } from 'astro:content';
+import { fadeInUp, staggerContainer } from '../../lib/animations';
 
 interface RelatedPostsProps {
   posts: CollectionEntry<'blog'>[];
 }
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
 
 /**
  * Related posts component

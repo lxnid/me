@@ -78,13 +78,13 @@ const structuredData = {
     <slot name="head" />
   </head>
   <body class="bg-[#0c0c0c] text-[#e8e8e8]">
-    <CustomCursor client:only="react" />
+    <CustomCursor client:idle />
     <SmoothScroll client:only="react">
       <Navbar client:only="react" />
       <main>
         <slot />
       </main>
     </SmoothScroll>
-    <Footer client:load />
+    <Footer client:visible />
   </body>
 </html>

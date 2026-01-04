@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { IoArrowForwardCircleOutline, IoLogoVercel } from "react-icons/io5";
 import { generateSlug } from "../utils/slugify";
 import type { Project } from "../data/projects";
+import { fadeInUp, fadeInLeft, staggerContainer } from "../lib/animations";
 import { FaBullseye, FaReact, FaAws, FaGithub } from "react-icons/fa";
 import {
   BiLogoCss3,
@@ -31,26 +32,6 @@ interface WorkPageClientProps {
 }
 
 const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  const fadeInLeft = {
-    hidden: { opacity: 0, x: 30 },
-    visible: { opacity: 1, x: 0 },
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
   if (!project) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh] text-center gap-4 pt-28">
