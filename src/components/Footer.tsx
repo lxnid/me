@@ -22,13 +22,6 @@ const Footer = () => (
           <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 7l-10 10M17 17V7H7" /></svg>
         </a>
         <a
-          href="tel:+94743228881"
-          className="flex items-center justify-between gap-2 tracking-wide border-t border-neutral-700 pt-2 hover:text-neutral-300 transition-colors text-xs md:text-sm"
-        >
-          Give a call
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17 7l-10 10M17 17V7H7" /></svg>
-        </a>
-        <a
           href="https://www.linkedin.com/in/hirusha-dinil-rubasinghe-66bbba313/"
           target="_blank"
           rel="noopener noreferrer"
