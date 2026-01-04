@@ -1,4 +1,71 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   THEME SYSTEM - CSS Custom Properties (Dark Mode Only)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root,
+[data-theme="dark"] {
+  /* Background layers - off-black for reduced eye strain */
+  --color-bg-primary: #0c0c0c;
+  --color-bg-secondary: #111111;
+  --color-bg-tertiary: #1a1a1a;
+  --color-surface: #1c1c1c;
+  --color-surface-hover: #282828;
+
+  /* Text hierarchy - off-white for softer contrast */
+  --color-text-primary: #e8e8e8;
+  --color-text-secondary: #a8a8a8;
+  --color-text-muted: #787878;
+
+  /* Borders & dividers */
+  --color-border: #404040;
+  --color-border-muted: #262626;
+
+  /* Accent colors */
+  --color-accent: #3b82f6;
+  --color-accent-hover: #60a5fa;
+
+  /* Semantic colors */
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+
+  /* Shadows & effects */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.15);
+}
+
+/* Light mode for blog pages */
+[data-theme="light"] {
+  /* Off-white backgrounds - easier on the eyes */
+  --color-bg-primary: #f8f8f6;
+  --color-bg-secondary: #f3f3f1;
+  --color-bg-tertiary: #eaeae8;
+  --color-surface: #f5f5f3;
+  --color-surface-hover: #ececea;
+
+  /* Off-black text - softer than pure black */
+  --color-text-primary: #1c1c1a;
+  --color-text-secondary: #4a4a48;
+  --color-text-muted: #6e6e6c;
+
+  --color-border: #dededa;
+  --color-border-muted: #e8e8e4;
+
+  --color-accent: #2563eb;
+  --color-accent-hover: #1d4ed8;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.1);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
 
 @font-face {
   font-family: "PP Neuemontreal";
@@ -52,33 +119,352 @@ canvas {
   }
 }
 
-/* Custom Page Transition */
+/* ═══════════════════════════════════════════════════════════════════════════
+   PAGE TRANSITIONS - Opacity + Subtle Scale
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 ::view-transition-old(root) {
-  animation: 1.2s cubic-bezier(0.4, 0, 0.2, 1) both fadeOut;
+  animation: 0.3s cubic-bezier(0.4, 0, 0.2, 1) both page-fade-out;
 }
 
 ::view-transition-new(root) {
-  animation: 1.2s cubic-bezier(0.4, 0, 0.2, 1) both fadeIn;
+  animation: 0.3s cubic-bezier(0.4, 0, 0.2, 1) both page-fade-in;
 }
 
-@keyframes fadeOut {
+@keyframes page-fade-out {
   from {
     opacity: 1;
     transform: scale(1);
   }
   to {
     opacity: 0;
-    transform: scale(0.98);
+    transform: scale(0.97);
   }
 }
 
-@keyframes fadeIn {
+@keyframes page-fade-in {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: scale(1.02);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
   }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOG PROSE STYLING - Clean, refined typography for MDX content
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.prose {
+  color: var(--color-text-secondary);
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.7;
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+  max-width: 65ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.prose > * + * {
+  margin-top: 1.5em;
+}
+
+/* First paragraph - lead paragraph styling */
+.prose > p:first-of-type {
+  font-size: 1.25rem; /* 20px lead */
+  color: var(--color-text-primary);
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+}
+
+/* Headings - use PP Neuemontreal for brand consistency */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  font-family: "PP Neuemontreal", sans-serif;
+  color: var(--color-text-primary);
+  font-weight: 500;
+  line-height: 1.3;
+  margin-top: 2.5em;
+  margin-bottom: 0.75em;
+  letter-spacing: -0.015em;
+}
+
+.prose h1 {
+  font-size: 2rem;
+  margin-top: 0;
+  display: none; /* Hide h1 since we have title in header */
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border-muted);
+  margin-top: 3em;
+}
+
+.prose h3 {
+  font-size: 1.25rem;
+  margin-top: 2em;
+}
+
+.prose h4 {
+  font-size: 1.0625rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+}
+
+/* Paragraphs & Text */
+.prose p {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.prose strong {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+.prose em {
+  font-style: italic;
+}
+
+/* Links - subtle underline, no color change */
+.prose a {
+  color: var(--color-text-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--color-border);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.prose a:hover {
+  text-decoration-color: var(--color-text-primary);
+}
+
+/* Lists */
+.prose ul,
+.prose ol {
+  padding-left: 1.25em;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.prose ul {
+  list-style-type: none;
+}
+
+.prose ul > li {
+  position: relative;
+  padding-left: 1em;
+}
+
+.prose ul > li::before {
+  content: "—";
+  position: absolute;
+  left: -0.5em;
+  color: var(--color-text-muted);
+  font-weight: 300;
+}
+
+.prose ol {
+  list-style-type: decimal;
+  padding-left: 1.5em;
+}
+
+.prose li {
+  margin-top: 0.75em;
+  margin-bottom: 0.75em;
+  line-height: 1.7;
+}
+
+.prose li::marker {
+  color: var(--color-text-muted);
+}
+
+.prose ul ul,
+.prose ol ol,
+.prose ul ol,
+.prose ol ul {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Blockquotes - minimal, elegant */
+.prose blockquote {
+  border-left: 2px solid var(--color-border);
+  padding: 0.25rem 0 0.25rem 1.5rem;
+  margin: 2em 0;
+  font-style: italic;
+  color: var(--color-text-secondary);
+}
+
+.prose blockquote p {
+  margin: 0.5em 0;
+}
+
+.prose blockquote p:first-child {
+  margin-top: 0;
+}
+
+.prose blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+/* Code - Inline */
+.prose code {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-tertiary);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.875em;
+  font-family: "SF Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-weight: 400;
+  border: 1px solid var(--color-border-muted);
+}
+
+.prose code::before,
+.prose code::after {
+  content: none;
+}
+
+/* Code - Blocks */
+.prose pre {
+  background-color: var(--color-bg-tertiary);
+  border: 1px solid var(--color-border-muted);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  overflow-x: auto;
+  margin: 2em 0;
+  font-size: 0.8125rem;
+  line-height: 1.75;
+}
+
+.prose pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+  color: var(--color-text-secondary);
+  border: none;
+}
+
+/* Horizontal Rule */
+.prose hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-border-muted) 20%,
+    var(--color-border-muted) 80%,
+    transparent
+  );
+  margin: 3.5em 0;
+}
+
+/* Images */
+.prose img {
+  border-radius: 8px;
+  margin: 2.5em 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.prose figure {
+  margin: 2.5em 0;
+}
+
+.prose figcaption {
+  color: var(--color-text-muted);
+  font-size: 0.8125rem;
+  text-align: center;
+  margin-top: 1em;
+  font-style: italic;
+}
+
+/* Tables - clean, minimal */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.5em 0;
+  font-size: 0.9375rem;
+}
+
+.prose thead {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.prose th {
+  color: var(--color-text-muted);
+  font-weight: 500;
+  text-align: left;
+  padding: 0.875rem 1rem;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.prose td {
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--color-border-muted);
+  vertical-align: top;
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Task Lists (checkboxes) */
+.prose input[type="checkbox"] {
+  margin-right: 0.5em;
+  accent-color: var(--color-text-muted);
+}
+
+/* Definition Lists */
+.prose dl {
+  margin: 1.5em 0;
+}
+
+.prose dt {
+  color: var(--color-text-primary);
+  font-weight: 500;
+  margin-top: 1.5em;
+}
+
+.prose dd {
+  margin-left: 1.5em;
+  margin-top: 0.5em;
+  color: var(--color-text-secondary);
+}
+
+/* Footnotes */
+.prose .footnotes {
+  margin-top: 4em;
+  padding-top: 2em;
+  border-top: 1px solid var(--color-border-muted);
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* Prose Size Variants */
+.prose-lg {
+  font-size: 1.125rem;
+}
+
+.prose-lg h2 {
+  font-size: 1.625rem;
+}
+
+.prose-lg h3 {
+  font-size: 1.375rem;
 }

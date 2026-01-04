@@ -41,7 +41,7 @@ export default function AboutPageContent() {
       </div>
 
       {/* Content Side (Right) */}
-      <div className="w-full md:w-7/12 p-8 md:p-16 lg:p-24 md:pt-32 flex flex-col justify-start">
+      <div className="w-full md:w-7/12 p-8 md:p-16 lg:p-24 md:pt-32 lg:pt-60 flex flex-col justify-start">
          <div>
             <h2 className="text-xl md:text-lg mb-8 opacity-80 uppercase tracking-wide">
                 Hirusha Dinil Rubasinghe

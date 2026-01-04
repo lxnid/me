@@ -1,0 +1,171 @@
+---
+title: "Five Years of Evolution: My Portfolio Journey from Pandemic Curiosity to Production"
+description: "A student's story of growth through 5 years of portfolio development—from pure HTML in 2021 to production-grade Astro in 2026."
+excerpt: "From a 15-year-old curious about web design during the pandemic to a software engineering student building production-grade sites. This is the story of my five-year journey through HTML, React, Next.js, and finally Astro, learning that the true value of a portfolio lies in the evolution of skills."
+publishedDate: 2025-01-04
+author:
+  name: Hirusha Dinil
+  avatar: /avatar.jpg
+image: "./images/portfolio-evolution.jpg"
+imageAlt: "development journey"
+tags:
+  [
+    "web development",
+    "portfolio development",
+    "Astro",
+    "Next.js",
+    "software engineering",
+    "continuous learning",
+    "developer journey",
+  ]
+keywords:
+  [
+    "portfolio journey",
+    "web development evolution",
+    "Astro migration",
+    "Next.js to Astro",
+    "student developer",
+    "self-taught coding",
+    "building a portfolio",
+    "software engineering student",
+    "Cloudflare Pages",
+    "custom domain setup",
+  ]
+draft: false
+featured: true
+readTime: 10
+---
+
+The moment I saw `dinilr.com` go live on my own custom domain, I felt something I hadn't anticipated—a sense of ownership that GitHub Pages subdomains could never give me. It wasn't just a website anymore. It was _mine_. Five years of tinkering, rebuilding, and learning had led to this moment, and honestly, my face was jumping with excitement.
+
+But let me take you back to where it all started.
+
+## 2021: A 15-Year-Old and a Pandemic
+
+It was 2021. I was 15 years old, locked in my home like everyone else during the COVID-19 pandemic. The internet became my playground, my school, and my window to the world. While scrolling through endless YouTube videos and Reddit threads, I stumbled upon web design. Not because I had a grand plan or a specific career goal—I was just curious.
+I wanted to create something. I wanted to make an online presence that screamed, "Hey, I'm doing something here!"
+
+With no AI assistants to hold my hand (just YouTube tutorials, Stack Overflow answers, and a _lot_ of Googling), I built my first portfolio website. Pure HTML, CSS, and vanilla JavaScript. No frameworks, no build tools, just me and a code editor figuring things out line by line. I hosted it on GitHub Pages, and when I saw it live for the first time, I was hooked.
+
+That first version was rough around the edges, but it was _mine_. And that feeling? That's what kept me coming back year after year.
+
+## The Annual Ritual: Rebuilding as Learning
+
+Here's something I realized early on: building a portfolio once isn't enough. Not because the first version is bad, but because _you_ change. Your skills evolve. Your taste matures. Your understanding of what "good design" means shifts.
+
+So every year, almost like a ritual, I rebuilt my portfolio. Not out of necessity, but out of pleasure. It became my creative outlet, my personal sandbox where I could experiment without consequences.
+
+### 2022: Bootstrap, jQuery, and Gatsby Experiments
+
+By 2022, I had discovered CSS frameworks. Bootstrap became my best friend for rapid prototyping. jQuery made animations feel magical (even though I'd later learn it wasn't the most modern approach). I created _two_ portfolio versions that year—one elevating my JavaScript skills, another experimenting with Gatsby.js.
+
+Gatsby fascinated me. The idea of static site generation with React components felt like the perfect blend of modern development and performance. I spent weeks understanding GraphQL, image optimization, and the plugin ecosystem. Some experiments worked. Some didn't. But each iteration taught me something new.
+
+### 2023: Doubling Down and Exploring
+
+2023 continued the pattern. Two more iterations. More JavaScript experimentation. More design refinements. I was learning React properly now, understanding component composition, state management, and the beauty of reusable code.
+
+Looking back, I created multiple versions not because I was indecisive, but because I was _learning by doing_. Each rebuild solidified concepts, exposed gaps in my knowledge, and pushed me to explore technologies I'd only read about.
+
+## 2024: The Next.js Era Begins
+
+By 2024, one framework dominated every tech discussion: Next.js.
+
+Server-side rendering. Dynamic routing. File-based routing. API routes. The React ecosystem's darling was too compelling to ignore. When I migrated to Next.js, it felt like graduating from a bicycle to a sports car. The power, the flexibility, the developer experience—everything clicked.
+
+Next.js became my go-to framework, not just for my portfolio but for side projects too. I built a full-stack streaming platform using Spotify api, experimenting with API integrations, authentication systems, and deployment pipelines. Next.js could handle it all.
+
+My portfolio became more sophisticated. Framer Motion brought smooth, physics-based animations. GSAP with ScrollTrigger added cinematic scroll effects. Tailwind CSS replaced my Bootstrap dependency, giving me utility-first styling with complete design control.
+
+I was no longer just copying tutorials. I was _building_.
+
+## Early 2026: The Astro Migration
+
+Fast forward to the start of 2026. I'm now pursuing a software engineering degree, and something shifted in my mindset. The new year brought fresh motivation—not just to build, but to _share_. I wanted to blog, post on LinkedIn, establish myself in the developer community, and actually contribute to the conversations I'd been observing for years.
+
+But there was a problem: Next.js, as powerful as it is, wasn't built for content-first websites. Blogging felt like an afterthought. SEO required extra configuration. Performance, while good, wasn't _exceptional_ for static content.
+Then I discovered Astro during the commercial project I did during end of 2025. And everything changed.
+
+### Why Astro? Why Now?
+
+Astro's value proposition is simple but powerful: ship less JavaScript, render on the server, hydrate only what needs to be interactive. For a portfolio and blog, this is _exactly_ what I needed.
+
+**The benefits hit me immediately:**
+
+1. **Content Collections**: Astro's native markdown support with built-in content collections made blogging feel natural. No complex CMS setup, no database, just write in markdown and go.
+2. **Island Architecture**: I could keep my React components (Framer Motion animations, GSAP scroll effects) exactly as they were, but Astro would only load JavaScript for interactive elements. Static content? Zero JavaScript shipped to the client.
+3. **Performance by Default**: Astro generates pure HTML. My lighthouse scores jumped. Core Web Vitals improved. The site felt _fast_.
+4. **SEO Optimization**: Built-in sitemap generation, automatic meta tag handling, and proper semantic HTML out of the box. Search engines would actually find my content.
+5. **Developer Experience**: TypeScript support, Tailwind integration with Vite, and the ability to use React, Vue, or Svelte components interchangeably. Flexibility without complexity.
+
+The migration from Next.js to Astro was surprisingly smooth. Thanks to AI assistants (Claude code and Gemini CLI), I could port components, refactor layouts, and maintain the exact design I loved. I reused `.tsx` and `.jsx` components directly. The site wasn't completely static—I still had GSAP animations and Framer Motion interactions—but Astro's selective hydration meant users only downloaded JavaScript for what they actually needed.
+
+## The Custom Domain Moment
+
+While migrating to Astro, I also made another significant decision: owning my domain.
+
+I researched domain registrars—GoDaddy, Bluehost, Namecheap—and kept coming back to Cloudflare. Here's why: most registrars profit from domain sales, inflating prices above market rates. They offer cheap first-year deals, then jack up renewal costs. Cloudflare, on the other hand, sells domains _at cost_. No markup. No profit margin. Just the ICANN registry price.
+
+For a student budget, that mattered.
+
+But Cloudflare offered more than cheap domains. Cloudflare Pages (their hosting platform) integrated perfectly with GitHub. Push to main, automatic deployment, global CDN, free SSL—all without writing a single configuration file (well, almost).
+
+There was a hiccup: Cloudflare recently updated their infrastructure, pushing developers toward Cloudflare Workers instead of traditional Pages deployments. This meant learning Wrangler (their deployment CLI) and writing a `wrangler.toml` configuration file. Not difficult, but definitely a learning curve.
+
+When `dinilr.com` finally went live, professionally hosted on my own domain with edge caching and instant global delivery, it felt like validation. Not just of the website, but of the five-year journey that led here.
+
+## Lessons I'd Tell My 15-Year-Old Self
+
+If I could go back to 2021 and talk to that curious 15-year-old staring at his first HTML file, here's what I'd say:
+
+### 1. Trust Your Gut—It'll Lead Somewhere Good
+
+I had no idea in 2021 that web development would become my career path. I just liked building things. That curiosity led me to a software engineering degree, commercial projects, and a skillset I'm genuinely proud of. When something excites you, follow it. The destination will reveal itself.
+
+### 2. Consistency Beats Perfection
+
+I rebuilt my portfolio _every single year_. Not because each version was perfect, but because I kept showing up. Consistency compounds. Small improvements year after year create massive growth over time.
+
+### 3. Experimentation is Learning in Disguise
+
+Every "failed" experiment with Gatsby, every abandoned Bootstrap design, every GSAP animation that didn't work—those weren't failures. They were lessons. The best way to learn web development is to _build_, break things, and build again.
+
+### 4. Adapt to Industry Trends (But Don't Chase Every Shiny Object)
+
+I moved from HTML/CSS/JS → Bootstrap/jQuery → React → Gatsby → Next.js → Astro because _each transition solved a real problem I had_. I didn't jump to Next.js because it was trendy; I switched because server-side rendering and dynamic routing solved challenges I was facing. Know the difference between trend-chasing and strategic adoption.
+
+### 5. Balance Portfolio Polish with Real Projects
+
+Here's something I wish I'd realized earlier: **your portfolio matters, but your projects matter more**.
+
+Especially now, with AI accelerating development cycles, spending months perfecting your portfolio's hover animations is less valuable than building production-ready applications. Your portfolio is a _container_ for your work, not the work itself.
+
+Make your portfolio professional and presentable—absolutely. But don't obsess over pixel-perfect designs while neglecting actual project experience. Hiring managers care more about what you've _built_ than how fancy your personal website looks.
+
+That said, a well-designed portfolio _does_ make an impression. It shows attention to detail, design sensibility, and technical competence. The key is balance.
+
+## What I'm Building Toward
+
+Five years ago, I was a 15-year-old kid with too much free time and an internet connection. Today, I'm a software engineering student with a custom domain, a production-grade portfolio built with modern frameworks, and the confidence to share my work publicly.
+
+This blog is part of that evolution. I'm committing to sharing what I learn—not just code, but the lessons, the mistakes, and the "aha" moments that make this journey worthwhile.
+
+If you're reading this and you're on your own development journey, here's my challenge to you:
+
+**Build something. Ship it. Then build it again.**
+
+Your first version will be rough. Your second version will be better. By your fifth version, you'll look back and barely recognize the person you were when you started. That's growth. That's progress. That's the point.
+
+## Let's Connect
+
+I'm Hirusha Dinil Rubasinghe, and I'm always excited to connect with fellow developers, designers, and anyone curious about building for the web.
+
+Check out my work at [**dinilr.com**](https://dinilr.com/), explore my code on [**GitHub**](https://github.com/lxnid), or reach out on [**LinkedIn**](https://www.linkedin.com/in/hirusha-dinil-rubasinghe-66bbba313/).
+
+Whether you're a beginner looking for advice, a fellow student sharing the journey, or a potential collaborator with an exciting project, I'd love to hear from you.
+
+Let's build something great together.
+
+---
+
+_This post covers my journey through portfolio development, continuous learning, adapting to new web technologies, and building production-grade applications. From HTML/CSS/JS to modern frameworks like React, Next.js, and Astro—this is what five years of consistent experimentation taught me._
