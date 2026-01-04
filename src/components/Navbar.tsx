@@ -44,31 +44,37 @@ const Navbar = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: showNavbar ? 0 : -100, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 z-30 w-full md:h-20 px-4 pt-4 md:pt-0 ${isMenuOpen ? "bg-neutral-900 h-60" : "h-20 mix-blend-difference"
+      className={`fixed top-0 left-0 z-30 w-full md:h-20 px-4 pt-4 md:pt-0 ${isMenuOpen ? "bg-neutral-950 h-60" : "h-20 mix-blend-difference"
         } md:px-12 flex items-start md:items-center text-white`}
     >
       <a href="/">
         <img src="/logo.svg" alt="Hirusha Dinil Portfolio" width={25} height={25} />
       </a>
 
-      <div className="hidden md:flex justify-end gap-0.5 tracking-wider w-full uppercase">
+      <div className="hidden md:flex justify-end items-center gap-0.5 tracking-wider w-full uppercase">
         <a
           href="/about"
           className="overflow-hidden h-6 cursor-pointer"
         >
-          <AnimatedText>about</AnimatedText>
+          <AnimatedText>about&middot;</AnimatedText>
         </a>
         <a
           href="/work"
           className="overflow-hidden h-6 cursor-pointer"
         >
-          <AnimatedText>work</AnimatedText>
+          <AnimatedText>work&middot;</AnimatedText>
+        </a>
+        <a
+          href="/blog"
+          className="overflow-hidden h-6 cursor-pointer"
+        >
+          <AnimatedText>blog&middot;</AnimatedText>
         </a>
         <a
           href="/contact"
           className="overflow-hidden h-6 cursor-pointer"
         >
-          <AnimatedText>contact</AnimatedText>
+          <AnimatedText>contact&middot;</AnimatedText>
         </a>
         <a
           href="/archive"
@@ -92,7 +98,7 @@ const Navbar = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="absolute top-12 left-0 w-full flex flex-col gap-1 items-start py-4 px-5 text-left md:hidden overflow-hidden bg-neutral-900"
+            className="absolute top-12 left-0 w-full flex flex-col gap-1 items-start py-4 px-5 text-left md:hidden overflow-hidden bg-neutral-950"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -101,6 +107,7 @@ const Navbar = () => {
             {[
               { href: '/about', label: 'About' },
               { href: '/work', label: 'Work' },
+              { href: '/blog', label: 'Blog' },
               { href: '/contact', label: 'Contact' },
               { href: '/archive', label: 'Archive' }
             ].map((item, idx) => (

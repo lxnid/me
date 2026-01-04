@@ -1,0 +1,63 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+
+const tocHeadings = headings.filter((heading) => heading.depth >= 2 && heading.depth <= 3);
+---
+
+{
+  tocHeadings.length > 0 && (
+    <div class="not-prose my-6">
+      <details class="group">
+        <summary class="flex items-center gap-2 cursor-pointer list-none select-none py-2 border-b border-theme-border-muted/50 hover:border-theme-border transition-colors">
+          <svg
+            class="w-4 h-4 text-theme-text-muted transform transition-transform duration-200 group-open:rotate-90 flex-shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+          <span class="text-xs font-medium text-theme-text-muted uppercase tracking-widest">Contents</span>
+        </summary>
+
+        <nav class="pt-4 pb-2">
+          <ul class="space-y-2">
+            {tocHeadings.map((heading) => (
+              <li>
+                <a
+                  href={`#${heading.slug}`}
+                  class={`
+                    block text-sm text-theme-text-secondary/80
+                    hover:text-theme-text-primary transition-colors duration-150
+                    ${heading.depth === 3 ? 'pl-4 border-l border-theme-border-muted/30' : ''}
+                  `}
+                >
+                  {heading.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </details>
+    </div>
+  )
+}
+
+<style>
+  /* Remove default marker */
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  summary::marker {
+    display: none;
+    content: '';
+  }
+</style>

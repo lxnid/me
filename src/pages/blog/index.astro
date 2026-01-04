@@ -1,0 +1,45 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+import BlogIndex from '../../components/blog/BlogIndex';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts, filter out drafts in production
+const allPosts = await getCollection('blog', ({ data }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+// Sort by date (newest first)
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
+);
+
+// Get unique tags sorted alphabetically
+const allTags = [...new Set(sortedPosts.flatMap((post) => post.data.tags))].sort();
+
+// Page meta
+const title = 'Blog | Hirusha Dinil Rubasinghe';
+const description =
+  'Thoughts, tutorials, and insights on web development, design patterns, and building meaningful digital experiences.';
+---
+
+<BlogLayout title={title} description={description}>
+  <section class="pt-32 pb-20 px-4 md:px-12">
+    <div class="max-w-7xl mx-auto">
+      <!-- Header -->
+      <div class="mb-16">
+        <h1
+          class="text-4xl md:text-6xl lg:text-7xl font-medium text-theme-text-primary mb-6 leading-none"
+        >
+          Blog
+        </h1>
+        <p class="text-lg md:text-xl text-theme-text-secondary max-w-2xl leading-relaxed">
+          Thoughts, tutorials, and insights on web development, design patterns, and
+          building meaningful digital experiences.
+        </p>
+      </div>
+
+      <!-- Blog Index (React Island for filtering) -->
+      <BlogIndex client:load posts={sortedPosts} allTags={allTags} />
+    </div>
+  </section>
+</BlogLayout>

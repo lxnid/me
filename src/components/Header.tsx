@@ -102,7 +102,7 @@ const Header = () => {
           <div className="h-full w-full flex flex-col md:flex-row items-start md:items-end justify-end md:justify-between gap-6 md:gap-0 text-xs md:text-sm text-white uppercase">
             <h1
               ref={textRef}
-              className="text-5xl md:text-[6rem] font-medium leading-none text-[#dddddd] text-start mt-auto md:mt-[28vh] opacity-0 uppercase"
+              className="text-4xl md:text-[6rem] font-medium leading-none text-[#dddddd] text-start mt-auto md:mt-[28vh] opacity-0 uppercase"
             >
               DINIL<br className="md:hidden" /> <span className="opacity-50">RUBASINGHE</span>
             </h1>

@@ -1,0 +1,90 @@
+---
+import '../styles/globals.css';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import SmoothScroll from '../components/SmoothScroll';
+import CustomCursor from '../components/CustomCursor';
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Blog | Hirusha Dinil Rubasinghe',
+  description = 'Thoughts, tutorials, and insights on web development, design patterns, and building meaningful digital experiences.',
+  ogImage = '/og-image.jpg',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Hirusha Dinil Blog",
+  "url": "https://dinilr.com/blog",
+  "author": {
+    "@type": "Person",
+    "name": "Hirusha Dinil Rubasinghe"
+  }
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="preload" href="/fonts/ppneuemontreal-medium.otf" as="font" type="font/otf" crossorigin />
+
+    <!-- Google Fonts: DM Sans for blog content -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet" />
+
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="apple-touch-icon" href="/logo.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site)} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Hirusha Dinil Rubasinghe Portfolio" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(ogImage, Astro.site)} />
+
+    <title>{title}</title>
+
+    <ViewTransitions />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <!-- Additional head content slot -->
+    <slot name="head" />
+  </head>
+  <body class="bg-[#0c0c0c] text-[#e8e8e8]">
+    <CustomCursor client:only="react" />
+    <SmoothScroll client:only="react">
+      <Navbar client:only="react" />
+      <main>
+        <slot />
+      </main>
+    </SmoothScroll>
+    <Footer client:load />
+  </body>
+</html>

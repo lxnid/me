@@ -5,7 +5,7 @@ export default function AboutMe() {
   return (
     <motion.section
       id="about-teaser"
-      className="w-full min-h-screen bg-black text-white flex flex-col md:flex-row items-start justify-center gap-12 mt-36"
+      className="w-full min-h-screen bg-black text-[#dddddd] flex flex-col md:flex-row items-start justify-center gap-12 mt-36"
       initial={{ opacity: 0, y: 64 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ amount: 0.3 }}
@@ -40,17 +40,17 @@ export default function AboutMe() {
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
         <div className="flex flex-col justify-center items-start md:px-20 px-10">
-          <h2 className="text-lg md:text-xl mb-4 font-light opacity-80">
+          <h2 className="text-lg md:text-xl mb-4 font-light text-neutral-400">
             About me
           </h2>
-          <p className="text-2xl md:text-3xl font-medium leading-snug mb-6">
+          <p className="text-2xl md:text-3xl font-medium leading-snug mb-6 text-[#dddddd]">
             I am Hirusha Dinil Rubasinghe, a creative technologist passionate
             about blending design, technology, and strategy. I thrive on
             solving complex problems, building engaging digital experiences,
             and helping brands stand out in a rapidly changing world. Let's
             create something exceptional together.
           </p>
-          <p className="text-sm mb-8 opacity-80 w-3/4">
+          <p className="text-sm mb-8 text-neutral-400 w-3/4">
             I focus on delivering meaningful, innovative solutions that
             reflect your unique vision and values—always adapting to the
             latest trends while staying true to authenticity.
