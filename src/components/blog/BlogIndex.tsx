@@ -37,6 +37,18 @@ export default function BlogIndex({ posts, allTags }: BlogIndexProps) {
     setSelectedTags([]);
   }, []);
 
+  // Helper to determine grid span
+  const getGridSpan = (index: number) => {
+    // Pattern: 4 (large) | 2 (small) | 3 (medium) | 3 (medium)
+    const pattern = [
+      'md:col-span-4', // Large featured style
+      'md:col-span-2', // Tall/narrow
+      'md:col-span-3', // Half width
+      'md:col-span-3', // Half width
+    ];
+    return pattern[index % pattern.length];
+  };
+
   return (
     <div>
       {/* Filter section */}
@@ -61,13 +73,14 @@ export default function BlogIndex({ posts, allTags }: BlogIndexProps) {
           : `Showing ${filteredPosts.length} of ${posts.length} posts`}
       </motion.p>
 
-      {/* Posts grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Posts grid - Bento Layout */}
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
         <AnimatePresence mode="popLayout">
           {filteredPosts.map((post, index) => (
             <motion.div
               key={post.slug}
               layout
+              className={`${getGridSpan(index)} h-full`}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}

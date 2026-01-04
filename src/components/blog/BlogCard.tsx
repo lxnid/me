@@ -32,7 +32,7 @@ export default function BlogCard({ post, index }: BlogCardProps) {
   return (
     <motion.a
       href={`/blog/${slug}`}
-      className="group relative block overflow-hidden rounded-2xl bg-theme-surface border border-theme-border-muted transition-all duration-500 hover:shadow-theme-glow hover:border-theme-border hover:-translate-y-1"
+      className="group relative flex flex-col h-full overflow-hidden rounded-2xl bg-theme-surface border border-theme-border-muted transition-all duration-500 hover:shadow-theme-glow hover:border-theme-border hover:-translate-y-1"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
@@ -40,7 +40,7 @@ export default function BlogCard({ post, index }: BlogCardProps) {
       transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
     >
       {/* Image container */}
-      <div className="relative aspect-[16/10] overflow-hidden">
+      <div className="relative aspect-[2.5/1] overflow-hidden flex-shrink-0">
         <img
           src={imageSrc}
           alt={imageAlt}
@@ -53,7 +53,7 @@ export default function BlogCard({ post, index }: BlogCardProps) {
         {/* Featured badge */}
         {data.featured && (
           <div className="absolute top-4 left-4">
-            <span className="px-3 py-1 text-xs font-medium uppercase tracking-wider bg-theme-text-primary text-theme-bg-primary rounded-full shadow-lg">
+            <span className="px-3 py-1 text-[10px] font-medium uppercase tracking-wider bg-theme-text-primary text-theme-bg-primary rounded-full shadow-lg">
               Featured
             </span>
           </div>
@@ -61,41 +61,36 @@ export default function BlogCard({ post, index }: BlogCardProps) {
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="p-4 flex flex-col flex-1">
         {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-1.5 mb-3">
           {tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
-              className="text-xs px-3 py-1 rounded-full bg-theme-bg-tertiary text-theme-text-secondary border border-theme-border-muted opacity-60 transition-opacity duration-300"
+              className="text-[10px] px-2 py-0.5 rounded-full bg-theme-bg-tertiary text-theme-text-secondary border border-theme-border-muted opacity-60 transition-opacity duration-300"
             >
               {tag}
             </span>
           ))}
-          {tags.length > 3 && (
-            <span className="text-xs px-3 py-1 rounded-full bg-theme-bg-tertiary text-theme-text-muted opacity-60">
-              +{tags.length - 3}
-            </span>
-          )}
         </div>
 
         {/* Title */}
-        <h3 className="text-xl md:text-2xl font-medium text-theme-text-primary mb-3 leading-tight transition-colors duration-300">
+        <h3 className="text-lg md:text-xl font-medium text-theme-text-primary mb-2 leading-tight group-hover:text-theme-accent transition-colors duration-300">
           {title}
         </h3>
 
         {/* Excerpt */}
-        <p className="text-theme-text-secondary text-sm leading-relaxed line-clamp-2 mb-4">
+        <p className="text-theme-text-secondary text-xs leading-relaxed line-clamp-2 mb-3 flex-1">
           {excerpt}
         </p>
 
         {/* Meta */}
-        <div className="flex items-center justify-between text-xs text-theme-text-muted">
+        <div className="flex items-center justify-between text-[10px] text-theme-text-muted mt-auto pt-3 border-t border-theme-border-muted/50">
           <time dateTime={publishedDate.toISOString()}>{formattedDate}</time>
           {readTime && (
             <span className="flex items-center gap-1">
               <svg
-                className="w-4 h-4"
+                className="w-3 h-3"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

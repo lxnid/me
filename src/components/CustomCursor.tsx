@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 export default function CustomCursor() {
   const [cursorVariant, setCursorVariant] = useState("default");
   const [isVisible, setIsVisible] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
 
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -38,18 +39,30 @@ export default function CustomCursor() {
     const handleMouseOver = () => setCursorVariant("hover");
     const handleMouseOut = () => setCursorVariant("default");
 
+    // Handle link clicks
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest('a') || target.closest('button')) {
+        setIsClicking(true);
+        // Reset after a delay in case navigation doesn't happen (e.g. new tab or same page)
+        setTimeout(() => setIsClicking(false), 500);
+      }
+    };
+
     projectElements.forEach((el) => {
       el.addEventListener("mouseenter", handleMouseOver);
       el.addEventListener("mouseleave", handleMouseOut);
     });
 
     window.addEventListener("mousemove", moveCursor);
+    window.addEventListener("mousedown", handleClick);
     document.addEventListener("mouseenter", handleMouseEnter);
     document.addEventListener("mouseleave", handleMouseLeave);
 
     return () => {
       document.head.removeChild(style);
       window.removeEventListener("mousemove", moveCursor);
+      window.removeEventListener("mousedown", handleClick);
       document.removeEventListener("mouseenter", handleMouseEnter);
       document.removeEventListener("mouseleave", handleMouseLeave);
 
@@ -77,6 +90,14 @@ export default function CustomCursor() {
       mixBlendMode: "normal" as const,
       scale: 1,
     },
+    clicking: {
+      width: 20,
+      height: 20,
+      backgroundColor: "#e0e0e0",
+      border: "1px solid #e0e0e0",
+      mixBlendMode: "normal" as const,
+      scale: 0.9,
+    },
   };
 
   return (
@@ -89,14 +110,14 @@ export default function CustomCursor() {
           opacity: isVisible ? 1 : 0,
         }}
         variants={variants}
-        animate={cursorVariant}
+        animate={isClicking ? "clicking" : cursorVariant}
         transition={{
           type: "spring",
           stiffness: 500,
           damping: 28,
         }}
       >
-        {cursorVariant === "hover" && (
+        {cursorVariant === "hover" && !isClicking && (
           <motion.span
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -114,7 +135,7 @@ export default function CustomCursor() {
         style={{
           x: cursorX,
           y: cursorY,
-          opacity: isVisible && cursorVariant === "default" ? 1 : 0,
+          opacity: isVisible && cursorVariant === "default" && !isClicking ? 1 : 0,
           width: 4,
           height: 4,
           translateX: 8,
