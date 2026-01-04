@@ -8,12 +8,6 @@ const contactLinks = [
     external: false,
   },
   {
-    label: "Give a call",
-    href: "tel:+94743228881",
-    description: "+94 74 322 8881",
-    external: false,
-  },
-  {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/hirusha-dinil-rubasinghe-66bbba313/",
     description: "Let's connect professionally",
