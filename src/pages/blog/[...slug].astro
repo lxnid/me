@@ -3,6 +3,8 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
 import LikeButton from '../../components/blog/LikeButton';
 import RelatedPosts from '../../components/blog/RelatedPosts';
 import TableOfContents from '../../components/blog/TableOfContents.astro';
+import AISummaryTrigger from '../../components/blog/ai-summary/AISummaryTrigger';
+import AISummaryContent from '../../components/blog/ai-summary/AISummaryContent';
 import { getCollection, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -31,6 +33,7 @@ const {
   tags,
   keywords,
   readTime,
+  aiSummary,
 } = post.data;
 
 // Get image source
@@ -191,22 +194,33 @@ const breadcrumbSchema = {
       </div>
 
       <!-- Author -->
-      <div class="flex items-center gap-3 pt-4 border-t border-theme-border-muted/50">
-        {author.avatar && (
-          <img
-            src={author.avatar}
-            alt={author.name}
-            class="w-9 h-9 rounded-full object-cover grayscale opacity-80"
-          />
-        )}
-        <div>
-          <span class="text-sm font-medium text-theme-text-primary">{author.name}</span>
+      <div class="flex items-center justify-between pt-4 border-t border-theme-border-muted/50">
+        <div class="flex items-center gap-3">
+          {author.avatar && (
+            <img
+              src={author.avatar}
+              alt={author.name}
+              class="w-9 h-9 rounded-full object-cover grayscale opacity-80"
+            />
+          )}
+          <div>
+            <span class="text-sm font-medium text-theme-text-primary">{author.name}</span>
+          </div>
         </div>
+        
+        {/* AI Summary Trigger */}
+        {aiSummary && <AISummaryTrigger client:visible />}
       </div>
     </header>
 
     <!-- Article Content -->
     <div class="max-w-3xl mx-auto px-6 mt-12 relative z-10">
+      {/* AI Summary Section */}
+      {/* AI Summary Content */}
+      {aiSummary && (
+        <AISummaryContent client:load summary={aiSummary} />
+      )}
+
       <div class="prose prose-lg">
         <TableOfContents headings={headings} />
         <Content />
@@ -291,21 +305,27 @@ const breadcrumbSchema = {
 </BlogLayout>
 
 <script>
-  const copyBtn = document.getElementById('copy-link-btn');
-  const tooltip = document.getElementById('copy-tooltip');
+  document.addEventListener('astro:page-load', () => {
+    const copyBtn = document.getElementById('copy-link-btn');
+    const tooltip = document.getElementById('copy-tooltip');
+    let timeoutId: ReturnType<typeof setTimeout>;
 
-  copyBtn?.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      tooltip?.classList.remove('opacity-0');
-      tooltip?.classList.add('opacity-100');
-      
-      setTimeout(() => {
-        tooltip?.classList.remove('opacity-100');
-        tooltip?.classList.add('opacity-0');
-      }, 2000);
-    } catch (err) {
-      console.error('Failed to copy link:', err);
-    }
+    copyBtn?.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+        
+        if (timeoutId) clearTimeout(timeoutId);
+        
+        tooltip?.classList.remove('opacity-0');
+        tooltip?.classList.add('opacity-100');
+        
+        timeoutId = setTimeout(() => {
+          tooltip?.classList.remove('opacity-100');
+          tooltip?.classList.add('opacity-0');
+        }, 2000);
+      } catch (err) {
+        console.error('Failed to copy link:', err);
+      }
+    });
   });
 </script>

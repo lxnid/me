@@ -1,17 +1,19 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 /**
  * Blog Collection Schema
  * Defines the frontmatter structure for all blog posts
  */
 const blogCollection = defineCollection({
-  type: 'content',
+  type: "content",
   schema: ({ image }) =>
     z.object({
       // Required fields
-      title: z.string().min(1, 'Title is required'),
-      description: z.string().max(160, 'Description should be 160 characters or less for SEO'),
-      excerpt: z.string().max(300, 'Excerpt should be 300 characters or less'),
+      title: z.string().min(1, "Title is required"),
+      description: z
+        .string()
+        .max(160, "Description should be 160 characters or less for SEO"),
+      excerpt: z.string().max(300, "Excerpt should be 300 characters or less"),
       publishedDate: z.date(),
 
       // Optional date for updates
@@ -24,8 +26,8 @@ const blogCollection = defineCollection({
           avatar: z.string().optional(),
         })
         .default({
-          name: 'Hirusha Dinil',
-          avatar: '/avatar.jpg',
+          name: "Hirusha Dinil",
+          avatar: "/avatar.jpg",
         }),
 
       // Featured image (uses Astro's image optimization)
@@ -33,7 +35,7 @@ const blogCollection = defineCollection({
       imageAlt: z.string(),
 
       // Categorization
-      tags: z.array(z.string()).min(1, 'At least one tag is required'),
+      tags: z.array(z.string()).min(1, "At least one tag is required"),
       keywords: z.array(z.string()).optional(),
 
       // Publishing controls
@@ -42,6 +44,9 @@ const blogCollection = defineCollection({
 
       // Reading time (can be computed or manually set)
       readTime: z.number().optional(),
+
+      // AI-generated summary for quick grasp
+      aiSummary: z.string().optional(),
     }),
 });
 
