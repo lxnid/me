@@ -1,8 +1,6 @@
-import { motion } from "framer-motion";
 import { IoArrowForwardCircleOutline, IoLogoVercel } from "react-icons/io5";
 import { generateSlug } from "../utils/slugify";
 import type { Project } from "../data/projects";
-import { fadeInUp, fadeInLeft, staggerContainer } from "../lib/animations";
 import { FaBullseye, FaReact, FaAws, FaGithub } from "react-icons/fa";
 import {
   BiLogoCss3,
@@ -58,26 +56,45 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
 
   const getTechIcon = (tech: string) => {
     const techLower = tech.toLowerCase();
-    if (techLower.includes("react")) return <FaReact className="text-blue-400" />;
-    if (techLower.includes("next")) return <RiNextjsFill className="text-white" />;
-    if (techLower.includes("typescript")) return <BiLogoTypescript className="text-blue-500" />;
-    if (techLower.includes("javascript")) return <BiLogoJavascript className="text-yellow-400" />;
-    if (techLower.includes("node")) return <BiLogoNodejs className="text-green-500" />;
-    if (techLower.includes("python")) return <BiLogoPython className="text-yellow-500" />;
-    if (techLower.includes("tailwind")) return <BiLogoTailwindCss className="text-cyan-400" />;
-    if (techLower.includes("css")) return <BiLogoCss3 className="text-blue-400" />;
-    if (techLower.includes("html")) return <BiLogoHtml5 className="text-orange-400" />;
-    if (techLower.includes("git")) return <BiLogoGit className="text-orange-500" />;
-    if (techLower.includes("docker")) return <BiLogoDocker className="text-blue-600" />;
+    if (techLower.includes("react"))
+      return <FaReact className="text-blue-400" />;
+    if (techLower.includes("next"))
+      return <RiNextjsFill className="text-white" />;
+    if (techLower.includes("typescript"))
+      return <BiLogoTypescript className="text-blue-500" />;
+    if (techLower.includes("javascript"))
+      return <BiLogoJavascript className="text-yellow-400" />;
+    if (techLower.includes("node"))
+      return <BiLogoNodejs className="text-green-500" />;
+    if (techLower.includes("python"))
+      return <BiLogoPython className="text-yellow-500" />;
+    if (techLower.includes("tailwind"))
+      return <BiLogoTailwindCss className="text-cyan-400" />;
+    if (techLower.includes("css"))
+      return <BiLogoCss3 className="text-blue-400" />;
+    if (techLower.includes("html"))
+      return <BiLogoHtml5 className="text-orange-400" />;
+    if (techLower.includes("git"))
+      return <BiLogoGit className="text-orange-500" />;
+    if (techLower.includes("docker"))
+      return <BiLogoDocker className="text-blue-600" />;
     if (techLower.includes("aws")) return <FaAws className="text-orange-400" />;
-    if (techLower.includes("mongodb")) return <BiLogoMongodb className="text-green-500" />;
-    if (techLower.includes("postgresql")) return <BiLogoPostgresql className="text-blue-600" />;
-    if (techLower.includes("graphql")) return <BiLogoGraphql className="text-pink-500" />;
-    if (techLower.includes("api")) return <AiTwotoneApi className="text-purple-400" />;
-    if (techLower.includes("firebase")) return <BiLogoFirebase className="text-orange-500" />;
-    if (techLower.includes("vercel")) return <IoLogoVercel className="text-white" />;
-    if (techLower.includes("netlify")) return <BiLogoNetlify className="text-teal-400" />;
-    if (techLower.includes("render")) return <SiRender className="text-neutral-800" />;
+    if (techLower.includes("mongodb"))
+      return <BiLogoMongodb className="text-green-500" />;
+    if (techLower.includes("postgresql"))
+      return <BiLogoPostgresql className="text-blue-600" />;
+    if (techLower.includes("graphql"))
+      return <BiLogoGraphql className="text-pink-500" />;
+    if (techLower.includes("api"))
+      return <AiTwotoneApi className="text-purple-400" />;
+    if (techLower.includes("firebase"))
+      return <BiLogoFirebase className="text-orange-500" />;
+    if (techLower.includes("vercel"))
+      return <IoLogoVercel className="text-white" />;
+    if (techLower.includes("netlify"))
+      return <BiLogoNetlify className="text-teal-400" />;
+    if (techLower.includes("render"))
+      return <SiRender className="text-neutral-800" />;
     return <FaBullseye className="text-neutral-400" />;
   };
 
@@ -94,93 +111,50 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
         />
         {/* Top gradient for navbar visibility */}
         <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-neutral-950 via-neutral-950/70 to-transparent z-10" />
-        
-        <div className="relative z-10 p-8 md:p-16">
-          <motion.h1
-            className="text-[clamp(2.5rem,8vw,7rem)] font-light leading-none text-neutral-100 drop-shadow-lg"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeInUp}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-          >
+
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-8 md:px-24 pb-16">
+          <h1 className="text-[clamp(2.5rem,8vw,7rem)] font-light leading-none text-neutral-100 drop-shadow-lg">
             {project.title}
-          </motion.h1>
+          </h1>
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/95 to-transparent z-0" />
       </div>
 
       {/* Overview Section */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <motion.div
-          className="mb-10"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={staggerContainer}
-        >
-          <motion.p
-            className="text-xs text-neutral-400 mb-2"
-            variants={fadeInUp}
-            transition={{ duration: 0.6 }}
-          >
-            ({project.date})
-          </motion.p>
-          <motion.h2
-            className="text-2xl md:text-4xl font-medium text-neutral-100 mb-4"
-            variants={fadeInUp}
-            transition={{ duration: 0.7, delay: 0.2 }}
-          >
+      <div className="max-w-5xl mx-auto px-8 md:px-24 py-16">
+        <div className="mb-10">
+          <p className="text-xs text-neutral-400 mb-2">({project.date})</p>
+          <h2 className="text-2xl md:text-4xl font-medium text-neutral-100 mb-4">
             {project.headline}
-          </motion.h2>
-          <motion.p
-            className="text-lg text-neutral-300 max-w-5xl tracking-wide"
-            variants={fadeInUp}
-            transition={{ duration: 0.7, delay: 0.3 }}
-          >
+          </h2>
+          <p className="text-lg text-neutral-300 max-w-5xl tracking-wide">
             {project.description}
-          </motion.p>
-        </motion.div>
+          </p>
+        </div>
 
-        <motion.div
-          className="text-sm md:text-base flex items-center gap-6"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={staggerContainer}
-        >
-          <motion.div
-            className="font-semibold text-neutral-200 whitespace-nowrap"
-            variants={fadeInUp}
-            transition={{ duration: 0.7, delay: 0.4 }}
-          >
+        <div className="text-sm md:text-base flex items-center gap-6">
+          <div className="font-semibold text-neutral-200 whitespace-nowrap">
             Technologies
-          </motion.div>
-          <motion.div className="flex flex-wrap gap-3" variants={staggerContainer}>
-            {project.technologies.map((tech: string, index: number) => (
-              <motion.div
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {project.technologies.map((tech: string) => (
+              <div
                 key={tech}
                 className="flex items-center gap-2 bg-neutral-800/50 px-4 py-2 rounded-full border border-neutral-700 hover:border-neutral-600 hover:bg-neutral-700/50 transition-all duration-500 ease-out"
-                variants={fadeInLeft}
-                transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
                 title={tech}
               >
                 <span className="text-sm">{getTechIcon(tech)}</span>
-                <span className="text-neutral-300 text-sm font-medium">{tech}</span>
-              </motion.div>
+                <span className="text-neutral-300 text-sm font-medium">
+                  {tech}
+                </span>
+              </div>
             ))}
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
 
       {project.tertiaryImage && (
-        <motion.div
-          className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-        >
+        <div className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] py-16">
           <img
             src={`/${project.tertiaryImage}`}
             alt={`${project.title} tertiary view`}
@@ -189,34 +163,21 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
             height={1080}
             loading="lazy"
           />
-        </motion.div>
+        </div>
       )}
 
       {/* Dynamic Sections */}
       {project.sections && project.sections.length > 0 && (
-        <div className="max-w-7xl mx-auto px-4 py-16">
-          <motion.div
-            className="space-y-24"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={staggerContainer}
-          >
+        <div className="max-w-5xl mx-auto px-8 md:px-24 py-16">
+          <div className="space-y-24">
             {project.sections.map((section, index) => (
-              <motion.div
-                key={index}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 * (index % 3) }}
-              >
-                <div className="lg:col-span-3">
-                  <h3 className="text-xl md:text-2xl font-medium text-neutral-100 leading-relaxed top-32">
+              <div key={index} className="flex flex-col gap-3">
+                <div>
+                  <h3 className="text-xl md:text-2xl font-medium text-neutral-100 leading-relaxed">
                     {section.title}
                   </h3>
                 </div>
-                <div className="lg:col-span-9">
+                <div>
                   {Array.isArray(section.content) ? (
                     section.content.map((paragraph, paragraphIndex) => (
                       <p
@@ -234,31 +195,29 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
                   {section.list && (
                     <ul className="text-neutral-300 space-y-3 w-full">
                       {section.list.map((item, itemIndex) => (
-                        <li key={itemIndex} className="flex items-start text-lg w-full">
-                          <span className="mr-4 mt-1.5 text-xs text-neutral-500">●</span>
+                        <li
+                          key={itemIndex}
+                          className="flex items-start text-lg w-full"
+                        >
+                          <span className="mr-4 mt-1.5 text-xs text-neutral-500">
+                            ●
+                          </span>
                           <span className="leading-relaxed">{item}</span>
                         </li>
                       ))}
                     </ul>
                   )}
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       )}
 
       {/* Action Buttons */}
       {(project.link || project.githubUrl) && (
-        <div className="max-w-7xl mx-auto px-4 py-16">
-          <motion.div
-            className="flex justify-end gap-4"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            variants={fadeInUp}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+        <div className="max-w-5xl mx-auto px-8 md:px-24 py-16">
+          <div className="flex justify-end gap-4">
             {project.githubUrl && (
               <a
                 href={project.githubUrl}
@@ -270,38 +229,22 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
                 GitHub
               </a>
             )}
-            {project.link && <Button href={project.link} label="Visit website" />}
-          </motion.div>
+            {project.link && (
+              <Button href={project.link} label="Visit website" />
+            )}
+          </div>
         </div>
       )}
 
       {/* More Projects Section */}
       <div className="bg-neutral-900 py-16">
-        <div className="max-w-screen sm:max-w-7xl mx-auto px-4">
-          <motion.h3
-            className="text-3xl font-semibold mb-8 text-neutral-100"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.5 }}
-            variants={fadeInUp}
-            transition={{ duration: 0.6 }}
-          >
+        <div className="max-w-screen sm:max-w-5xl mx-auto px-8 md:px-24">
+          <h3 className="text-3xl font-semibold mb-8 text-neutral-100">
             More projects
-          </motion.h3>
-          <motion.div
-            className="grid md:grid-cols-2 gap-8"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={staggerContainer}
-          >
+          </h3>
+          <div className="grid md:grid-cols-2 gap-8">
             {moreProjects.map((p, index) => (
-              <motion.div
-                key={p.id}
-                variants={fadeInUp}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="overflow-hidden rounded-2xl"
-              >
+              <div key={p.id} className="overflow-hidden rounded-2xl">
                 <a
                   href={`/work/${generateSlug(p.title)}`}
                   className="relative group rounded-2xl overflow-hidden bg-neutral-800 shadow hover:shadow-xl transition focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -316,7 +259,9 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition flex flex-col justify-end p-6">
-                    <div className="text-lg font-semibold text-white mb-2">{p.title}</div>
+                    <div className="text-lg font-semibold text-white mb-2">
+                      {p.title}
+                    </div>
                     <div className="flex flex-wrap gap-2">
                       {p.technologies.slice(0, 6).map((tag) => (
                         <span
@@ -330,9 +275,9 @@ const ProjectPage = ({ project, moreProjects }: WorkPageClientProps) => {
                     <IoArrowForwardCircleOutline className="absolute bottom-6 right-6 text-4xl" />
                   </div>
                 </a>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
