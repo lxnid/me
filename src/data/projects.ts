@@ -66,6 +66,60 @@ export const projects: Project[] = [
     ],
   },
   {
+    id: 7, // Adjust ID as needed based on your sequence
+    galleryImage: "workImages/invest_tracker/dashboard.png",
+    title: "Investment Portfolio Tracker",
+    date: "2025 - Present",
+    headline:
+      "A security-first, algorithmic trading journal and risk manager for the Colombo Stock Exchange, built to enforce discipline over emotion.",
+    image: "workImages/invest_tracker/main-min.jpg",
+    secondaryImage: "workImages/invest_tracker/main-min.png",
+    link: "https://portfolio.dinilr.com",
+    githubUrl: "https://github.com/lxnid/invest-portfolio-tracker",
+    description:
+      "As a Computer Science student entering the Colombo Stock Exchange (CSE), I found existing platforms like Atrad powerful for execution but lacking in strategic guidance. For a beginner, the dashboards were overwhelming, and the absence of clear performance metrics made it difficult to learn from mistakes. I didn't want to just trade; I wanted to master the market. This project is my answer—a robust, modern application that serves as my personal Risk Manager and daily driver for investment decisions, treating trading as a serious engineering problem rather than a gamble.",
+    technologies: [
+      "Next.js 16",
+      "React 19",
+      "Tailwind CSS 4",
+      "Cloudflare Workers",
+      "Drizzle ORM",
+      "Neon Database",
+      "TanStack Query",
+      "Recharts",
+      "TypeScript",
+    ],
+    role: "Full-Stack Engineer & Product Owner",
+    sections: [
+      {
+        title: "The Problem: Data Without Direction",
+        content: [
+          "Entering the stock market often feels like stepping into a cockpit without a manual. The available tools provided raw data but offered no insight into portfolio health or risk exposure. I needed a system that would prevent emotional decision-making—a platform that could track not just *what* I bought, but *why* I bought it.",
+          "The goal was to build a 'Security-First' architecture that ensures total data sovereignty. Unlike public trackers, this system keeps sensitive financial data private while offering advanced analytics that rival professional terminals.",
+        ],
+      },
+      {
+        title: "Engineering the Solution",
+        content: [
+          "I engineered a custom 'Real-Time Data Engine' capable of interacting with the CSE market data resiliently. This involved building a robust API client with exponential backoff and retry logic to handle network instability and rate limits gracefully—ensuring I never trade on stale data.",
+          "To enforce discipline, I built a proprietary 'Rule Engine' that algorithmically checks every potential trade against my defined Stop Loss, Position Sizing, and Sector Limits. The system calculates a dynamic 'Discipline Score' (0-100%), gamifying adherence to my strategy and objectively measuring my improvement as a trader.",
+        ],
+      },
+      {
+        title: "Technical Challenges & Architecture",
+        content: [
+          "The application mimics a microservices architecture using Next.js on Cloudflare Workers (OpenNext). This edge-first approach ensures low-latency global access, critical for a financial tool. I utilized Neon (Serverless Postgres) with Drizzle ORM to handle complex relational data like transaction histories and historical portfolio snapshots without the overhead of managing a traditional database server.",
+          "One of the biggest technical hurdles was ensuring chart accuracy. I integrated advanced TradingView charts for technical analysis directly within the dashboard, creating a seamless workflow where analysis and journaling happen in one place. I also implemented a 'Portfolio Simulator', a sandbox environment that allows me to paper-trade strategies before deploying real capital.",
+        ],
+      },
+      {
+        title: "DevOps & CI/CD",
+        content:
+          "Availability and reliability are non-negotiable for a daily-driver app. I implemented a rigorous CI/CD pipeline using GitHub Actions that automates type-checking, linting, and deployment to Cloudflare Pages. This ensures that every feature—from the CSV export engine to the sector performance widgets—is production-ready before it merges. The stack choices (TypeScript, Zod for validation, React 19) reflect a commitment to type safety and reducing runtime errors in a financial context.",
+      },
+    ],
+  },
+  {
     id: 6,
     galleryImage: "workImages/cycleparadise/cycleparadise-min.png",
     title: "Multi-Tenant Booking Platform",
@@ -251,7 +305,7 @@ export const projects: Project[] = [
       {
         title: "Architecture & Implementation",
         content: [
-          "The migration involved converting Next.js pages to Astro's file-based routing, transforming layout components into Astro layouts, and carefully applying client directives to control hydration. Components requiring browser APIs use `client:only=\"react\"`, while scroll-triggered animations use `client:visible` to defer loading until needed.",
+          'The migration involved converting Next.js pages to Astro\'s file-based routing, transforming layout components into Astro layouts, and carefully applying client directives to control hydration. Components requiring browser APIs use `client:only="react"`, while scroll-triggered animations use `client:visible` to defer loading until needed.',
           "I leveraged Tailwind CSS 4's new Vite plugin integration for faster builds and smaller CSS output. The animation stack—Framer Motion for component transitions, GSAP with ScrollTrigger for scroll-based effects, and Lenis for buttery-smooth scrolling—works seamlessly within Astro's partial hydration model. Each technology loads only when its component enters the viewport.",
         ],
       },
