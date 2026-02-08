@@ -66,56 +66,63 @@ export const projects: Project[] = [
     ],
   },
   {
-    id: 7, // Adjust ID as needed based on your sequence
+    id: 7,
     galleryImage: "workImages/invest_tracker/dashboard.png",
-    title: "Investment Portfolio Tracker",
+    title: "Investly — CSE Portfolio Tracker",
     date: "2025 - Present",
     headline:
-      "A security-first, algorithmic trading journal and risk manager for the Colombo Stock Exchange, built to enforce discipline over emotion.",
+      "A real-time portfolio tracker for the Colombo Stock Exchange, built to replace spreadsheets with precision.",
     image: "workImages/invest_tracker/main-min.jpg",
-    secondaryImage: "workImages/invest_tracker/main-min.png",
+    secondaryImage: "workImages/invest_tracker/main-min.jpg",
     link: "https://portfolio.dinilr.com",
-    githubUrl: "https://github.com/lxnid/invest-portfolio-tracker",
+    githubUrl: "https://github.com/lxnid/cse-portfolio-manager",
     description:
-      "As a Computer Science student entering the Colombo Stock Exchange (CSE), I found existing platforms like Atrad powerful for execution but lacking in strategic guidance. For a beginner, the dashboards were overwhelming, and the absence of clear performance metrics made it difficult to learn from mistakes. I didn't want to just trade; I wanted to master the market. This project is my answer—a robust, modern application that serves as my personal Risk Manager and daily driver for investment decisions, treating trading as a serious engineering problem rather than a gamble.",
+      "As a Computer Science student entering the Colombo Stock Exchange (CSE), I found existing platforms powerful for execution but overwhelming for strategy. Dashboards were cluttered, performance metrics were buried, and there was no way to plan before committing capital. I didn't want to just trade—I wanted to understand. Investly is the answer: a minimalist, real-time portfolio tracker I built to be my daily driver. It's not a demo. It's what I use every trading day.",
     technologies: [
       "Next.js 16",
       "React 19",
-      "Tailwind CSS 4",
-      "Cloudflare Workers",
-      "Drizzle ORM",
-      "Neon Database",
-      "TanStack Query",
-      "Recharts",
       "TypeScript",
+      "Tailwind CSS 4",
+      "Supabase",
+      "Drizzle ORM",
+      "Framer Motion",
+      "Recharts",
+      "Zod",
+      "Vercel",
     ],
     role: "Full-Stack Engineer & Product Owner",
     sections: [
       {
-        title: "The Problem: Data Without Direction",
+        title: "The Problem: Complexity Without Clarity",
         content: [
-          "Entering the stock market often feels like stepping into a cockpit without a manual. The available tools provided raw data but offered no insight into portfolio health or risk exposure. I needed a system that would prevent emotional decision-making—a platform that could track not just *what* I bought, but *why* I bought it.",
-          "The goal was to build a 'Security-First' architecture that ensures total data sovereignty. Unlike public trackers, this system keeps sensitive financial data private while offering advanced analytics that rival professional terminals.",
+          "Existing CSE platforms give you raw data but no direction. I needed a tool that answered simple questions: What's my P&L right now? How much cash is free? What happens if I enter this stock at three different price points?",
+          "Spreadsheets worked until they didn't. Manual tracking meant stale data, calculation errors, and no visibility into sector allocation. I wanted a single dashboard that could do it all—live.",
         ],
       },
       {
-        title: "Engineering the Solution",
+        title: "Building for Myself",
         content: [
-          "I engineered a custom 'Real-Time Data Engine' capable of interacting with the CSE market data resiliently. This involved building a robust API client with exponential backoff and retry logic to handle network instability and rate limits gracefully—ensuring I never trade on stale data.",
-          "To enforce discipline, I built a proprietary 'Rule Engine' that algorithmically checks every potential trade against my defined Stop Loss, Position Sizing, and Sector Limits. The system calculates a dynamic 'Discipline Score' (0-100%), gamifying adherence to my strategy and objectively measuring my improvement as a trader.",
+          "Investly started as a personal tool, which shaped every design decision. The dashboard shows four core metrics at a glance: Wallet (available cash), Net Value (holdings at market price), Total P&L, and Active Positions. Data updates in real-time via Supabase Realtime subscriptions—no refresh needed.",
+          "I added a Portfolio Simulator where I can plan trades before committing capital. It supports tranche-based entries, calculates fees, rounds share quantities to CSE lot sizes, and shows me the exact cost breakdown before I execute.",
         ],
       },
       {
-        title: "Technical Challenges & Architecture",
+        title: "Technical Architecture",
         content: [
-          "The application mimics a microservices architecture using Next.js on Cloudflare Workers (OpenNext). This edge-first approach ensures low-latency global access, critical for a financial tool. I utilized Neon (Serverless Postgres) with Drizzle ORM to handle complex relational data like transaction histories and historical portfolio snapshots without the overhead of managing a traditional database server.",
-          "One of the biggest technical hurdles was ensuring chart accuracy. I integrated advanced TradingView charts for technical analysis directly within the dashboard, creating a seamless workflow where analysis and journaling happen in one place. I also implemented a 'Portfolio Simulator', a sandbox environment that allows me to paper-trade strategies before deploying real capital.",
+          "The frontend is built with Next.js 16 and React 19, deployed on Vercel. Supabase handles authentication (Google OAuth), the PostgreSQL database, and real-time price broadcasting. Drizzle ORM provides type-safe database access with relational queries.",
+          "Market data is ingested by a separate collector service that updates the symbols table. Supabase Realtime then pushes these updates to all connected clients via WebSocket channels. The holdings are computed server-side using a Postgres view that aggregates BUY/SELL transactions automatically.",
         ],
       },
       {
-        title: "DevOps & CI/CD",
+        title: "Key Features",
+        content: [
+          "Real-time dashboard with live CSE prices and instant P&L calculations. Full transaction history (BUY, SELL, DEPOSIT, WITHDRAWAL, DIVIDEND) with search, filtering, and CSV export. Portfolio Simulator with tranche support and fee calculations. Price Alerts to notify when a stock hits your target. Sector allocation visualization via Recharts. Guest Mode for instant demo access without signup.",
+        ],
+      },
+      {
+        title: "Lessons Learned",
         content:
-          "Availability and reliability are non-negotiable for a daily-driver app. I implemented a rigorous CI/CD pipeline using GitHub Actions that automates type-checking, linting, and deployment to Cloudflare Pages. This ensures that every feature—from the CSV export engine to the sector performance widgets—is production-ready before it merges. The stack choices (TypeScript, Zod for validation, React 19) reflect a commitment to type safety and reducing runtime errors in a financial context.",
+          "Building for yourself changes everything. When your own money is on the line, you write better code. TypeScript with Zod validation became non-negotiable—one decimal error breaks your P&L. Handling stale data, market closures, and rate limits taught me defensive programming I'd never have learned from tutorials. And shipping early, even when it felt unpolished, gave me the feedback loop that shaped every feature since.",
       },
     ],
   },
