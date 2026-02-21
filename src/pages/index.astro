@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Projects from '../components/Projects.astro';
 import Button from '../components/Button';
 import AboutMe from '../components/AboutMe';
+import RecentWriting from '../components/RecentWriting.astro';
 ---
 
 <BaseLayout>
@@ -23,4 +24,7 @@ import AboutMe from '../components/AboutMe';
 
   <!-- About Section -->
   <AboutMe client:visible />
+
+  <!-- Recent Writing Section -->
+  <RecentWriting />
 </BaseLayout>

@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import type { CollectionEntry } from 'astro:content';
-import { fadeInUp } from '../../lib/animations';
+import { motion } from "framer-motion";
+import type { CollectionEntry } from "astro:content";
+import { fadeInUp } from "../../lib/animations";
 
 interface BlogCardProps {
-  post: CollectionEntry<'blog'>;
+  post: CollectionEntry<"blog">;
   index: number;
 }
 
@@ -13,27 +13,32 @@ interface BlogCardProps {
  */
 export default function BlogCard({ post, index }: BlogCardProps) {
   const { slug, data } = post;
-  const { title, excerpt, publishedDate, image, imageAlt, tags, readTime } = data;
+  const { title, excerpt, publishedDate, image, imageAlt, tags, readTime } =
+    data;
 
   // Format the date
-  const formattedDate = new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  const formattedDate = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   }).format(publishedDate);
 
   // Get image src - handle both optimized and string images
-  const imageSrc = typeof image === 'string' ? image : image.src;
+  const imageSrc = typeof image === "string" ? image : image.src;
 
   return (
     <motion.a
       href={`/blog/${slug}`}
-      className="group relative flex flex-col h-full overflow-hidden rounded-2xl bg-theme-surface border border-theme-border-muted transition-all duration-500 hover:shadow-theme-glow hover:border-theme-border hover:-translate-y-1"
+      className="group relative flex flex-col h-full overflow-hidden rounded-2xl transition-all duration-500 hover:-translate-y-1"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={fadeInUp}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
+      transition={{
+        duration: 0.6,
+        delay: index * 0.1,
+        ease: [0.25, 0.1, 0.25, 1],
+      }}
     >
       {/* Image container */}
       <div className="relative aspect-[2.5/1] overflow-hidden flex-shrink-0">
@@ -41,7 +46,7 @@ export default function BlogCard({ post, index }: BlogCardProps) {
           src={imageSrc}
           alt={imageAlt}
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          loading={index < 3 ? 'eager' : 'lazy'}
+          loading={index < 3 ? "eager" : "lazy"}
         />
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-theme-bg-primary/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />

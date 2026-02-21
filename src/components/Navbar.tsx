@@ -3,17 +3,20 @@ import { HiMinus, HiOutlineMenuAlt4 } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navItems = [
-  { href: '/about', label: 'About', index: '01' },
-  { href: '/work', label: 'Work', index: '02' },
-  { href: '/blog', label: 'Blog', index: '03' },
-  { href: '/contact', label: 'Contact', index: '04' },
-  { href: '/archive', label: 'Archive', index: '05' },
+  { href: "/about", label: "About", index: "01" },
+  { href: "/work", label: "Work", index: "02" },
+  { href: "/blog", label: "Writing", index: "03" },
+  { href: "/contact", label: "Contact", index: "04" },
+  { href: "/archive", label: "Archive", index: "05" },
 ];
 
 const socialLinks = [
-  { href: 'https://github.com/lxnid', label: 'GitHub' },
-  { href: 'https://www.linkedin.com/in/hirusha-dinil-rubasinghe-66bbba313/', label: 'LinkedIn' },
-  { href: 'mailto:hirushadinil@gmail.com', label: 'Email' },
+  { href: "https://github.com/lxnid", label: "GitHub" },
+  {
+    href: "https://www.linkedin.com/in/hirusha-dinil-rubasinghe-66bbba313/",
+    label: "LinkedIn",
+  },
+  { href: "mailto:hirushadinil@gmail.com", label: "Email" },
 ];
 
 const Navbar = () => {
@@ -34,8 +37,8 @@ const Navbar = () => {
 
       lastScrollY.current = currentScrollY;
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -43,12 +46,12 @@ const Navbar = () => {
 
   useEffect(() => {
     if (isMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [isMenuOpen]);
 
@@ -154,7 +157,7 @@ const Navbar = () => {
               animate={{ scaleY: 1 }}
               exit={{ scaleY: 0 }}
               transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              style={{ transformOrigin: 'top' }}
+              style={{ transformOrigin: "top" }}
             />
 
             <div className="relative h-full flex flex-col justify-between px-5 py-8">
@@ -169,7 +172,7 @@ const Navbar = () => {
                     transition={{
                       delay: 0.1 + idx * 0.06,
                       duration: 0.5,
-                      ease: [0.25, 0.1, 0.25, 1]
+                      ease: [0.25, 0.1, 0.25, 1],
                     }}
                   >
                     <a
@@ -198,7 +201,7 @@ const Navbar = () => {
                   transition={{ delay: 0.4, duration: 0.5 }}
                   className="text-[11px] uppercase tracking-[0.25em] text-neutral-500 mb-6"
                 >
-                  Creative Developer & Designer
+                  Software Engineer
                 </motion.p>
 
                 {/* Social Links */}
@@ -213,8 +216,14 @@ const Navbar = () => {
                     <a
                       key={link.label}
                       href={link.href}
-                      target={link.href.startsWith('mailto') ? undefined : '_blank'}
-                      rel={link.href.startsWith('mailto') ? undefined : 'noopener noreferrer'}
+                      target={
+                        link.href.startsWith("mailto") ? undefined : "_blank"
+                      }
+                      rel={
+                        link.href.startsWith("mailto")
+                          ? undefined
+                          : "noopener noreferrer"
+                      }
                       className="text-xs uppercase tracking-wider text-neutral-500 hover:text-white transition-colors duration-300"
                       onClick={closeMenu}
                     >
@@ -243,7 +252,13 @@ const Navbar = () => {
 };
 
 // Refined nav link with editorial-style hover (Desktop only)
-const NavLink = ({ item, index }: { item: typeof navItems[0]; index: number }) => {
+const NavLink = ({
+  item,
+  index,
+}: {
+  item: (typeof navItems)[0];
+  index: number;
+}) => {
   return (
     <motion.a
       href={item.href}

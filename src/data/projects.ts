@@ -10,6 +10,7 @@ export interface Project {
   title: string;
   headline: string;
   image: string;
+  homepageImage?: string;
   secondaryImage?: string;
   tertiaryImage?: string;
   link: string;
@@ -23,45 +24,53 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 1,
-    galleryImage: "workImages/portfolio_24/g_portfolio_24-min.jpg",
-    title: "Portfolio Website 2024",
-    date: "2024",
+    id: 8,
+    galleryImage: "workImages/velaris/workflow-diagram.jpg",
+    title: "AWS Health Monitoring Dashboard",
+    date: "2024 (6-month internship)",
     headline:
-      "A bold reinvention of my digital identity for 2024, unifying design and technology into a seamless portfolio experience.",
-    image: "workImages/portfolio_24/portfolio_24-min.jpg",
-    secondaryImage: "workImages/portfolio_24/g_portfolio_24-min.jpg",
-    link: "https://lxnid.github.io/portfolio_site_v2",
-    githubUrl: "https://github.com/lxnid/portfolio_site_v2",
+      "Serverless monitoring infrastructure that cut AWS debugging time by 90% — built in production for a UK B2B SaaS company using Lambda, EventBridge, and AI-powered log normalization.",
+    image: "workImages/velaris/velaris-cover.png",
+    homepageImage: "workImages/velaris/velaris-homepage.png",
+    link: "/work/aws-health-monitoring-dashboard",
+    githubUrl: "",
     description:
-      "In the digital world, a portfolio is far more than a simple collection of work; it is a developer's professional identity, a testament to their philosophy and skill. When I set out to build my previous portfolio, I was driven by a desire to solve a problem I saw across the industry: too many developer sites felt generic, suffered from poor performance, and ultimately failed to communicate the depth of the creator's technical expertise. This project was my response—a thoughtfully architected platform designed to be as performant and well-crafted as the work it showcased.",
+      "During my six-month internship at Velaris.io — a UK-based B2B SaaS company building customer success software — I designed and built a serverless health monitoring infrastructure that reduced AWS debugging time by 90%: from roughly 20 minutes per incident down to 2 minutes. This was a production system. Real engineers on a real team depended on it daily.",
     technologies: [
-      "ReactJS",
-      "NextJS",
-      "Tailwind CSS",
-      "Framer Motion",
-      "TypeScript",
+      "AWS Lambda",
+      "EventBridge",
+      "CloudWatch",
+      "Serverless",
+      "Python",
+      "Node.js",
+      "Internship",
     ],
-    role: "Full-Stack Development",
+    role: "Software Engineering Intern",
     sections: [
       {
-        title: "The Challenge",
+        title: "The Problem",
         content:
-          "My primary challenge was to create a digital presence that could cut through the noise. I wanted to build a site that not only looked unique but also felt exceptionally responsive and engaging. This meant addressing the common pitfalls of how fast lines and clunky user interfaces. I wanted to create a space where every interaction felt deliberate and every element served a purpose. More importantly, I wanted to effectively communicate my strategic thinking and problem-solving skills, ensuring that visitors could quickly understand my capabilities and approach to development. My goal was to craft a cohesive and professional brand identity that would resonate with potential employers, clients, and peers alike.",
+          "The engineering team at Velaris was running into a recurring friction point: when something went wrong in the AWS environment, piecing together what happened meant manually digging through raw CloudWatch logs across multiple services. There was no unified view, no intelligent normalization, and no fast path from 'something is broken' to 'here's exactly what happened and where.' Debugging time was averaging 15–20 minutes per incident — time that added up across a distributed team.",
       },
       {
-        title: "Architecting the Solution",
+        title: "What I Built",
         content: [
-          "To bring this vision to life, I designed a solution focused on performance, maintainability, and a seamless user experience. I chose Next.js 13+ with the App Router for its server-side rendering and optimizations, Tailwind CSS for rapid, responsive UI development, and Framer Motion for subtle, performant animations.",
-          "Following professional best practices, I applied atomic design principles to build a reusable component system and managed state with React hooks. Performance was enhanced through next/image optimization and lazy loading via dynamic imports. My workflow reflected a production-ready setup, using a Git feature-branch strategy, ESLint and Prettier for code consistency, and component testing for reliability.",
+          "I built a serverless monitoring pipeline using AWS Lambda and EventBridge that captured events across services, normalized log data (including AI-powered log normalization to surface relevant signals from noisy output), and fed into a Health Monitoring Dashboard that gave the team a single, readable view of system state.",
+          "Architecture: AWS Lambda functions for log ingestion and processing, EventBridge for event routing across services, CloudWatch Metrics and Logs Insights for data aggregation, AI-powered normalization layer to parse and classify log signals, Dashboard UI for real-time system health visibility.",
         ],
       },
       {
-        title: "Project Reflection",
+        title: "The Outcome",
         content: [
-          "The project was a resounding success, both as a technical artifact and as a professional tool. The site achieved excellent Core Web Vitals scores and a minimal bundle size, confirming its technical performance. This quality was evident, leading to a tangible increase in professional inquiries and networking opportunities. The project demonstrated my ability to balance technical excellence with user experience, high engagement and full accessibility compliance.",
-          "Ultimately, this project was a pivotal learning experience. It allowed me to move from theoretical knowledge to practical mastery of the modern web development stack. The experience was invaluable in end-to-end development, solidifying my skills and confidence. This experience became a comprehensive exercise in building a modern web application from the ground up, establishing a foundation of best practices and a scalable architecture that serves as a template for future projects.",
+          "Debugging time: 20 minutes to 2 minutes (90% reduction).",
+          "Resolved a significant CloudWatch cost spike incident by identifying and optimizing queries that were scanning disproportionate volumes of data.",
+          "Delivered a system the team adopted into their daily workflow.",
         ],
+      },
+      {
+        title: "What I Learned",
+        content:
+          "This project fundamentally changed how I think about software engineering. Building something that a production team depends on is a completely different experience from building for yourself. Every architectural decision has downstream consequences. Cost matters. Reliability matters. And the gap between 'it works on my machine' and 'it works in production' is where real engineering happens. Working within a remote UK team also taught me how professional engineering operates across time zones — async communication, code reviews, decisions made through documented rationale rather than hallway conversations.",
       },
     ],
   },
@@ -73,11 +82,12 @@ export const projects: Project[] = [
     headline:
       "A real-time portfolio tracker for the Colombo Stock Exchange, built to replace spreadsheets with precision.",
     image: "workImages/invest_tracker/main-min.jpg",
+    homepageImage: "workImages/invest_tracker/investly-homepage.jpg",
     secondaryImage: "workImages/invest_tracker/main-min.jpg",
     link: "https://portfolio.dinilr.com",
     githubUrl: "https://github.com/lxnid/cse-portfolio-manager",
     description:
-      "As a Computer Science student entering the Colombo Stock Exchange (CSE), I found existing platforms powerful for execution but overwhelming for strategy. Dashboards were cluttered, performance metrics were buried, and there was no way to plan before committing capital. I didn't want to just trade—I wanted to understand. Investly is the answer: a minimalist, real-time portfolio tracker I built to be my daily driver. It's not a demo. It's what I use every trading day.",
+      "I invest in the Colombo Stock Exchange. The existing tools for tracking a CSE portfolio were either expensive, outdated, or required manually updating a spreadsheet after every session. So I built Investly — a real-time portfolio tracker that does the work the spreadsheet shouldn't have to.\n\nThis project is different from my other work because I'm the user. Every decision — what data to surface, how to handle latency, what the dashboard prioritizes — was made by someone with real money and real portfolio decisions depending on it.",
     technologies: [
       "Next.js 16",
       "React 19",
@@ -139,7 +149,7 @@ export const projects: Project[] = [
     githubUrl:
       "https://github.com/Software-Lifecycle-Consultants/cycleparadise",
     description:
-      "CycleParadise was my first experience working on a production project as part of a professional development team. Collaborating with Software-Lifecycle-Consultants, I contributed to building a comprehensive tourism marketplace for cycling tours across Sri Lanka. This wasn't a solo endeavor—it was a collaborative effort where I learned how real development teams operate: code reviews, version control workflows, task delegation, and collective problem-solving. Working alongside experienced developers pushed me to write cleaner code, follow established conventions, and understand how individual contributions fit into a larger system architecture. The project demanded handling complex booking schedules, managing inventory across multiple tour packages, and building distinct secure portals for administrators and customers.",
+      "A production SaaS platform for a cycling tour company in Sri Lanka — built collaboratively with Software-Lifecycle-Consultants, shipping a full multi-tenant booking system with complex scheduling, RBAC authentication, CI/CD pipelines, and end-to-end test coverage.\n\nMy contributions: Full-stack development across the Astro frontend, PostgreSQL/Prisma data layer, JWT-based authentication system, and Docker-based deployment infrastructure. I led the DevOps pipeline configuration and contributed to the testing framework (Vitest + Playwright).\n\nWhat we shipped: A live, publicly accessible platform handling real customer bookings, with an admin dashboard providing real-time sales metrics, inventory management, and automated email workflows. The site maintains static content availability via a fallback system when the database is under maintenance — a resilience pattern I hadn't built before.\n\nThis was my first production team environment. Working with experienced engineers through pull requests, code reviews, and architectural debates taught me things about professional software development that solo projects simply cannot.",
     technologies: [
       "Astro 4.16",
       "TypeScript",
@@ -385,6 +395,49 @@ export const projects: Project[] = [
           "This project fundamentally changed how I approach web development. Working with Spotify's comprehensive API taught me how to read API documentation effectively, handle asynchronous operations properly, and debug integration issues systematically. Understanding rate limiting and implementing caching strategies gave me insights into building applications that scale and perform well under real-world constraints.",
           "The most valuable lesson came from encountering and solving real problems that tutorials don't cover—handling token expiration gracefully, managing loading states across multiple components, optimizing re-renders, and debugging authentication flows. These challenges taught me to think like a professional developer, not just follow guides.",
           "Melodine represents a significant milestone in my journey from student to developer. It's the project where theoretical knowledge transformed into practical expertise, where I learned that building software isn't just about making things work—it's about understanding why they work, making informed architectural decisions, and writing maintainable code that others can understand and extend.",
+        ],
+      },
+    ],
+  },
+  {
+    id: 1,
+    galleryImage: "workImages/portfolio_24/g_portfolio_24-min.jpg",
+    title: "Portfolio Website 2024",
+    date: "2024",
+    headline:
+      "A bold reinvention of my digital identity for 2024, unifying design and technology into a seamless portfolio experience.",
+    image: "workImages/portfolio_24/portfolio_24-min.jpg",
+    secondaryImage: "workImages/portfolio_24/g_portfolio_24-min.jpg",
+    link: "https://lxnid.github.io/portfolio_site_v2",
+    githubUrl: "https://github.com/lxnid/portfolio_site_v2",
+    description:
+      "In the digital world, a portfolio is far more than a simple collection of work; it is a developer's professional identity, a testament to their philosophy and skill. When I set out to build my previous portfolio, I was driven by a desire to solve a problem I saw across the industry: too many developer sites felt generic, suffered from poor performance, and ultimately failed to communicate the depth of the creator's technical expertise. This project was my response—a thoughtfully architected platform designed to be as performant and well-crafted as the work it showcased.",
+    technologies: [
+      "ReactJS",
+      "NextJS",
+      "Tailwind CSS",
+      "Framer Motion",
+      "TypeScript",
+    ],
+    role: "Full-Stack Development",
+    sections: [
+      {
+        title: "The Challenge",
+        content:
+          "My primary challenge was to create a digital presence that could cut through the noise. I wanted to build a site that not only looked unique but also felt exceptionally responsive and engaging. This meant addressing the common pitfalls of how fast lines and clunky user interfaces. I wanted to create a space where every interaction felt deliberate and every element served a purpose. More importantly, I wanted to effectively communicate my strategic thinking and problem-solving skills, ensuring that visitors could quickly understand my capabilities and approach to development. My goal was to craft a cohesive and professional brand identity that would resonate with potential employers, clients, and peers alike.",
+      },
+      {
+        title: "Architecting the Solution",
+        content: [
+          "To bring this vision to life, I designed a solution focused on performance, maintainability, and a seamless user experience. I chose Next.js 13+ with the App Router for its server-side rendering and optimizations, Tailwind CSS for rapid, responsive UI development, and Framer Motion for subtle, performant animations.",
+          "Following professional best practices, I applied atomic design principles to build a reusable component system and managed state with React hooks. Performance was enhanced through next/image optimization and lazy loading via dynamic imports. My workflow reflected a production-ready setup, using a Git feature-branch strategy, ESLint and Prettier for code consistency, and component testing for reliability.",
+        ],
+      },
+      {
+        title: "Project Reflection",
+        content: [
+          "The project was a resounding success, both as a technical artifact and as a professional tool. The site achieved excellent Core Web Vitals scores and a minimal bundle size, confirming its technical performance. This quality was evident, leading to a tangible increase in professional inquiries and networking opportunities. The project demonstrated my ability to balance technical excellence with user experience, high engagement and full accessibility compliance.",
+          "Ultimately, this project was a pivotal learning experience. It allowed me to move from theoretical knowledge to practical mastery of the modern web development stack. The experience was invaluable in end-to-end development, solidifying my skills and confidence. This experience became a comprehensive exercise in building a modern web application from the ground up, establishing a foundation of best practices and a scalable architecture that serves as a template for future projects.",
         ],
       },
     ],
