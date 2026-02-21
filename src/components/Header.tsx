@@ -38,7 +38,7 @@ const Header = () => {
                   end: "+=1200",
                   scrub: true,
                 },
-              }
+              },
             );
 
             gsap.fromTo(
@@ -54,7 +54,7 @@ const Header = () => {
                   end: "+=800",
                   scrub: true,
                 },
-              }
+              },
             );
           },
         });
@@ -79,7 +79,7 @@ const Header = () => {
             ease: "power3.out",
             stagger: 0.2,
           },
-          "-=1.5"
+          "-=1.5",
         );
       }
 
@@ -89,7 +89,7 @@ const Header = () => {
         gsap.fromTo(
           mobileElement,
           { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.2 }
+          { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.2 },
         );
 
         // Scroll fade for mobile
@@ -106,7 +106,7 @@ const Header = () => {
               end: "+=800",
               scrub: true,
             },
-          }
+          },
         );
       }
     });
@@ -130,7 +130,6 @@ const Header = () => {
       <div className="z-20 absolute w-full h-full flex justify-center items-center pointer-events-none">
         <div className="flex flex-col justify-evenly px-5 md:px-12 py-10 items-center h-full w-full relative">
           <div className="h-full w-full flex flex-col md:flex-row items-start md:items-end justify-end md:justify-between gap-10 md:gap-0 text-xs md:text-sm text-white uppercase">
-
             {/* Mobile Title - Separate element */}
             <div
               ref={mobileTextRef}
@@ -148,13 +147,17 @@ const Header = () => {
             {/* Desktop Title */}
             <h1
               ref={textRef}
-              className="hidden md:block text-[6rem] font-medium leading-none text-[#dddddd] text-start mt-[28vh] opacity-0 uppercase"
+              className="hidden md:block text-[11vw] font-medium leading-[0.85] tracking-tight text-[#dddddd] text-start opacity-0 uppercase"
             >
-              DINIL <span className="opacity-50">RUBASINGHE</span>
+              <span className="block">DINIL</span>
+              <span className="block opacity-50">RUBASINGHE</span>
             </h1>
 
             {/* Social Links */}
-            <div ref={linksRef} className="flex flex-col pointer-events-auto mt-0 md:mt-5 mb-6 md:mb-0">
+            <div
+              ref={linksRef}
+              className="flex flex-col pointer-events-auto mt-0 md:mt-5 mb-6 md:mb-0"
+            >
               {/* Mobile: Icon links */}
               <div className="flex md:hidden items-center gap-5">
                 <a

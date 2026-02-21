@@ -30,8 +30,8 @@ export const projects: Project[] = [
     date: "2024 (6-month internship)",
     headline:
       "Serverless monitoring infrastructure that cut AWS debugging time by 90% — built in production for a UK B2B SaaS company using Lambda, EventBridge, and AI-powered log normalization.",
-    image: "workImages/velaris/velaris-cover.png",
-    homepageImage: "workImages/velaris/velaris-homepage.png",
+    image: "workImages/velaris/velaris-dashboard-cover.png",
+    homepageImage: "workImages/velaris/velaris-dashboard-cover.png",
     link: "/work/aws-health-monitoring-dashboard",
     githubUrl: "",
     description:
@@ -143,7 +143,7 @@ export const projects: Project[] = [
     date: "2024 - 2025",
     headline:
       "A production SaaS platform built collaboratively with Software-Lifecycle-Consultants, where I co-engineered a multi-tenant booking system with complex scheduling, secure authentication, and enterprise-grade deployment pipelines",
-    image: "workImages/cycleparadise/mikkel-bech-yjAFnkLtKY0-unsplash-min.jpg",
+    image: "workImages/cycleparadise/cycleparadise-cover.png",
     secondaryImage: "workImages/cycleparadise/cycleparadise-min.png",
     link: "https://cycleparadise.bike",
     githubUrl:
