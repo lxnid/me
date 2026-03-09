@@ -80,14 +80,14 @@ export const projects: Project[] = [
     title: "Investly — CSE Portfolio Tracker",
     date: "2025 - Present",
     headline:
-      "A real-time portfolio tracker for the Colombo Stock Exchange, built to replace spreadsheets with precision.",
+      "A real-time portfolio tracker for the Colombo Stock Exchange — built because the spreadsheet had to go.",
     image: "workImages/invest_tracker/main-min.jpg",
     homepageImage: "workImages/invest_tracker/investly-homepage.jpg",
     secondaryImage: "workImages/invest_tracker/main-min.jpg",
     link: "https://portfolio.dinilr.com",
     githubUrl: "https://github.com/lxnid/cse-portfolio-manager",
     description:
-      "I invest in the Colombo Stock Exchange. The existing tools for tracking a CSE portfolio were either expensive, outdated, or required manually updating a spreadsheet after every session. So I built Investly — a real-time portfolio tracker that does the work the spreadsheet shouldn't have to.\n\nThis project is different from my other work because I'm the user. Every decision — what data to surface, how to handle latency, what the dashboard prioritizes — was made by someone with real money and real portfolio decisions depending on it.",
+      "I invest in the Colombo Stock Exchange, and the tooling for tracking a CSE portfolio was painful — expensive platforms, outdated broker portals, or a manually maintained spreadsheet that was always one session behind.\n\nSo I built Investly. It's a real-time portfolio tracker that replaces the spreadsheet with a live dashboard, a strategy simulator, and automated fee calculations — all tuned for the CSE's specific rules.\n\nThis project is different from my other work because I'm the end user. Every design decision — what metrics appear above the fold, how latency is handled during market hours, what the simulator calculates before I commit capital — was made by someone with real money on the line.",
     technologies: [
       "Next.js 16",
       "React 19",
@@ -98,53 +98,70 @@ export const projects: Project[] = [
       "Framer Motion",
       "Recharts",
       "Zod",
+      "Cloudflare Workers",
       "Vercel",
     ],
     role: "Full-Stack Engineer & Product Owner",
     sections: [
       {
-        title: "The Problem: Complexity Without Clarity",
+        title: "The Problem: Spreadsheets Don't Scale",
         content: [
-          "Existing CSE platforms give you raw data but no direction. I needed a tool that answered simple questions: What's my P&L right now? How much cash is free? What happens if I enter this stock at three different price points?",
-          "Spreadsheets worked until they didn't. Manual tracking meant stale data, calculation errors, and no visibility into sector allocation. I wanted a single dashboard that could do it all—live.",
+          "Tracking a portfolio on the Colombo Stock Exchange is surprisingly manual. The broker portals are built for order execution, not analysis. Third-party platforms either don't support the CSE or charge a premium for basic features. And spreadsheets? They work until they don't — stale prices, formula errors, zero visibility into sector allocation, and no way to simulate a trade before pulling the trigger.",
+          "I needed a single dashboard that could answer simple questions in real-time: What's my total P&L right now? How much cash is free? If I sell this holding and rotate into another, what does the math look like after fees and lot-size rounding?",
         ],
       },
       {
-        title: "Building for Myself",
+        title: "Building the Product I Needed",
         content: [
-          "Investly started as a personal tool, which shaped every design decision. The dashboard shows four core metrics at a glance: Wallet (available cash), Net Value (holdings at market price), Total P&L, and Active Positions. Data updates in real-time via Supabase Realtime subscriptions—no refresh needed.",
-          "I added a Portfolio Simulator where I can plan trades before committing capital. It supports tranche-based entries, calculates fees, rounds share quantities to CSE lot sizes, and shows me the exact cost breakdown before I execute.",
+          "Investly started as a personal tool, and that shaped everything. The dashboard surfaces four core metrics at a glance — Wallet (available cash), Net Value (holdings at market price), Total P&L, and Active Positions. Prices update in real-time via Supabase Realtime subscriptions pushed from a Cloudflare Worker that collects live market data. No manual refresh needed.",
+          "Beyond the dashboard, the app handles the full lifecycle of CSE investing: recording BUY, SELL, DEPOSIT, WITHDRAWAL, and DIVIDEND transactions with search, filtering, and CSV export. Corporate actions like stock splits, consolidations, rights issues, and scrip dividends are first-class citizens — the system adjusts quantities and average prices automatically without destroying trade history.",
+          "I also built a broker statement importer that parses Atrad CSV exports and maps them into the portfolio, eliminating hours of manual data entry for existing investors migrating to the platform.",
         ],
       },
       {
-        title: "Technical Architecture",
+        title: "The Strategy Simulator",
         content: [
-          "The frontend is built with Next.js 16 and React 19, deployed on Vercel. Supabase handles authentication (Google OAuth), the PostgreSQL database, and real-time price broadcasting. Drizzle ORM provides type-safe database access with relational queries.",
-          "Market data is ingested by a separate collector service that updates the symbols table. Supabase Realtime then pushes these updates to all connected clients via WebSocket channels. The holdings are computed server-side using a Postgres view that aggregates BUY/SELL transactions automatically.",
+          "This is the feature I use most. Before committing capital, I run every trade through the simulator first. It supports two modes: a Buy Simulator for planning new positions with tranche-based entries, and a Strategy Simulator for modeling complex multi-move sequences — sells, buys, swaps, dividend reinvestments, and cash additions — all in a single sandbox.",
+          "The simulator calculates CSE-specific transaction fees, rounds share quantities to lot sizes, shows the exact cost breakdown per tranche, and projects your new average cost and position size. It's the tool that replaced the messy Excel sheet every CSE retail investor knows too well.",
         ],
       },
       {
-        title: "Key Features",
+        title: "Under the Hood",
         content: [
-          "Real-time dashboard with live CSE prices and instant P&L calculations. Full transaction history (BUY, SELL, DEPOSIT, WITHDRAWAL, DIVIDEND) with search, filtering, and CSV export. Portfolio Simulator with tranche support and fee calculations. Price Alerts to notify when a stock hits your target. Sector allocation visualization via Recharts. Guest Mode for instant demo access without signup.",
+          "The frontend is built with Next.js 16 and React 19 using the App Router with React Server Components for optimized data fetching. Supabase handles authentication (Google OAuth and email/password), the PostgreSQL database, and real-time price broadcasting via WebSocket channels. Drizzle ORM provides type-safe database access with relational queries and a holdings view that aggregates transactions into live positions automatically.",
+          "Market data flows through a Cloudflare Worker running on a cron schedule — it collects prices and metadata for all CSE-listed symbols, writes to the database, and Supabase Realtime pushes updates to every connected client. The entire UI is styled with Tailwind CSS v4 and animated with Framer Motion. Recharts powers the sector allocation and portfolio analytics visualizations.",
         ],
       },
       {
-        title: "Lessons Learned",
+        title: "Smart Alerts and Risk Rules",
+        content: [
+          "Price alerts let me set target thresholds (above or below) for any CSE stock and get notified when they trigger. Beyond individual alerts, I built a portfolio rules engine for global risk management — configurable strategy rules that apply across the entire portfolio, not just individual positions.",
+        ],
+      },
+      {
+        title: "Sharing, Demo Mode, and Polish",
+        content: [
+          "Portfolio Share Cards generate frozen point-in-time snapshots of your portfolio — allocation donut charts, top holdings, and P&L stats — shareable via a public link without exposing any live data. I added a Guest Mode that gives instant demo access without signup, complete with sample data so visitors can explore the full interface. An interactive tutorial walks first-time users through every feature on the dashboard.",
+          "The landing page is server-rendered with full SEO: structured JSON-LD data, Open Graph metadata, a sitemap, and a polished dark-mode design that reflects the same attention to detail as the app itself.",
+        ],
+      },
+      {
+        title: "What I Learned",
         content:
-          "Building for yourself changes everything. When your own money is on the line, you write better code. TypeScript with Zod validation became non-negotiable—one decimal error breaks your P&L. Handling stale data, market closures, and rate limits taught me defensive programming I'd never have learned from tutorials. And shipping early, even when it felt unpolished, gave me the feedback loop that shaped every feature since.",
+          "Building for yourself changes the quality bar. When your own money depends on the output, you write different code. TypeScript with Zod validation became non-negotiable — one decimal error breaks your P&L entirely. Handling stale data during market closures, managing Supabase Realtime channel subscriptions across page navigations, and calculating CSE-specific tiered fees with exact LKR precision taught me defensive programming that no tutorial could. Shipping early and iterating based on my own daily use gave me a feedback loop that shaped every feature since launch.",
       },
     ],
   },
+
   {
     id: 6,
-    galleryImage: "workImages/cycleparadise/cycleparadise-min.png",
+    galleryImage: "workImages/cycleparadise/cycleparadise.png",
     title: "Multi-Tenant Booking Platform",
     date: "2024 - 2025",
     headline:
       "A production SaaS platform built collaboratively with Software-Lifecycle-Consultants, where I co-engineered a multi-tenant booking system with complex scheduling, secure authentication, and enterprise-grade deployment pipelines",
     image: "workImages/cycleparadise/cycleparadise-cover.png",
-    secondaryImage: "workImages/cycleparadise/cycleparadise-min.png",
+    secondaryImage: "workImages/cycleparadise/cycleparadise.png",
     link: "https://cycleparadise.bike",
     githubUrl:
       "https://github.com/Software-Lifecycle-Consultants/cycleparadise",
