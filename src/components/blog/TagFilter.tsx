@@ -23,11 +23,11 @@ export default function TagFilter({
       <motion.button
         onClick={onClearAll}
         className={`
-          text-sm px-4 py-2 rounded-full border transition-all duration-200
+          text-xs px-3.5 py-1.5 rounded-full border transition-all duration-300 cursor-pointer
           ${
             selectedTags.length === 0
-              ? 'bg-theme-text-primary text-theme-bg-primary border-theme-text-primary'
-              : 'bg-theme-bg-secondary/45 border-theme-border/60 text-theme-text-secondary hover:border-theme-text-muted hover:text-theme-text-primary opacity-70 hover:opacity-100'
+              ? 'bg-white/[0.12] text-white border-white/[0.2] font-semibold shadow-[0_0_20px_rgba(255,255,255,0.03)]'
+              : 'bg-white/[0.02] border-white/[0.04] text-theme-text-secondary hover:bg-white/[0.06] hover:border-white/[0.1] hover:text-white hover:scale-[1.02]'
           }
         `}
         whileTap={{ scale: 0.95 }}
@@ -36,7 +36,7 @@ export default function TagFilter({
       </motion.button>
 
       {/* Divider */}
-      <div className="w-px h-6 bg-theme-border mx-2 opacity-40" />
+      <div className="w-px h-6 bg-white/[0.05] mx-2" />
 
       {/* Tag chips */}
       {tags.map((tag) => {
@@ -46,11 +46,11 @@ export default function TagFilter({
             key={tag}
             onClick={() => onTagToggle(tag)}
             className={`
-              text-sm px-4 py-2 rounded-full border transition-all duration-200
+              text-xs px-3.5 py-1.5 rounded-full border transition-all duration-300 cursor-pointer
               ${
                 isSelected
-                  ? 'bg-theme-text-primary text-theme-bg-primary border-theme-text-primary'
-                  : 'bg-theme-bg-secondary/45 border-theme-border/60 text-theme-text-secondary hover:border-theme-text-muted hover:text-theme-text-primary opacity-70 hover:opacity-100'
+                  ? 'bg-white/[0.12] text-white border-white/[0.2] font-semibold shadow-[0_0_20px_rgba(255,255,255,0.03)]'
+                  : 'bg-white/[0.02] border-white/[0.04] text-theme-text-secondary hover:bg-white/[0.06] hover:border-white/[0.1] hover:text-white hover:scale-[1.02]'
               }
             `}
             whileTap={{ scale: 0.95 }}
@@ -62,7 +62,7 @@ export default function TagFilter({
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.5 }}
-                className="ml-2 inline-flex items-center justify-center w-4 h-4 text-xs rounded-full bg-theme-bg-primary/20"
+                className="ml-2 inline-flex items-center justify-center w-4 h-4 text-xs rounded-full bg-white/10"
               >
                 ×
               </motion.span>
@@ -79,7 +79,7 @@ export default function TagFilter({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={onClearAll}
-            className="text-sm px-4 py-2 rounded-full bg-theme-bg-secondary/45 text-theme-text-muted hover:text-theme-text-secondary border border-theme-border-muted/35 transition-colors"
+            className="text-xs px-3.5 py-1.5 rounded-full bg-white/[0.02] text-theme-text-muted hover:text-theme-text-secondary border border-white/[0.04] hover:border-white/[0.1] transition-colors cursor-pointer"
             whileTap={{ scale: 0.95 }}
           >
             Clear ({selectedTags.length})

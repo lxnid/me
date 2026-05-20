@@ -14,7 +14,7 @@ const tocHeadings = headings.filter((heading) => heading.depth >= 2 && heading.d
   tocHeadings.length > 0 && (
     <div class="not-prose my-6">
       <details class="group">
-        <summary class="flex items-center gap-2 cursor-pointer list-none select-none py-2 border-b border-theme-border-muted/50 hover:border-theme-border transition-colors group/summary">
+        <summary class="flex items-center gap-2 cursor-pointer list-none select-none py-2 border-b border-white/[0.05] hover:border-white/[0.15] transition-colors group/summary">
           <svg
             class="w-4 h-4 text-theme-text-muted transform transition-transform duration-200 group-open:rotate-90 flex-shrink-0 group-hover/summary:brightness-150 transition-all"
             fill="none"
@@ -36,7 +36,7 @@ const tocHeadings = headings.filter((heading) => heading.depth >= 2 && heading.d
                   class={`
                     block text-sm text-theme-text-secondary/80
                     hover:text-theme-text-primary transition-colors duration-150
-                    ${heading.depth === 3 ? 'pl-4 border-l border-theme-border-muted/30' : ''}
+                    ${heading.depth === 3 ? 'pl-4 border-l border-white/[0.05]' : ''}
                   `}
                 >
                   {heading.text}
