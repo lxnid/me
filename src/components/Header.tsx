@@ -5,6 +5,7 @@ import SplitType from "split-type";
 import AnimatedText from "./AnimatedText";
 import { FaLinkedinIn, FaGithub } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
+import { throttle } from "../utils/performance";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -111,13 +112,14 @@ const Header = () => {
       }
     });
 
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       if (window.scrollY > 10) {
         setShowArrow(false);
       } else {
         setShowArrow(true);
       }
-    };
+    }, 40); // Throttle scroll checks
+    
     window.addEventListener("scroll", handleScroll);
     return () => {
       ctx.revert();

@@ -37,7 +37,7 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
           <motion.a
             key={slug}
             href={`/blog/${slug}`}
-            className="group flex gap-4 p-4 rounded-xl bg-theme-surface border border-theme-border-muted hover:border-theme-border transition-all duration-300"
+            className="group flex gap-4 p-4 rounded-xl bg-neutral-900/15 border border-white/[0.03] backdrop-blur-md hover:bg-neutral-900/30 hover:border-white/[0.08] hover:shadow-[0_0_50px_rgba(255,255,255,0.015)] transition-all duration-300"
             variants={fadeInUp}
           >
             {/* Thumbnail */}
@@ -45,14 +45,14 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
               <img
                 src={imageSrc}
                 alt={imageAlt}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
                 loading="lazy"
               />
             </div>
 
             {/* Content */}
             <div className="flex-1 min-w-0">
-              <h4 className="text-sm font-medium text-theme-text-primary mb-1 line-clamp-2 group-hover:text-theme-accent transition-colors">
+              <h4 className="text-sm font-medium text-theme-text-primary mb-1 line-clamp-2 group-hover:text-theme-accent transition-colors duration-300">
                 {title}
               </h4>
               <div className="flex items-center gap-2 text-xs text-theme-text-muted">
@@ -66,11 +66,11 @@ export default function RelatedPosts({ posts }: RelatedPostsProps) {
                   </>
                 )}
               </div>
-              <div className="flex gap-1 mt-2">
+              <div className="flex gap-1.5 mt-2.5">
                 {tags.slice(0, 2).map((tag) => (
                   <span
                     key={tag}
-                    className="text-[10px] px-2 py-0.5 rounded-full bg-theme-bg-tertiary text-theme-text-muted"
+                    className="text-[9px] font-medium tracking-wide uppercase px-2 py-0.5 rounded-full bg-theme-bg-tertiary/70 text-theme-text-secondary hover:bg-theme-bg-tertiary hover:text-theme-text-primary transition-colors duration-300"
                   >
                     {tag}
                   </span>

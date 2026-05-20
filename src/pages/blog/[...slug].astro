@@ -194,7 +194,7 @@ const breadcrumbSchema = {
       </div>
 
       <!-- Author -->
-      <div class="flex items-center justify-between pt-4 border-t border-theme-border-muted/50">
+      <div class="flex items-center justify-between pt-4 border-t border-theme-border-muted/15">
         <div class="flex items-center gap-3">
           {author.avatar && (
             <img
@@ -227,7 +227,7 @@ const breadcrumbSchema = {
       </div>
 
       <!-- Article Footer -->
-      <footer class="mt-16 pt-8 border-t border-theme-border-muted/50">
+      <footer class="mt-16 pt-8 border-t border-theme-border-muted/15">
         <!-- Like & Share Row -->
         <div class="flex items-center justify-between flex-wrap gap-6">
           <LikeButton client:visible postSlug={post.slug} />
@@ -281,7 +281,7 @@ const breadcrumbSchema = {
 
     <!-- Related Posts -->
     {relatedPosts.length > 0 && (
-      <section class="max-w-5xl mx-auto px-6 mt-24 pt-12 border-t border-theme-border-muted/30 relative z-10">
+      <section class="max-w-5xl mx-auto px-6 mt-24 pt-12 border-t border-theme-border-muted/15 relative z-10">
         <h2 class="text-xs font-medium text-theme-text-muted uppercase tracking-widest mb-8">
           Continue Reading
         </h2>

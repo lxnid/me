@@ -27,7 +27,7 @@ export default function AboutMe() {
           loop
           muted
           playsInline
-          preload="none"
+          preload="metadata"
           aria-label="Background video"
         />
         <div className="absolute inset-0 bg-black/50 md:bg-transparent z-10 pointer-events-none" />

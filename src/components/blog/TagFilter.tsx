@@ -27,7 +27,7 @@ export default function TagFilter({
           ${
             selectedTags.length === 0
               ? 'bg-theme-text-primary text-theme-bg-primary border-theme-text-primary'
-              : 'border-theme-border text-theme-text-secondary hover:border-theme-text-muted hover:text-theme-text-primary opacity-60 hover:opacity-100'
+              : 'bg-theme-bg-secondary/45 border-theme-border/60 text-theme-text-secondary hover:border-theme-text-muted hover:text-theme-text-primary opacity-70 hover:opacity-100'
           }
         `}
         whileTap={{ scale: 0.95 }}
@@ -50,7 +50,7 @@ export default function TagFilter({
               ${
                 isSelected
                   ? 'bg-theme-text-primary text-theme-bg-primary border-theme-text-primary'
-                  : 'border-theme-border text-theme-text-secondary hover:border-theme-text-muted hover:text-theme-text-primary opacity-60 hover:opacity-100'
+                  : 'bg-theme-bg-secondary/45 border-theme-border/60 text-theme-text-secondary hover:border-theme-text-muted hover:text-theme-text-primary opacity-70 hover:opacity-100'
               }
             `}
             whileTap={{ scale: 0.95 }}
@@ -79,7 +79,7 @@ export default function TagFilter({
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={onClearAll}
-            className="text-sm px-4 py-2 rounded-full bg-theme-surface text-theme-text-muted hover:text-theme-text-secondary border border-theme-border-muted transition-colors"
+            className="text-sm px-4 py-2 rounded-full bg-theme-bg-secondary/45 text-theme-text-muted hover:text-theme-text-secondary border border-theme-border-muted/35 transition-colors"
             whileTap={{ scale: 0.95 }}
           >
             Clear ({selectedTags.length})

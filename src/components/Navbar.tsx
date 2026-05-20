@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { HiMinus, HiOutlineMenuAlt4 } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
+import { throttle } from "../utils/performance";
 
 const navItems = [
   { href: "/about", label: "About", index: "01" },
@@ -25,7 +26,7 @@ const Navbar = () => {
   const lastScrollY = useRef(0);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       const currentScrollY = window.scrollY;
 
       // Show/hide logic
@@ -36,7 +37,8 @@ const Navbar = () => {
       }
 
       lastScrollY.current = currentScrollY;
-    };
+    }, 30); // Throttle to once every 30ms
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);

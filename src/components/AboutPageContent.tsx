@@ -102,6 +102,7 @@ export default function AboutPageContent() {
           loop
           muted
           playsInline
+          preload="metadata"
           aria-label="Background video"
         />
         <div className="absolute bottom-10 left-10 z-20">

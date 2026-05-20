@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react';
 import {
   initFirebase,
   getDb,
-  getDeviceFingerprint,
+  getClientId,
   doc,
   getDoc,
   setDoc,
@@ -100,14 +100,14 @@ export function useLikes(postSlug: string): UseLikesReturn {
     const likedPosts = JSON.parse(localStorage.getItem(LIKE_STORAGE_KEY) || '{}');
 
     try {
-      const fingerprint = await getDeviceFingerprint();
+      const clientId = await getClientId();
       const docSnap = await getDoc(postRef);
 
       if (hasLiked) {
         // --- UNLIKE Action ---
-        // Always remove fingerprint, even if count logic is weird
+        // Always remove clientId, even if count logic is weird
         const updates: any = {
-          [`fingerprints.${fingerprint}`]: deleteField(),
+          [`fingerprints.${clientId}`]: deleteField(),
         };
 
         if (docSnap.exists()) {
@@ -128,9 +128,9 @@ export function useLikes(postSlug: string): UseLikesReturn {
           const currentCount = data.count || 0;
 
           // Anti-spam check:
-          // Only block if fingerprint exists AND count > 0.
+          // Only block if clientId exists AND count > 0.
           // If count is 0, it's a desync state (broken doc), so we allow "re-liking" to fix it.
-          if (data.fingerprints?.[fingerprint] && currentCount > 0) {
+          if (data.fingerprints?.[clientId] && currentCount > 0) {
             // Update local state to match server reality
             likedPosts[postSlug] = true;
             setHasLiked(true);
@@ -140,13 +140,13 @@ export function useLikes(postSlug: string): UseLikesReturn {
 
           await updateDoc(postRef, {
             count: increment(1),
-            [`fingerprints.${fingerprint}`]: true,
+            [`fingerprints.${clientId}`]: true,
           });
         } else {
           // Create new document
           await setDoc(postRef, {
             count: 1,
-            fingerprints: { [fingerprint]: true },
+            fingerprints: { [clientId]: true },
           });
         }
         

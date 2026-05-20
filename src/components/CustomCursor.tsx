@@ -61,23 +61,31 @@ export default function CustomCursor() {
     };
   }, [cursorX, cursorY]);
 
-  // Effect 3: Project element hover listeners (runs once)
+  // Effect 3: Global Event Delegation for hover triggers (robust across View Transitions)
   useEffect(() => {
-    const projectElements = document.querySelectorAll('.cursor-hover-project');
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target && target.closest('.cursor-hover-project')) {
+        setCursorVariant("hover");
+      }
+    };
 
-    const handleMouseOver = () => setCursorVariant("hover");
-    const handleMouseOut = () => setCursorVariant("default");
+    const handleMouseOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target && target.closest('.cursor-hover-project')) {
+        const relatedTarget = e.relatedTarget as HTMLElement;
+        if (!relatedTarget || !relatedTarget.closest('.cursor-hover-project')) {
+          setCursorVariant("default");
+        }
+      }
+    };
 
-    projectElements.forEach((el) => {
-      el.addEventListener("mouseenter", handleMouseOver);
-      el.addEventListener("mouseleave", handleMouseOut);
-    });
+    window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener("mouseout", handleMouseOut);
 
     return () => {
-      projectElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleMouseOver);
-        el.removeEventListener("mouseleave", handleMouseOut);
-      });
+      window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener("mouseout", handleMouseOut);
     };
   }, []);
 
