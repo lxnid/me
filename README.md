@@ -327,9 +327,6 @@ This runs `npx wrangler deploy`, which:
 
 ## 🔗 Contact & Social
 
-- **Email**: offbeat-zombies.3q@icloud.com
-- **Phone**: +94 74 322 8881
-- **LinkedIn**: https://www.linkedin.com/in/hirusha-dinil-rubasinghe-66bbba313/
 - **GitHub**: https://github.com/lxnid
 - **Portfolio**: https://dinilr.com
 
