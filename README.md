@@ -1,9 +1,6 @@
-# Hirusha Dinil – Portfolio
+# Hirusha Dinil – Portfolio (2025)
 
 A modern, high-performance developer portfolio built with **Astro 5**, **React 19**, and **Tailwind CSS 4**. This site showcases my projects, skills, and experience with smooth animations, responsive design, and optimized performance through Astro's island architecture.
-
-**Live Site**: https://dinilr.com
-**Deployed on**: Cloudflare Workers
 
 ## ✨ Features
 
